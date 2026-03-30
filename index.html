@@ -52,7 +52,6 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            /* 模糊的稻穗底圖 */
             background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA');
             background-size: cover;
             background-position: center;
@@ -71,11 +70,9 @@
             background-image: url('https://lh3.googleusercontent.com/d/1syvx4RN5vvDCyaqgiLCW9fjnFPBQ0azg');
             background-size: cover;
             background-position: center;
-            /* 修正：手機版預設為 scroll，避免 iOS Safari 導致背景消失 */
             background-attachment: scroll;
         }
 
-        /* 修正：只有在平板與電腦版 (大於 768px) 才啟用固定背景效果 */
         @media (min-width: 768px) {
             .hero-background {
                 background-attachment: fixed;
@@ -94,9 +91,14 @@
             font-family: "Noto Sans TC", sans-serif !important;
         }
 
-        /* 背景圖片遮罩 */
         .bg-overlay {
             background-color: rgba(250, 248, 245, 0.55);
+        }
+
+        /* Logo 去背濾鏡樣式 */
+        .logo-filter {
+            mix-blend-mode: multiply;
+            filter: contrast(1.5) brightness(1.1);
         }
     </style>
 </head>
@@ -110,7 +112,8 @@
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="#" class="flex items-center gap-3">
-                    <img src="https://lh3.googleusercontent.com/d/1ELNxyrnrvC4HcXqdKRwQUxu2gxCXgNpu" alt="Logo" class="h-10 w-10 rounded-full object-cover shadow-sm">
+                    <!-- 修正：導覽列 Logo 換成新連結並套用去背濾鏡 -->
+                    <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="Logo" class="h-12 w-auto object-contain logo-filter">
                     <span class="font-medium text-xl tracking-widest text-stone-800">緩生工作室</span>
                 </a>
                 <div class="hidden md:flex space-x-8">
@@ -160,9 +163,7 @@
         </div>
     </header>
 
-    <!-- 漂浮卡片區開始 -->
-    
-    <!-- 關於緩生 (Story Card) - 溫暖米白 -->
+    <!-- 關於緩生 (Story Card) -->
     <section id="story" class="pt-20 pb-10 md:pt-28 md:pb-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-stone-100/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
@@ -175,26 +176,24 @@
                         <p class="pl-4 border-l-2 border-sage-300 italic text-stone-500 font-light">「我們給彼此十年時間，看看工作會走到哪裡。當方向逐漸清晰，就選擇下一個落腳的地方。」</p>
                         <p>即使，我們才剛搬進板橋的新家不久。老公一句話：「我朋友住宜蘭，來回上班很不錯。」於是我們開始看房子、看學校，就這樣，緣份把我們牽到了宜蘭・冬山。也在這裡，遇見了一眼就喜歡的家。</p>
                         <p>真正搬來之後，放慢腳步，才發現——原來這才是生活，這才是人生。孩子需要這樣緩慢而安定的節奏長大，而身為媽媽的我，也終於在這裡，找到屬於自己的生活步調。</p>
-                        <p>我始終對雙北充滿感謝。因為那些年的歷練，造就了今天的我——一個有能力照顧自己、也有能力溫柔陪伴她人的我。</p>
+                        <p>我始終對雙北充滿感謝。因為那些年的歷練，造就了今天的我——一個有能力照顧自己、也有能力溫柔陪伴她人的我記錄。</p>
                         <p class="font-medium text-stone-800 text-lg mt-8 text-center">
                             <span class="block md:inline">「緩生工作室」，</span>
                             <span class="block md:inline">就是在這樣的生命節奏裡誕生的。</span>
                         </p>
                     </div>
                 </div>
-                <div class="lg:w-1/2 order-1 lg:order-2 w-full">
-                    <div class="relative">
-                        <img src="https://lh3.googleusercontent.com/d/1bg3AAhcdKx_5MP8U4EEgkbcThtUQvp6q" alt="環境" class="relative rounded-2xl w-full h-[350px] md:h-[500px] object-cover shadow-md border border-white/40">
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl text-center shadow-sm">
-                            <span class="text-sm tracking-widest text-stone-600 font-light">位於宜蘭冬山，溫暖安定的空間</span>
-                        </div>
+                <div class="lg:w-1/2 order-1 lg:order-2 w-full flex justify-center items-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- 關於緩生內的 Logo -->
+                        <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="Logo" class="relative w-full h-auto object-contain scale-110 logo-filter">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 個人專業資歷 (Profile Card) - 輕柔莫蘭迪綠 -->
+    <!-- 個人專業資歷 (Profile Card) -->
     <section id="profile" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-sage-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
             <div class="flex flex-col md:flex-row gap-16 items-center">
@@ -240,23 +239,26 @@
         </div>
     </section>
 
-    <!-- 環境介紹 (Environment Card) - 純淨透白 -->
+    <!-- 環境介紹 (Environment Card) -->
     <section id="environment" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto bg-white/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-5 sm:p-8 md:p-16 relative overflow-hidden text-center">
-            <!-- 卡片內部的背景圖示 -->
             <div class="absolute top-0 left-0 w-full h-full opacity-[0.07] pointer-events-none flex items-center justify-center">
                 <i class="fa-brands fa-pagelines text-[25rem] text-sage-500 -rotate-12"></i>
             </div>
             
             <div class="relative z-10">
                 <span class="text-sage-600 text-sm tracking-[0.3em] font-medium uppercase mb-4 block">Our Space</span>
-                <!-- 修正點：使用 clamp 與 whitespace-nowrap 確保標題在手機版不換行且不被切掉 -->
                 <h2 class="whitespace-nowrap text-[clamp(18px,5.5vw,36px)] md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">關於「緩生工作室」的環境</h2>
                 <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-10"></div>
                 
+                <div class="mb-12 relative max-w-3xl mx-auto">
+                    <img src="https://lh3.googleusercontent.com/d/1bg3AAhcdKx_5MP8U4EEgkbcThtUQvp6q" alt="環境空間" class="rounded-2xl w-full h-[300px] md:h-[450px] object-cover shadow-md border border-white/40">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl text-center shadow-sm">
+                        <span class="text-sm tracking-widest text-stone-600 font-light">位於宜蘭冬山，溫暖安定的空間</span>
+                    </div>
+                </div>
+
                 <div class="space-y-8 text-stone-600 font-light tracking-wide leading-[2.2]">
-                    
-                    <!-- 第一段引言：強制一句話一行 -->
                     <p class="flex flex-col items-center w-full overflow-hidden">
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">我們用一張溫暖的實木桌、幾把椅子，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">留下一個讓媽媽放鬆坐下來的空間。</span>
@@ -264,14 +266,12 @@
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">一起找到屬於自己的新生活節奏。</span>
                     </p>
                     
-                    <!-- 第二段引言：強制一句話一行 -->
                     <p class="flex flex-col items-center w-full overflow-hidden">
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">呸呸自己也是一位媽媽，育有兩個兒子，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">選擇以<span class="font-medium text-stone-800 border-b border-sage-300 pb-1 mx-1">居家工作室</span>的形式，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">將真實的生活感受融入每一次陪伴。</span>
                     </p>
                     
-                    <!-- 更新區塊：強制一句話一行，並調整縮放比例防止手機版被切斷 -->
                     <div class="mt-8 md:mt-12 bg-white/50 w-full flex flex-col items-center px-1 sm:px-8 py-4 sm:py-5 rounded-2xl shadow-sm border border-white/60">
                         <span class="block whitespace-nowrap text-stone-800 font-medium text-[clamp(12px,3.5vw,20px)] sm:text-lg md:text-xl">這裡不只是服務的場所，</span>
                         <span class="block whitespace-nowrap text-stone-800 font-medium text-[clamp(11px,3.2vw,20px)] sm:text-lg md:text-xl mt-1 sm:mt-2">而是一個讓媽媽能安心停下來、被溫暖接住的家。</span>
@@ -282,14 +282,13 @@
         </div>
     </section>
 
-    <!-- 服務項目 (Services Card) - 大地陶土暖色 -->
+    <!-- 服務項目 (Services Card) -->
     <section id="services" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-clay-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16 text-center">
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-6 tracking-widest font-medium">服務項目</h2>
             <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-12"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-8">
-                <!-- 內部小卡片 -->
-                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group">
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group text-center">
                     <img src="https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i" alt="按摩" class="h-48 w-full object-cover">
                     <div class="p-6 xl:p-8">
                         <h3 class="text-lg xl:text-xl text-stone-800 mb-3 font-medium whitespace-nowrap tracking-tight">產後腹部按摩</h3>
@@ -299,7 +298,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group">
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group text-center">
                     <img src="https://lh3.googleusercontent.com/d/1LpY-Ex0HIpmZAfEot7JcOMLP6abQl-57" alt="泌乳" class="h-48 w-full object-cover">
                     <div class="p-6 xl:p-8">
                         <h3 class="text-lg xl:text-xl text-stone-800 mb-3 font-medium whitespace-nowrap tracking-tight">泌乳支持與哺乳陪伴</h3>
@@ -309,7 +308,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group">
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group text-center">
                     <img src="https://lh3.googleusercontent.com/d/1xPLAJ5XE-b6AKr7LTbIL2TRFAaK3iH__" alt="整聊" class="h-48 w-full object-cover">
                     <div class="p-6 xl:p-8">
                         <h3 class="text-lg xl:text-xl text-stone-800 mb-3 font-medium whitespace-nowrap tracking-tight">身心整聊</h3>
@@ -319,7 +318,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group">
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group text-center">
                     <img src="https://lh3.googleusercontent.com/d/19e_VvQadX5Mwg63NQ-xILtt4QbHmlzwn" alt="空間" class="h-48 w-full object-cover">
                     <div class="p-6 xl:p-8">
                         <h3 class="text-lg xl:text-xl text-stone-800 mb-3 font-medium whitespace-nowrap tracking-tight">生活空間支持</h3>
@@ -334,11 +333,10 @@
         </div>
     </section>
 
-    <!-- 預約資訊 (Booking Card) - 質感暖灰 -->
+    <!-- 預約資訊 (Booking Card) -->
     <section id="booking" class="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto bg-stone-100/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16 text-center">
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-12 tracking-widest font-medium">預約與資訊</h2>
-            
             <div class="space-y-8 text-stone-600 font-light tracking-wide max-w-xl mx-auto">
                 <div>
                     <h4 class="font-medium text-stone-800 mb-2">服務範圍</h4>

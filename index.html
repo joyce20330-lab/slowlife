@@ -6,7 +6,7 @@
     <title>緩生工作室 | 陪伴每一位媽媽</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: 僅保留 Noto Sans TC 以確保一致性 -->
+    <!-- Google Fonts: Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -19,27 +19,48 @@
                 extend: {
                     colors: {
                         stone: {
-                            50: '#FAF8F5',  // 溫暖米白背景
+                            50: '#FAF8F5',
                             100: '#F5F2EB',
-                            600: '#7A6F62',  // 柔和文字
-                            800: '#4A4238',  // 深色文字
+                            600: '#7A6F62',
+                            800: '#4A4238',
                         },
                         sage: {
-                            500: '#8A9A86',  // 莫蘭迪綠點綴
+                            500: '#8A9A86',
                             600: '#6B7A68',
                         }
                     },
                     fontFamily: {
-                        // 強制全站使用 Noto Sans TC
                         sans: ['"Noto Sans TC"', 'sans-serif'],
-                        serif: ['"Noto Sans TC"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* 自定義淡入動畫 */
+        /* 全站背景層：包含模糊與流動動畫 */
+        .global-rice-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* 使用您提供的圖片 ID: 1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA */
+            background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px) brightness(1.05); /* 輕微模糊增加質感 */
+            opacity: 0.25; /* 保持透明度，不干擾閱讀 */
+            animation: flowingBg 20s infinite alternate ease-in-out;
+        }
+
+        /* 背景緩慢流動動畫 */
+        @keyframes flowingBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* 淡入動畫 */
         .fade-in {
             animation: fadeIn 1.5s ease-in-out forwards;
         }
@@ -47,20 +68,25 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* 背景圖片遮罩 */
-        .bg-overlay {
-            background-color: rgba(250, 248, 245, 0.65);
-        }
-        /* 修正標題字體，確保不帶有襯線 */
+
+        /* 標題字體修正 */
         h1, h2, h3, h4, span, a {
             font-family: "Noto Sans TC", sans-serif !important;
         }
+
+        /* 背景圖片遮罩 */
+        .bg-overlay {
+            background-color: rgba(250, 248, 245, 0.5);
+        }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white">
+<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative">
+
+    <!-- 全站流動稻穗背景 -->
+    <div class="global-rice-bg"></div>
 
     <!-- 導覽列 -->
-    <nav class="fixed w-full z-50 bg-stone-50/90 backdrop-blur-sm border-b border-stone-100 transition-all duration-300">
+    <nav class="fixed w-full z-50 bg-stone-50/70 backdrop-blur-md border-b border-stone-100 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="#" class="flex items-center gap-3">
@@ -81,8 +107,8 @@
         </div>
     </nav>
 
-    <!-- 手機版全螢幕選單 -->
-    <div id="mobile-menu" class="fixed inset-0 bg-stone-50 z-[60] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
+    <!-- 手機版選單 -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-50/95 backdrop-blur-xl z-[60] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-stone-800 text-4xl focus:outline-none hover:text-sage-600 transition-colors">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -115,15 +141,13 @@
         </div>
     </header>
 
-    <!-- 工作室起源 (Story Section) -->
-    <section id="story" class="py-24 md:py-32 bg-stone-50">
+    <!-- 工作室起源 (Story Section) - 半透明玻璃質感 -->
+    <section id="story" class="py-24 md:py-32 bg-stone-50/40 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
-                
                 <div class="lg:w-1/2 order-2 lg:order-1">
                     <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">關於緩生</h2>
                     <div class="w-12 h-[1px] bg-sage-500 mb-8"></div>
-                    
                     <div class="text-stone-600 leading-[2.2] tracking-wide font-light space-y-6 text-[15px] md:text-base">
                         <p>我來自中部。小時候的夢想很單純——到大都市讀書、工作，在那裡站穩腳步。從大學開始，我一路生活在台北，努力在雙北成家立業，一轉眼，十二年就這樣過去了。</p>
                         <p>六年前，第一個孩子出生後，心裡其實一直有個聲音，很想回到鄉下、回到更貼近稻田的地方。但在工作與經濟的現實考量下，我們選擇繼續留在雙北努力。直到兩年前，突然想起和老公剛畢業時的一個約定——</p>
@@ -134,7 +158,6 @@
                         <p class="font-medium text-stone-800 text-lg mt-8">「緩生工作室」，就是在這樣的生命節奏裡誕生的。</p>
                     </div>
                 </div>
-
                 <div class="lg:w-1/2 order-1 lg:order-2 w-full">
                     <div class="relative">
                         <div class="absolute -inset-4 border border-stone-200 rounded-2xl hidden md:block"></div>
@@ -144,27 +167,23 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 個人專業資歷 (Profile Section) -->
-    <section id="profile" class="py-24 md:py-32 bg-white">
+    <!-- 個人專業資歷 (Profile Section) - 半透明玻璃質感 -->
+    <section id="profile" class="py-24 md:py-32 bg-white/40 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col md:flex-row gap-16 items-center">
-                
                 <div class="md:w-1/2 w-full">
                     <div class="relative">
                         <div class="absolute -inset-4 border border-stone-200 rounded-2xl hidden md:block"></div>
                         <img src="./images/profile.jpg" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zUn5WbMtSenoi5BMYVGG1v73wgUV-T4X';" alt="個人專業資歷" class="relative rounded-xl w-full h-[450px] md:h-[600px] object-cover shadow-lg object-top">
                     </div>
                 </div>
-
                 <div class="md:w-1/2 w-full">
                     <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">個人專業資歷</h2>
                     <div class="w-12 h-[1px] bg-sage-500 mb-10"></div>
-                    
                     <div class="space-y-12">
                         <div>
                             <h3 class="flex items-center gap-3 text-xl text-stone-800 mb-6 tracking-wide font-medium">
@@ -179,7 +198,6 @@
                                 <li class="flex items-start gap-3"><span class="text-sage-400 mt-1.5">•</span> 康寧大學臨床實習教師 1 年</li>
                             </ul>
                         </div>
-
                         <div>
                             <h3 class="flex items-center gap-3 text-xl text-stone-800 mb-6 tracking-wide font-medium">
                                 <i class="fa-solid fa-certificate text-sage-500"></i> 專業執照與資格
@@ -191,48 +209,44 @@
                                 <li class="flex items-start gap-3 whitespace-nowrap"><span class="text-sage-400 mt-1.5">•</span> 臨床泌乳照護管理師</li>
                                 <li class="flex items-start gap-3 whitespace-nowrap"><span class="text-sage-400 mt-1.5">•</span> 華人泌乳顧問協會基礎課程</li>
                                 <li class="flex items-start gap-3 whitespace-nowrap"><span class="text-sage-400 mt-1.5">•</span> 人智醫學 IPMT 研修中</li>
-                                <li class="flex items-start gap-3 whitespace-nowrap"><span class="text-sage-400 mt-1.5">•</span> 台灣華德福教育幼教師資養成課程培訓中</li>
+                                <li class="flex items-start gap-3 whitespace-nowrap font-medium text-stone-700 underline decoration-sage-300 underline-offset-4"><span class="text-sage-400 mt-1.5">•</span> 台灣華德福教育幼教師資養成課程培訓中</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- 工作室環境 (Environment Section) -->
-    <section id="environment" class="py-24 md:py-32 bg-stone-50 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none flex items-center justify-center">
-            <i class="fa-brands fa-pagelines text-[20rem] text-sage-500/10 -rotate-12"></i>
+    <section id="environment" class="py-24 md:py-32 bg-stone-50/30 backdrop-blur-sm relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none flex items-center justify-center">
+            <i class="fa-brands fa-pagelines text-[20rem] text-sage-500 -rotate-12"></i>
         </div>
-        
         <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
             <span class="text-sage-600 text-sm tracking-[0.3em] font-medium uppercase mb-4 block">Our Space</span>
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">關於「緩生工作室」的環境</h2>
             <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-10"></div>
-            
             <div class="space-y-8 text-stone-600 font-light tracking-wide leading-[2.2] text-[15px] md:text-[17px]">
                 <p>我們用一張溫暖的實木桌、幾把椅子，<br class="hidden md:block">留下一個讓媽媽放鬆坐下來的空間。<br>在身體轉變、角色轉換的過程中，<br class="hidden md:block">一起找到屬於自己的新生活節奏。</p>
                 <p>呸呸自己也是一位媽媽，育有兩個兒子，<br class="hidden md:block">選擇以<span class="font-medium text-stone-800 border-b border-sage-300 pb-1">居家工作室</span>的形式，<br class="hidden md:block">將真實的生活感受融入每一次陪伴。</p>
-                <p class="text-stone-800 font-medium text-lg md:text-xl mt-12 bg-white/60 inline-block px-6 py-4 rounded-2xl shadow-sm">
+                <p class="text-stone-800 font-medium text-lg md:text-xl mt-12 bg-white/60 inline-block px-8 py-4 rounded-2xl shadow-sm border border-white/40">
                     這裡不只是服務的場所，<br>而是一個讓媽媽能安心停下來、被溫暖接住的家。<br>
-                    <span class="text-stone-600 text-[15px] md:text-base font-light mt-3 block">在熟悉而溫暖的空間裡，感受被理解，重新賦予自己生命的力量。</span>
+                    <span class="text-stone-600 text-[15px] md:text-base font-light mt-3 block tracking-widest">在熟悉而溫暖的空間裡，感受被理解，重新賦予自己生命的力量。</span>
                 </p>
             </div>
         </div>
     </section>
 
     <!-- 服務項目 (Services Section) -->
-    <section id="services" class="py-24 md:py-32 bg-[#F5F2EB]">
+    <section id="services" class="py-24 md:py-32 bg-[#F5F2EB]/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl text-stone-800 mb-6 tracking-widest font-medium">服務項目</h2>
                 <div class="w-12 h-[1px] bg-sage-500 mx-auto"></div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                <div class="bg-stone-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                     <img src="./images/service-massage.jpg" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i';" alt="按摩" class="h-48 w-full object-cover">
                     <div class="p-8">
                         <h3 class="text-xl text-stone-800 mb-3 tracking-wide font-medium">產後腹部按摩</h3>
@@ -240,7 +254,7 @@
                         <p class="text-stone-500 text-sm tracking-wide font-light">溫柔呵護產後身軀，找回身體的平衡與寧靜。</p>
                     </div>
                 </div>
-                <div class="bg-stone-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                     <img src="./images/service-lactation.jpg" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1LpY-Ex0HIpmZAfEot7JcOMLP6abQl-57';" alt="泌乳" class="h-48 w-full object-cover">
                     <div class="p-8">
                         <h3 class="text-xl text-stone-800 mb-3 tracking-wide font-medium">泌乳服務</h3>
@@ -248,7 +262,7 @@
                         <p class="text-stone-500 text-sm tracking-wide font-light">專業且溫暖的支持，讓哺育之路更加順暢安心。</p>
                     </div>
                 </div>
-                <div class="bg-stone-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                     <img src="./images/service-counseling.jpg" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1xPLAJ5XE-b6AKr7LTbIL2TRFAaK3iH__';" alt="整聊" class="h-48 w-full object-cover">
                     <div class="p-8">
                         <h3 class="text-xl text-stone-800 mb-3 tracking-wide font-medium">身心整聊</h3>
@@ -256,7 +270,7 @@
                         <p class="text-stone-500 text-sm tracking-wide font-light">傾聽母親內在的聲音，梳理情緒與生活空間。</p>
                     </div>
                 </div>
-                <div class="bg-stone-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                     <img src="./images/service-space.jpg" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19e_VvQadX5Mwg63NQ-xILtt4QbHmlzwn';" alt="空間" class="h-48 w-full object-cover">
                     <div class="p-8">
                         <h3 class="text-xl text-stone-800 mb-3 tracking-wide font-medium">空間支持</h3>
@@ -269,11 +283,10 @@
     </section>
 
     <!-- 預約與資訊 (Booking & Info Section) -->
-    <section id="booking" class="py-24 bg-stone-50 border-t border-stone-200">
+    <section id="booking" class="py-24 bg-stone-50/60 backdrop-blur-sm border-t border-stone-200">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-12 tracking-widest font-medium">預約與資訊</h2>
-            
-            <div class="bg-white p-10 md:p-14 rounded-3xl shadow-sm border border-stone-100 max-w-2xl mx-auto">
+            <div class="bg-white/80 p-10 md:p-14 rounded-3xl shadow-sm border border-stone-100 max-w-2xl mx-auto">
                 <div class="space-y-8 text-stone-600 font-light tracking-wide">
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-stone-50 flex items-center justify-center mb-4 text-sage-600">
@@ -282,9 +295,7 @@
                         <h4 class="font-medium text-stone-800 mb-2">服務範圍</h4>
                         <p>線上 / 冬山工作室 / 宜蘭區到府</p>
                     </div>
-
                     <div class="w-full h-[1px] bg-stone-100"></div>
-
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-stone-50 flex items-center justify-center mb-4 text-sage-600">
                             <i class="fa-regular fa-clock text-xl"></i>
@@ -293,9 +304,7 @@
                         <p>平日 08:30 - 15:30</p>
                         <p>假日 視情況約聊</p>
                     </div>
-
                     <div class="w-full h-[1px] bg-stone-100"></div>
-
                     <div class="flex flex-col items-center pt-4">
                         <p class="mb-6 text-[15px]">歡迎透過以下方式與我們聯繫、預約</p>
                         <div class="flex flex-col gap-4 w-full">
@@ -303,10 +312,10 @@
                                 <i class="fa-brands fa-line text-2xl"></i> 加入 LINE 預約 (@606zrncg)
                             </a>
                             <div class="flex gap-4 justify-center mt-2">
-                                <a href="https://www.facebook.com/share/1GutXgpkVy/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center w-12 h-12 rounded-full bg-stone-100 text-stone-600 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm">
+                                <a href="https://www.facebook.com/share/1GutXgpkVy/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center w-12 h-12 rounded-full bg-stone-100/80 text-stone-600 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm">
                                     <i class="fa-brands fa-facebook-f text-xl"></i>
                                 </a>
-                                <a href="https://www.instagram.com/pei_pei_postpartum_care?igsh=ano0eWtzMnV6dmR2&utm_source=qr" target="_blank" class="flex items-center justify-center w-12 h-12 rounded-full bg-stone-100 text-stone-600 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white transition-all shadow-sm">
+                                <a href="https://www.instagram.com/pei_pei_postpartum_care?igsh=ano0eWtzMnV6dmR2&utm_source=qr" target="_blank" class="flex items-center justify-center w-12 h-12 rounded-full bg-stone-100/80 text-stone-600 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white transition-all shadow-sm">
                                     <i class="fa-brands fa-instagram text-xl"></i>
                                 </a>
                             </div>
@@ -318,7 +327,7 @@
     </section>
 
     <!-- 頁尾 (Footer) -->
-    <footer class="bg-stone-800 text-stone-400 py-16 text-center text-sm font-light tracking-widest">
+    <footer class="bg-stone-800/90 backdrop-blur-md text-stone-400 py-16 text-center text-sm font-light tracking-widest">
         <div class="max-w-6xl mx-auto px-6">
             <p class="mb-8 font-light">緩緩地，陪伴每一位媽媽，走在成為母親、也成為自己的路上。</p>
             <div class="flex justify-center gap-8 mb-10 text-2xl">
@@ -330,7 +339,8 @@
     </footer>
 
     <!-- LINE 浮動按鈕 -->
-    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-[#06C755] hover:bg-[#05B34C] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
+    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-[#06C755] hover:bg-[#05B34C] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
         <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
         <span class="absolute right-full mr-4 bg-white text-stone-700 text-sm px-3 py-2 rounded-lg shadow-sm border border-stone-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap hidden md:block tracking-widest font-medium">預約與諮詢</span>
     </a>
@@ -350,7 +360,10 @@
                 document.body.style.overflow = 'hidden';
             } else {
                 mobileMenu.classList.add('opacity-0');
-                setTimeout(() => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); }, 300);
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                }, 300);
                 document.body.style.overflow = '';
             }
         }

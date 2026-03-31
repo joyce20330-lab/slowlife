@@ -113,7 +113,7 @@
             -webkit-user-drag: none;
         }
         
-        nav img, .fixed img, a img, button, a {
+        nav img, .fixed img, a img, button, a, #music-control-wrap {
             pointer-events: auto !important;
         }
     </style>
@@ -210,9 +210,9 @@
     <section id="profile" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-sage-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
             
-            <!-- 總標題：玫瑰色、網頁單行/手機雙行 -->
+            <!-- 總標題：網頁單行，手機雙行保護 -->
             <div class="text-center mb-12 overflow-hidden px-2">
-                <h2 class="text-rose-500 font-bold tracking-[0.1em] text-[clamp(20px,4.2vw,28px)] mb-3 drop-shadow-sm leading-snug md:leading-normal">
+                <h2 class="text-rose-500 font-bold tracking-[0.1em] text-[clamp(19px,4.2vw,28px)] mb-3 drop-shadow-sm leading-snug md:leading-normal">
                     <span class="block md:inline">融合臨床醫學與人智醫學：</span>
                     <span class="block md:inline">陪伴妳走過產後修復期</span>
                 </h2>
@@ -230,7 +230,6 @@
 
                 <!-- 右側資歷區 -->
                 <div class="md:w-[58%] w-full">
-                    <!-- 副標題 -->
                     <h3 class="whitespace-nowrap text-2xl md:text-3xl text-stone-800 mb-10 tracking-widest font-medium">關於呸呸專業資歷</h3>
                     
                     <div class="space-y-12">
@@ -406,6 +405,21 @@
         </div>
     </footer>
 
+    <!-- 背景音樂控制鈕 (左下角) -->
+    <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
+        <button id="music-toggle" class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all hover:bg-sage-600 pulse-music border-2 border-white/40">
+            <i id="music-icon" class="fa-solid fa-music text-xl"></i>
+        </button>
+        <div id="music-status" class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-stone-500 text-[10px] md:text-xs tracking-widest shadow-sm border border-stone-100 opacity-0 transition-opacity duration-500 pointer-events-none">
+            點擊播放音樂
+        </div>
+    </div>
+    
+    <!-- 音訊標籤：讀取您 GitHub 上的音樂檔案 -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="./music.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- LINE 浮動按鈕 (右下角) -->
     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
         <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
@@ -429,6 +443,40 @@
         }
         btn.onclick = toggle; close.onclick = toggle;
         document.querySelectorAll('.mobile-link').forEach(l => l.onclick = toggle);
+
+        // --- 音樂播放控制邏輯 ---
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicStatus = document.getElementById('music-status');
+        const audio = document.getElementById('bg-music');
+        let isPlaying = false;
+
+        musicToggle.onclick = () => {
+            if (!isPlaying) {
+                musicStatus.innerText = "讀取中...";
+                musicStatus.classList.remove('opacity-0');
+                
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = "fa-solid fa-compact-disc text-xl animate-music";
+                    musicStatus.innerText = "背景音樂播放中";
+                    musicToggle.classList.remove('pulse-music');
+                    setTimeout(() => musicStatus.classList.add('opacity-0'), 3000);
+                }).catch(err => {
+                    console.error("Play failed:", err);
+                    musicStatus.innerText = "請檢查檔名是否正確";
+                    setTimeout(() => musicStatus.classList.add('opacity-0'), 3000);
+                });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                musicIcon.className = "fa-solid fa-music text-xl";
+                musicStatus.innerText = "音樂已暫停";
+                musicStatus.classList.remove('opacity-0');
+                musicToggle.classList.add('pulse-music');
+                setTimeout(() => musicStatus.classList.add('opacity-0'), 2000);
+            }
+        };
 
         // 全域禁用圖片右鍵選單
         window.addEventListener('contextmenu', function (e) {

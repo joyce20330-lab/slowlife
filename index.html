@@ -34,6 +34,9 @@
                         clay: {
                             50: '#F4EFEA',
                             100: '#EAE1D8',
+                        },
+                        rose: {
+                            500: '#B36D61', /* 質感的莫蘭迪玫瑰色 */
                         }
                     },
                     fontFamily: {
@@ -103,19 +106,33 @@
 
         /* 圖片保護機制：禁止長按彈出菜單與拖拽 */
         img {
-            -webkit-touch-callout: none; /* iOS Safari 禁止長按 */
-            -webkit-user-select: none;   /* Safari 禁止選取 */
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
             user-select: none;
-            pointer-events: none;       /* 禁止所有滑鼠交互 */
-            -webkit-user-drag: none;    /* 禁止拖拽圖片 */
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
         
-        /* 導覽列與按鈕內的圖片需要恢復交互（例如點擊跳轉），但保留禁止存圖 */
-        nav img, .fixed img, a img {
+        nav img, .fixed img, a img, button, a, #music-control-wrap {
             pointer-events: auto !important;
+        }
+
+        /* 音樂旋轉動畫 */
+        @keyframes musicRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-music {
+            animation: musicRotate 6s linear infinite;
+        }
+
+        /* 音樂按鈕跳動 */
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+            50% { transform: scale(1.08); box-shadow: 0 10px 15px -3px rgba(138, 154, 134, 0.4); }
+        }
+        .pulse-music {
+            animation: musicPulse 3s infinite ease-in-out;
         }
     </style>
 </head>
@@ -161,10 +178,9 @@
         </a>
     </div>
 
-    <!-- 首頁視覺區 (Hero Section) -->
+    <!-- 首頁視覺區 -->
     <header class="relative h-screen flex items-center justify-center hero-background">
         <div class="absolute inset-0 bg-overlay backdrop-blur-[2px]"></div>
-        
         <div class="relative z-10 text-center px-4 fade-in w-full max-w-5xl mx-auto">
             <h1 class="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl text-stone-800 mb-6 tracking-[0.15em] font-medium leading-tight whitespace-nowrap">
                 緩緩地，陪伴每一位媽媽
@@ -179,7 +195,7 @@
         </div>
     </header>
 
-    <!-- 關於緩生 (Story Card) -->
+    <!-- 關於緩生 -->
     <section id="story" class="pt-20 pb-10 md:pt-28 md:pb-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-stone-100/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
@@ -188,7 +204,7 @@
                     <div class="w-12 h-[1px] bg-sage-500 mb-8"></div>
                     <div class="text-stone-600 leading-[2.2] tracking-wide font-light space-y-6 text-[15px] md:text-base">
                         <p>我來自中部。小時候的夢想很單純——到大都市讀書、工作，在那裡站穩腳步。從大學開始，我一路生活在台北，努力在雙北成家立業，一轉眼，十二年就這樣過去了。</p>
-                        <p>六年前，第一個孩子出生後，心裡其實一直有個聲音，很想回到鄉下、回到更貼近稻田的地方。但在工作與經濟的現實考量下，我們選擇繼續留在雙北努力。直到兩年前，突然想起和老公剛畢業時的一個約定——</p>
+                        <p>六六年後，第一個孩子出生後，心裡其實一直有個聲音，很想回到鄉下、回到更貼近稻田的地方。但在工作與經濟的現實考量下，我們選擇繼續留在雙北努力。直到兩年前，突然想起和老公剛畢業時的一個約定——</p>
                         <p class="pl-4 border-l-2 border-sage-300 italic text-stone-500 font-light">「我們給彼此十年時間，看看工作會走到哪裡。當方向逐漸清晰，就選擇下一個落腳的地方。」</p>
                         <p>即使，我們才剛搬進板橋的新家不久。老公一句話：「我朋友住宜蘭，來回上班很不錯。」於是我們開始看房子、看學校，就這樣，緣份把我們牽到了宜蘭・冬山。也在這裡，遇見了一眼就喜歡的家。</p>
                         <p>真正搬來之後，放慢腳步，才發現——原來這才是生活，這才是人生。孩子需要這樣緩慢而安定的節奏長大，而身為媽媽的我，也終於在這裡，找到屬於自己的生活步調。</p>
@@ -208,47 +224,74 @@
         </div>
     </section>
 
-    <!-- 關於呸呸專業資歷 (Profile Card) -->
+    <!-- 關於呸呸專業資歷 -->
     <section id="profile" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-sage-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
-            <div class="flex flex-col md:flex-row gap-16 items-center">
-                <div class="md:w-1/2 w-full">
-                    <div class="relative">
-                        <img src="https://lh3.googleusercontent.com/d/1zUn5WbMtSenoi5BMYVGG1v73wgUV-T4X" alt="照片" class="relative rounded-2xl w-full h-[450px] md:h-[600px] object-cover shadow-md object-top border border-white/40">
+            
+            <!-- 總標題：玫瑰色、單行化 -->
+            <div class="text-center mb-12 overflow-hidden px-2">
+                <h2 class="text-rose-500 font-bold tracking-[0.1em] whitespace-nowrap text-[clamp(12px,3.8vw,28px)] mb-3 drop-shadow-sm">
+                    融合臨床醫學與人智醫學：陪伴妳走過產後修復期
+                </h2>
+                <div class="w-24 h-[2px] bg-rose-500/20 mx-auto mb-4"></div>
+                <p class="text-stone-400 text-sm tracking-[0.3em] font-medium uppercase">Pei Pei's Professional Experience</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 lg:gap-20">
+                <!-- 左側照片區 -->
+                <div class="md:w-[42%] w-full">
+                    <div class="sticky top-28">
+                        <img src="https://lh3.googleusercontent.com/d/1zUn5WbMtSenoi5BMYVGG1v73wgUV-T4X" alt="照片" class="rounded-2xl w-full h-[450px] lg:h-[650px] object-cover shadow-lg object-top border border-white/40">
                     </div>
                 </div>
-                <div class="md:w-1/2 w-full">
-                    <h2 class="whitespace-nowrap text-[clamp(18px,5.5vw,36px)] md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">關於呸呸專業資歷</h2>
-                    <div class="w-12 h-[1px] bg-sage-500 mb-10"></div>
+
+                <!-- 右側資歷區 -->
+                <div class="md:w-[58%] w-full">
+                    <!-- 副標題 - 已移除下方橫線 -->
+                    <h3 class="whitespace-nowrap text-2xl md:text-3xl text-stone-800 mb-10 tracking-widest font-medium">關於呸呸專業資歷</h3>
+                    
                     <div class="space-y-12">
+                        <!-- 核心現職 -->
                         <div>
-                            <h3 class="flex items-center gap-3 text-xl text-stone-800 mb-6 font-medium">
-                                <i class="fa-solid fa-seedling text-sage-500"></i> 經歷
-                            </h3>
-                            <ul class="space-y-3 text-stone-600 font-light text-[15px] sm:text-base">
-                                <!-- 調整後的經歷順序 -->
-                                <li class="whitespace-nowrap">• 台灣大學研究所畢業（婦女健康及母嬰護理組）</li>
-                                <li>• 三軍總醫院兒科護理師 5 年</li>
-                                <li>• 康寧大學臨床實習教師 1 年</li>
-                                <li>• 台大臨床研究助理員 2 年</li>
-                                <li>• 公托護理師 2 年</li>
-                                <li>• 台北醫院內外科護理師 2 年</li>
-                                <li>• 俏媽咪孕產照護團隊泌乳師 2 年</li>
-                                <li>• 產後居家整聊師 2 年</li>
+                            <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest">
+                                <i class="fa-solid fa-star text-sage-500"></i> 【核心現職與專業服務】
+                            </h4>
+                            <ul class="space-y-4 text-stone-600 font-light pl-4 sm:pl-8">
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 俏媽咪孕產照護團隊 泌乳師 (2年)</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 孕產居家整聊師 (2年)</li>
+                                <!-- 修正：更新研修名稱 -->
+                                <li class="whitespace-nowrap text-[clamp(10px,3.2vw,16px)]">• 國際學士後人智醫學培訓(IPMT) 研修中</li>
+                                <!-- 修正：更新培訓名稱 -->
+                                <li class="whitespace-nowrap text-[clamp(10px,3.2vw,16px)]">• 台灣華德福教育幼教師資養成課程 培訓中</li>
                             </ul>
                         </div>
+
+                        <!-- 專業醫療與教學背景 -->
                         <div>
-                            <h3 class="flex items-center gap-3 text-xl text-stone-800 mb-6 font-medium">
-                                <i class="fa-solid fa-certificate text-sage-500"></i> 專業執照與資格
-                            </h3>
-                            <ul class="space-y-3 text-stone-600 font-light text-[14px] sm:text-base">
-                                <li class="whitespace-nowrap">• 國家考試院護理師證書</li>
-                                <li class="whitespace-nowrap">• 居家整聊師 中級資格</li>
-                                <li class="whitespace-nowrap">• 亞太芳香科際整合-泌乳照護師</li>
-                                <li class="whitespace-nowrap">• 臨床泌乳照護管理師</li>
-                                <li class="whitespace-nowrap">• 華人泌乳顧問協會基礎課程</li>
-                                <li class="whitespace-nowrap">• 人智醫學 IPMT 研修中</li>
-                                <li class="whitespace-nowrap">• 台灣華德福教育幼教師資養成課程培訓中</li>
+                            <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest">
+                                <i class="fa-solid fa-hospital text-sage-500"></i> 【專業醫療與教學背景】
+                            </h4>
+                            <ul class="space-y-4 text-stone-600 font-light pl-4 sm:pl-8">
+                                <li class="whitespace-nowrap text-[clamp(9px,2.8vw,16px)]">學歷：國立台灣大學研究所畢業（婦女健康及母嬰護理組）</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">臨床：三軍總醫院 兒科護理師 (5年)</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">公衛：公共托育中心 護理師 (2年)</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">教學：康寧大學 臨床實習教師 (1年)</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">研究：台大醫院 臨床研究助理員 (2年)</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">基礎：衛生福利部台北醫院 內外科護理師 (2年)</li>
+                            </ul>
+                        </div>
+
+                        <!-- 專業執照 -->
+                        <div>
+                            <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest">
+                                <i class="fa-solid fa-certificate text-sage-500"></i> 【專業執照與認證】
+                            </h4>
+                            <ul class="space-y-4 text-stone-600 font-light pl-4 sm:pl-8">
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 國家考試院 護理師證書</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 亞太芳香科際整合 泌乳照護師</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 臨床泌乳照護管理師</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 華人泌乳顧問協會 基礎課程結業</li>
+                                <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 居家整聊師 中級資格證照</li>
                             </ul>
                         </div>
                     </div>
@@ -257,25 +300,22 @@
         </div>
     </section>
 
-    <!-- 環境介紹 (Environment Card) -->
+    <!-- 環境介紹 -->
     <section id="environment" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto bg-white/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-5 sm:p-8 md:p-16 relative overflow-hidden text-center">
             <div class="absolute top-0 left-0 w-full h-full opacity-[0.07] pointer-events-none flex items-center justify-center">
                 <i class="fa-brands fa-pagelines text-[25rem] text-sage-500 -rotate-12"></i>
             </div>
-            
             <div class="relative z-10">
                 <span class="text-sage-600 text-sm tracking-[0.3em] font-medium uppercase mb-4 block">Our Space</span>
                 <h2 class="whitespace-nowrap text-[clamp(18px,5.5vw,36px)] md:text-4xl text-stone-800 mb-8 tracking-widest font-medium">關於「緩生工作室」的環境</h2>
                 <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-10"></div>
-                
                 <div class="mb-12 relative max-w-3xl mx-auto">
                     <img src="https://lh3.googleusercontent.com/d/1bg3AAhcdKx_5MP8U4EEgkbcThtUQvp6q" alt="環境空間" class="rounded-2xl w-full h-[300px] md:h-[450px] object-cover shadow-md border border-white/40">
                     <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl text-center shadow-sm">
                         <span class="text-sm tracking-widest text-stone-600 font-light">位於宜蘭冬山，溫暖安定的空間</span>
                     </div>
                 </div>
-
                 <div class="space-y-8 text-stone-600 font-light tracking-wide leading-[2.2]">
                     <p class="flex flex-col items-center w-full overflow-hidden">
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">我們用一張溫暖的實木桌、幾把椅子，</span>
@@ -283,13 +323,11 @@
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">在身體轉變、角色轉換的過程中，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">一起找到屬於自己的新生活節奏。</span>
                     </p>
-                    
                     <p class="flex flex-col items-center w-full overflow-hidden">
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">呸呸自己也是一位媽媽，育有兩個兒子，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">選擇以<span class="font-medium text-stone-800 border-b border-sage-300 pb-1 mx-1">居家工作室</span>的形式，</span>
                         <span class="block whitespace-nowrap text-[clamp(13px,3.8vw,17px)] sm:text-[15px] md:text-[17px]">將真實的生活感受融入每一次陪伴。</span>
                     </p>
-                    
                     <div class="mt-8 md:mt-12 bg-white/50 w-full flex flex-col items-center px-1 sm:px-8 py-4 sm:py-5 rounded-2xl shadow-sm border border-white/60">
                         <span class="block whitespace-nowrap text-stone-800 font-medium text-[clamp(12px,3.5vw,20px)] sm:text-lg md:text-xl">這裡不只是服務的場所，</span>
                         <span class="block whitespace-nowrap text-stone-800 font-medium text-[clamp(11px,3.2vw,20px)] sm:text-lg md:text-xl mt-1 sm:mt-2">而是一個讓媽媽能安心停下來、被溫暖接住的家。</span>
@@ -300,7 +338,7 @@
         </div>
     </section>
 
-    <!-- 服務項目 (Services Card) -->
+    <!-- 服務項目 -->
     <section id="services" class="py-10 md:py-12 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto bg-clay-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16 text-center">
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-6 tracking-widest font-medium">服務項目</h2>
@@ -351,7 +389,7 @@
         </div>
     </section>
 
-    <!-- 預約資訊 (Booking Card) -->
+    <!-- 預約資訊 -->
     <section id="booking" class="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto bg-stone-100/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16 text-center">
             <h2 class="text-3xl md:text-4xl text-stone-800 mb-12 tracking-widest font-medium">預約與資訊</h2>
@@ -387,12 +425,26 @@
         </div>
     </footer>
 
-    <!-- LINE 浮動按鈕 -->
+    <!-- 背景音樂控制鈕 (左下角) -->
+    <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
+        <button id="music-toggle" class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all hover:bg-sage-600 pulse-music border-2 border-white/40">
+            <i id="music-icon" class="fa-solid fa-wind text-xl"></i>
+        </button>
+        <div id="music-status" class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-stone-500 text-[10px] md:text-xs tracking-widest shadow-sm border border-stone-100 opacity-0 transition-opacity duration-500 pointer-events-none">
+            森之輕音樂 播放中
+        </div>
+    </div>
+    <audio id="bg-music" loop preload="none">
+        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808d05b50.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- LINE 浮動按鈕 (右下角) -->
     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
         <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
     </a>
 
     <script>
+        // 手機版選單邏輯
         const btn = document.getElementById('mobile-menu-btn');
         const close = document.getElementById('close-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -409,6 +461,39 @@
         }
         btn.onclick = toggle; close.onclick = toggle;
         document.querySelectorAll('.mobile-link').forEach(l => l.onclick = toggle);
+
+        // 音樂播放邏輯
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicStatus = document.getElementById('music-status');
+        const audio = document.getElementById('bg-music');
+        let isPlaying = false;
+
+        musicToggle.onclick = () => {
+            if (!isPlaying) {
+                musicStatus.innerText = "正在連結森林...";
+                musicStatus.classList.remove('opacity-0');
+                
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = "fa-solid fa-compact-disc text-xl animate-music";
+                    musicStatus.innerText = "森之輕音樂 播放中";
+                    musicToggle.classList.remove('pulse-music');
+                    setTimeout(() => musicStatus.classList.add('opacity-0'), 3000);
+                }).catch(err => {
+                    musicStatus.innerText = "環境讀取中，請再按一次";
+                    console.log("Audio play failed:", err);
+                });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                musicIcon.className = "fa-solid fa-wind text-xl";
+                musicStatus.innerText = "已暫停森林氛圍";
+                musicStatus.classList.remove('opacity-0');
+                musicToggle.classList.add('pulse-music');
+                setTimeout(() => musicStatus.classList.add('opacity-0'), 2000);
+            }
+        };
 
         // 全域禁用圖片右鍵選單
         window.addEventListener('contextmenu', function (e) {

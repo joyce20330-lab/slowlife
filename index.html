@@ -6,7 +6,7 @@
     <title>緩生工作室 | 陪伴每一位媽媽</title>
     <meta name="google-site-verification" content="GUuYVQhVSYwxWugfPp0_Zs-3vg8drWDwhmtGIfP8mPo" />
     
-    <!-- SEO Meta Description (已整合產後呼吸、漲奶舒緩與幼兒發燒護理) -->
+    <!-- SEO Meta Description (整合產後呼吸、漲奶舒緩與幼兒發燒護理) -->
     <meta name="description" content="產後腹式呼吸、生理性漲奶舒緩、幼兒發燒居家護理全攻略！緩生工作室帶你從人智醫學視角重新看待「溫暖」。分享如何觀察孩子發燒徵兆、判斷退燒藥使用時機與物理性退燒護理。透過溫柔的照護，陪孩子在發燒中建立自我免疫力，讓宜蘭冬山的緩生陪伴妳找回產後與育兒的節奏。">
     
     <!-- Tailwind CSS -->
@@ -129,6 +129,24 @@
         
         nav img, .fixed img, a img, button, a {
             pointer-events: auto !important;
+        }
+
+        /* 音樂旋轉動畫 */
+        @keyframes musicRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-music {
+            animation: musicRotate 6s linear infinite;
+        }
+
+        /* 音樂按鈕跳動 */
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+            50% { transform: scale(1.08); box-shadow: 0 10px 15px -3px rgba(138, 154, 134, 0.4); }
+        }
+        .pulse-music {
+            animation: musicPulse 3s infinite ease-in-out;
         }
     </style>
 </head>
@@ -299,6 +317,7 @@
                                     <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">基礎：衛生福利部台北醫院 內外科護理師 (2年)</li>
                                 </ul>
                             </div>
+                            <!-- 專業執照與認證區塊 (外部連結) -->
                             <div>
                                 <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest">
                                     <i class="fa-solid fa-certificate text-sage-500"></i> 【專業執照與認證】
@@ -310,6 +329,11 @@
                                     <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 華人泌乳顧問協會 基礎課程結業</li>
                                     <li class="whitespace-nowrap text-[clamp(12px,3.2vw,16px)]">• 居家整聊師 中級資格證照</li>
                                 </ul>
+                                <div class="mt-6 pl-4 sm:pl-8">
+                                    <a href="https://drive.google.com/drive/folders/1GkXe-ac8DV_LBs57W12JAfGb7sQeyjeN?usp=drive_link" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/80 border border-sage-300 text-sage-600 rounded-full hover:bg-sage-50 transition-all shadow-sm text-sm md:text-[15px] tracking-widest font-medium">
+                                        <i class="fa-solid fa-folder-open"></i> 檢視專業證書檔案
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-16 text-center lg:text-left">
@@ -445,7 +469,7 @@
 
                 <!-- 文章列表容器：享受哺乳時光 -->
                 <div id="tab-nursing" class="tab-content hidden space-y-8 animate-[fadeIn_0.5s_ease-in-out]">
-                    <!-- 【單篇文章卡片開始】文章 2 -->
+                    <!-- 文章 2 -->
                     <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-2')">
                         <div class="md:w-2/5 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/1xJAQ6Vpam1P_Y78bpxCKYfoopTaFtZFg" alt="生理性漲奶" class="h-56 md:h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -462,12 +486,11 @@
                             </span>
                         </div>
                     </div>
-                    <!-- 【單篇文章卡片結束】 -->
                 </div>
 
                 <!-- 文章列表容器：孕產照護不能少 (預設顯示) -->
                 <div id="tab-maternity" class="tab-content block space-y-8 animate-[fadeIn_0.5s_ease-in-out]">
-                    <!-- 【單篇文章卡片開始】文章 1 -->
+                    <!-- 文章 1 -->
                     <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-1')">
                         <div class="md:w-2/5 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/1QaBE4B8Bqns7c8eaB1h5TcMoh3tlODDo" alt="產後腹式呼吸" class="h-56 md:h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -484,12 +507,11 @@
                             </span>
                         </div>
                     </div>
-                    <!-- 【單篇文章卡片結束】 -->
                 </div>
 
                 <!-- 文章列表容器：育兒不害怕 -->
                 <div id="tab-parenting" class="tab-content hidden space-y-8 animate-[fadeIn_0.5s_ease-in-out]">
-                    <!-- 【單篇文章卡片開始】文章 3 -->
+                    <!-- 文章 3 -->
                     <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-3')">
                         <div class="md:w-2/5 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/1okz4_QvbjfQMOSvRv2Fv6Im7pSV8ni-x" alt="幼兒發燒護理" class="h-56 md:h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -506,7 +528,6 @@
                             </span>
                         </div>
                     </div>
-                    <!-- 【單篇文章卡片結束】 -->
                 </div>
 
                 <div class="mt-16 text-center">
@@ -522,7 +543,6 @@
     <div id="page-article-1" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-4xl mx-auto bg-stone-50/90 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl overflow-hidden">
-                <!-- 文章主圖 -->
                 <div class="w-full h-[250px] md:h-[400px] overflow-hidden relative">
                     <img src="https://lh3.googleusercontent.com/d/1QaBE4B8Bqns7c8eaB1h5TcMoh3tlODDo" alt="產後腹式呼吸" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent"></div>
@@ -532,14 +552,11 @@
                     </div>
                 </div>
 
-                <!-- 文章內文 -->
                 <div class="p-8 md:p-12 lg:p-16 text-stone-700 font-light leading-[2.2] tracking-wide text-[15px] md:text-base space-y-8">
-                    
                     <p class="text-lg font-medium text-stone-800 border-l-4 border-sage-400 pl-4 py-1 bg-sage-50/50 rounded-r-lg">
                         產後回到家，許多媽媽最困擾的就是「回不去的腰圍」以及「使不上力的核心」。妳可能聽過要練凱格爾，但其實產後恢復的第一步，並非仰臥起坐或瘋狂深蹲，而是看似簡單卻至關重要的——<span class="text-sage-600 font-bold">腹式呼吸</span>。
                     </p>
 
-                    <!-- 第一段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-leaf text-sage-400 text-base"></i> 一、 為什麼產後媽媽需要練習「腹式呼吸」？</h3>
                         <p class="mb-4">懷孕期間，隨著胎兒長大，子宮會將橫膈膜往上推，這改變了媽媽原有的呼吸模式，許多人習慣轉為淺層的「胸式呼吸」。</p>
@@ -551,12 +568,9 @@
                         </ul>
                     </div>
 
-                    <!-- 第二段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-leaf text-sage-400 text-base"></i> 二、 一般呼吸 vs. 腹式呼吸：差別在哪裡？</h3>
                         <p class="mb-6">很多媽媽疑惑：「我每天都在呼吸，難道呼吸還有分？」其實，呼吸的深度決定了妳核心修復的速度。</p>
-                        
-                        <!-- 呼吸模式對比文字 -->
                         <div class="space-y-4 p-6 bg-clay-50/50 border border-clay-100 rounded-xl text-stone-700 leading-relaxed">
                             <p>
                                 許多產後媽媽在日常生活中常不自覺地使用<span class="font-medium text-rose-500">「胸式呼吸」</span>，這種模式主要依賴肩膀、頸部與胸腔起伏，吸氣時肩膀容易聳起，這不僅讓核心肌群處於休眠狀態，更常是產後肩頸痠痛的元兇。
@@ -567,7 +581,6 @@
                         </div>
                     </div>
 
-                    <!-- 第三段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-leaf text-sage-400 text-base"></i> 三、 透過腹式呼吸重啟核心的原理</h3>
                         <p class="mb-4">腹式呼吸之所以能幫助產後恢復，是因為它建立了一個「腹壓系統」。</p>
@@ -579,13 +592,10 @@
                         <p class="mt-4">透過這種規律的「升降」與「收放」，妳就像在從內而外按摩妳的核心肌群，這對於產後腹直肌收縮與骨盆底肌力找回有極大幫助。</p>
                     </div>
 
-                    <!-- 第四段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-6 flex items-center gap-2"><i class="fa-solid fa-leaf text-sage-400 text-base"></i> 四、 3 步驟正確練習腹式呼吸：緩生工作室專業指導</h3>
                         <p class="mb-6">現在，請找一個安靜的空間，跟著我們一起嘗試這項最溫柔的練習。</p>
-                        
                         <div class="space-y-6">
-                            <!-- 步驟 1 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">1</div>
                                 <div>
@@ -593,7 +603,6 @@
                                     <p>建議產後媽媽從「仰臥」開始。平躺在瑜珈墊或床上，雙膝微彎踩地，這能讓腰椎與骨盆最放鬆。</p>
                                 </div>
                             </div>
-                            <!-- 步驟 2 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">2</div>
                                 <div>
@@ -605,7 +614,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- 步驟 3 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">3</div>
                                 <div>
@@ -617,13 +625,11 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mt-6 p-5 bg-rose-50 border border-rose-100 rounded-xl text-rose-700">
                             <span class="font-bold"><i class="fa-solid fa-lightbulb"></i> 專業建議：</span> 每天睡前或哺乳空檔練習 5-10 分鐘，不需要出力「憋氣」，關鍵在於「深度」與「覺察」。
                         </div>
                     </div>
 
-                    <!-- 結語 -->
                     <div class="border-t border-stone-200 pt-8 mt-12">
                         <h3 class="text-xl text-stone-800 font-medium mb-4 text-center">五、 結語：給產後媽媽的一封信</h3>
                         <p class="text-center italic text-stone-600 mb-6">
@@ -635,10 +641,8 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
                 
-                <!-- 文章底部：回上頁按鈕 -->
                 <div class="bg-stone-100 p-6 text-center border-t border-stone-200">
                     <button onclick="navigateTo('knowledge'); switchTab('tab-maternity');" class="text-stone-600 hover:text-sage-600 font-medium tracking-widest transition-colors inline-flex items-center gap-2">
                         <i class="fa-solid fa-arrow-left"></i> 回到知識分享列表
@@ -652,7 +656,6 @@
     <div id="page-article-2" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-4xl mx-auto bg-stone-50/90 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl overflow-hidden">
-                <!-- 文章主圖 -->
                 <div class="w-full h-[250px] md:h-[400px] overflow-hidden relative">
                     <img src="https://lh3.googleusercontent.com/d/1xJAQ6Vpam1P_Y78bpxCKYfoopTaFtZFg" alt="生理性漲奶" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent"></div>
@@ -662,20 +665,16 @@
                     </div>
                 </div>
 
-                <!-- 文章內文 -->
                 <div class="p-8 md:p-12 lg:p-16 text-stone-700 font-light leading-[2.2] tracking-wide text-[15px] md:text-base space-y-8">
-                    
                     <p class="text-lg font-medium text-stone-800 border-l-4 border-sage-400 pl-4 py-1 bg-sage-50/50 rounded-r-lg">
                         產後幾天，妳是否感覺胸部變得沈重、緊繃，甚至硬得像兩顆石頭，連輕輕碰觸都感到不適？別慌張，這就是許多新手媽咪會遇到的<span class="text-sage-600 font-bold">生理性漲奶</span>。<br>這篇文章將帶妳了解為什麼會發生這種情況，以及面對母乳哺餵困難時，不同需求的媽咪可以如何溫柔應對。
                     </p>
 
-                    <!-- 第一段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-droplet text-sage-400 text-base"></i> 為什麼會遇到生理性漲奶？</h3>
                         <p>通常在產後 2-5 天，身體為了準備分泌大量乳汁，乳房的血液與淋巴循環會劇增，導致乳腺組織充血、水腫。這並非單純的「塞奶」，而是身體自然的生理反應。若處理不當，容易造成乳頭扁平，增加母乳哺餵困難。</p>
                     </div>
 
-                    <!-- 第二段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-droplet text-sage-400 text-base"></i> 關鍵舒緩原則：生理性漲奶的通用對策</h3>
                         <p class="mb-4">在進入個別攻略前，請先記住這三個通用關鍵：</p>
@@ -688,7 +687,6 @@
 
                     <img src="https://lh3.googleusercontent.com/d/1yyU4BndkeyPaC6kSd7-lZfp51FyS-Piw" alt="給親餵媽媽的攻略" class="w-full md:w-4/5 mx-auto rounded-2xl shadow-sm object-cover my-8">
 
-                    <!-- 第三段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-1 text-sage-400 text-base bg-sage-100 rounded-full w-8 h-8 flex items-center justify-center"></i> 給「親餵媽媽」的攻略：建立良好的含乳基礎</h3>
                         <p class="mb-4">親餵媽咪遇到生理性漲奶時，最大的挑戰是寶寶因乳房太硬而含不住。</p>
@@ -701,7 +699,6 @@
 
                     <img src="https://lh3.googleusercontent.com/d/1Vw3i2w5Rk1cKVUUVN5ANtVDQztE8ZkU3" alt="給擠奶與瓶餵媽媽的攻略" class="w-full md:w-4/5 mx-auto rounded-2xl shadow-sm object-cover my-8">
 
-                    <!-- 第四段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-2 text-sage-400 text-base bg-sage-100 rounded-full w-8 h-8 flex items-center justify-center"></i> 給「擠奶/瓶餵媽媽」的攻略：溫和排空與節奏</h3>
                         <p class="mb-4">若妳選擇擠乳瓶餵，生理性漲奶時應避免過度大力推擠乳房。</p>
@@ -714,7 +711,6 @@
 
                     <img src="https://lh3.googleusercontent.com/d/1i1MRnshBOD8Ckh-pWgSK-Jyu2ZNBCJZV" alt="給準備退奶媽媽的攻略" class="w-full md:w-4/5 mx-auto rounded-2xl shadow-sm object-cover my-8">
 
-                    <!-- 第五段 -->
                     <div>
                         <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-3 text-sage-400 text-base bg-sage-100 rounded-full w-8 h-8 flex items-center justify-center"></i> 給「準備退奶媽媽」的攻略：漸進式告別母乳</h3>
                         <p class="mb-4">如果不打算哺餵母乳，面對生理性漲奶時「不退不縮」是重點。</p>
@@ -725,7 +721,6 @@
                         </ul>
                     </div>
 
-                    <!-- 結語 -->
                     <div class="border-t border-stone-200 pt-8 mt-12">
                         <h3 class="text-xl text-stone-800 font-medium mb-4 text-center">讓「緩生」陪伴妳，告別母乳哺餵困難</h3>
                         <p class="text-center italic text-stone-600 mb-6">
@@ -736,22 +731,14 @@
                                 <i class="fa-brands fa-line text-xl"></i> 預約諮詢
                             </button>
                         </div>
-                        
-                        <!-- Tags -->
                         <div class="mt-10 flex flex-wrap justify-center gap-2">
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#生理性漲奶</span>
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#母乳哺餵困難</span>
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#石頭奶舒緩</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#反向施壓</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#產後護理</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#緩生工作室</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#宜蘭冬山</span>
                         </div>
                     </div>
-
                 </div>
                 
-                <!-- 文章底部：回上頁按鈕並回到專屬分類 -->
                 <div class="bg-stone-100 p-6 text-center border-t border-stone-200">
                     <button onclick="navigateTo('knowledge'); switchTab('tab-nursing');" class="text-stone-600 hover:text-sage-600 font-medium tracking-widest transition-colors inline-flex items-center gap-2">
                         <i class="fa-solid fa-arrow-left"></i> 回到知識分享列表
@@ -823,7 +810,6 @@
                         <p class="mb-6">如果不急著吃藥，你可以嘗試更有溫度的物理性退燒與居家護理：</p>
                         
                         <div class="space-y-6">
-                            <!-- 步驟 1 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">1</div>
                                 <div>
@@ -831,7 +817,6 @@
                                     <p>這是人智醫學護理中非常經典的做法。當孩子處於發熱高峰期（且手腳是溫熱的），可以使用溫水加入新鮮檸檬片，浸濕毛巾後包裹在孩子的小腿上。檸檬的酸性能引導熱往下散發，幫助調節體溫。</p>
                                 </div>
                             </div>
-                            <!-- 步驟 2 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">2</div>
                                 <div>
@@ -843,7 +828,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- 步驟 3 -->
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">3</div>
                                 <div>
@@ -872,8 +856,6 @@
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#幼兒發燒</span>
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#物理性退燒</span>
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#人智醫學</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#溫暖護理</span>
-                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#檸檬敷布</span>
                             <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#居家護理</span>
                         </div>
                     </div>
@@ -1055,7 +1037,7 @@
                     setTimeout(() => musicStatus.classList.add('opacity-0'), 3000);
                 }).catch(err => {
                     console.error("Play failed:", err);
-                    musicStatus.innerText = "請檢查檔名是否正確";
+                    musicStatus.innerText = "請檢查檔名是否為 music.mp3";
                     setTimeout(() => musicStatus.classList.add('opacity-0'), 3000);
                 });
             } else {

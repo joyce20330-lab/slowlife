@@ -6,8 +6,8 @@
     <title>緩生工作室 | 陪伴每一位媽媽</title>
     <meta name="google-site-verification" content="GUuYVQhVSYwxWugfPp0_Zs-3vg8drWDwhmtGIfP8mPo" />
     
-    <!-- SEO Meta Description (整合產後運動、產後按摩、腹式呼吸、漲奶舒緩、幼兒發燒與睡眠護理、泌乳時程、科學發奶) -->
-    <meta name="description" content="產後運動該怎麼選？如何科學發奶與有效追奶？產後腹式呼吸、腹部按摩、生理性漲奶、發奶食物清單、幼兒發燒與睡眠護理全攻略！緩生工作室為妳解析鬆弛素影響、腹直肌分離，並帶妳從專業照護視角溫柔化解產後焦慮。無論是高敏感孩子的睡眠守護，或是產後媽媽的核心重啟與泌乳調適，讓我們在宜蘭冬山陪伴妳找回身心平衡。">
+    <!-- SEO Meta Description (整合產後運動、產後按摩、腹式呼吸、漲奶舒緩、幼兒發燒與睡眠護理、泌乳時程、科學發奶、塞奶自救) -->
+    <meta name="description" content="產後運動該怎麼選？如何科學發奶與有效追奶？塞奶、胸部硬塊與乳腺炎第一時間自救！產後腹式呼吸、腹部按摩、生理性漲奶、發奶食物清單、幼兒發燒與睡眠護理全攻略！緩生工作室為妳解析鬆弛素影響、腹直肌分離，並帶妳從專業照護視角溫柔化解產後焦慮。無論是高敏感孩子的睡眠守護，或是產後媽媽的核心重啟與泌乳調適，讓我們在宜蘭冬山陪伴妳找回身心平衡。">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -458,17 +458,35 @@
                     <p class="text-stone-600 text-sm md:text-base tracking-widest font-light mb-10">與妳分享孕產、泌乳及生活空間的實用小知識</p>
                     
                     <!-- 分類標籤 (Tabs) -->
-                    <div class="flex flex-wrap justify-center gap-3 md:gap-6">
-                        <button onclick="switchTab('tab-nursing')" id="btn-tab-nursing" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full border border-sage-500 text-sage-600 hover:bg-sage-50 transition-colors tracking-widest font-medium text-sm md:text-base">享受哺乳時光</button>
-                        <button onclick="switchTab('tab-maternity')" id="btn-tab-maternity" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-sage-500 text-white transition-colors tracking-widest font-medium shadow-md text-sm md:text-base">孕產照護不能少</button>
-                        <button onclick="switchTab('tab-parenting')" id="btn-tab-parenting" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full border border-sage-500 text-sage-600 hover:bg-sage-50 transition-colors tracking-widest font-medium text-sm md:text-base">育兒不害怕</button>
+                <div class="flex flex-wrap justify-center gap-3 md:gap-6">
+                    <button onclick="switchTab('tab-nursing')" id="btn-tab-nursing" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full border border-sage-500 text-sage-600 hover:bg-sage-50 transition-colors tracking-widest font-medium text-sm md:text-base">享受哺乳時光</button>
+                    <button onclick="switchTab('tab-maternity')" id="btn-tab-maternity" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-sage-500 text-white transition-colors tracking-widest font-medium shadow-md text-sm md:text-base">孕產照護不能少</button>
+                    <button onclick="switchTab('tab-parenting')" id="btn-tab-parenting" class="tab-btn px-5 py-2 md:px-6 md:py-2.5 rounded-full border border-sage-500 text-sage-600 hover:bg-sage-50 transition-colors tracking-widest font-medium text-sm md:text-base">育兒不害怕</button>
+                </div>
+            </div>
+
+            <!-- 文章列表容器：享受哺乳時光 -->
+            <div id="tab-nursing" class="tab-content hidden space-y-8 animate-[fadeIn_0.5s_ease-in-out]">
+                <!-- 文章 9：塞奶、乳腺炎怎麼辦 (新文章，放在最上面) -->
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-9')">
+                    <div class="md:w-2/5 overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1yMauI3vT3cOKJYZMIilBMuW-1i_VjYDD" alt="塞奶乳腺炎自救" class="h-56 md:h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col justify-center md:w-3/5">
+                        <h3 class="text-lg md:text-xl text-stone-800 mb-4 font-medium tracking-wide leading-snug group-hover:text-sage-600 transition-colors">
+                            塞奶、乳腺炎怎麼辦？第一時間自救與預防
+                        </h3>
+                        <p class="text-stone-600 text-[14px] md:text-[15px] font-light leading-relaxed mb-6 line-clamp-3">
+                            塞奶了怎麼辦？胸部出現硬塊、紅腫痛是乳腺炎嗎？「緩生工作室」為您整理塞奶第一時間的自救法，並教您如何從發燒、紅腫等症狀，判斷該預約「泌乳師」進行專業疏通，還是尋求「婦產科醫師」醫療介入...
+                        </p>
+                        <span class="text-sage-500 font-medium text-sm tracking-widest inline-flex items-center gap-2 mt-auto self-start">
+                            閱讀全文 <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        </span>
                     </div>
                 </div>
 
-                <!-- 文章列表容器：享受哺乳時光 -->
-                <div id="tab-nursing" class="tab-content hidden space-y-8 animate-[fadeIn_0.5s_ease-in-out]">
-                    <!-- 文章 8：如何發奶與追奶 (新文章，放在最上面) -->
-                    <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-8')">
+                <!-- 文章 8：如何發奶與追奶 -->
+                <div class="bg-white/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-white/50 group flex flex-col md:flex-row cursor-pointer" onclick="navigateTo('article-8')">
                         <div class="md:w-2/5 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/144YIYKfdfcrRYb8e01tv-nN4HuQoeFCG" alt="如何發奶與追奶" class="h-56 md:h-full w-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
@@ -1543,6 +1561,147 @@
         </section>
     </div> <!-- /#page-article-8 -->
 
+    <!-- ==================== 文章內頁：第九篇文章 (Article 9 - 塞奶與乳腺炎) ==================== -->
+    <div id="page-article-9" class="page-container hidden pt-24 pb-20 min-h-screen">
+        <section class="px-4 sm:px-6">
+            <div class="max-w-4xl mx-auto bg-stone-50/90 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl overflow-hidden">
+                <!-- 文章主圖 -->
+                <div class="w-full h-[250px] md:h-[400px] overflow-hidden relative">
+                    <img src="https://lh3.googleusercontent.com/d/1yMauI3vT3cOKJYZMIilBMuW-1i_VjYDD" alt="塞奶乳腺炎自救" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 pr-6">
+                        <span class="bg-sage-500 text-white text-xs px-3 py-1 rounded-full tracking-widest mb-3 inline-block">享受哺乳時光</span>
+                        <h1 class="text-xl md:text-3xl text-white font-medium tracking-wide leading-snug">塞奶、乳腺炎怎麼辦？<br class="hidden md:block">第一時間自救與預防</h1>
+                    </div>
+                </div>
+
+                <!-- 文章內文 -->
+                <div class="p-8 md:p-12 lg:p-16 text-stone-700 font-light leading-[2.2] tracking-wide text-[15px] md:text-base space-y-8">
+                    
+                    <p class="text-lg font-medium text-stone-800 border-l-4 border-sage-400 pl-4 py-1 bg-sage-50/50 rounded-r-lg">
+                        塞奶了怎麼辦？胸部出現硬塊、紅腫痛是乳腺炎嗎？<br>「緩生工作室」為您整理塞奶第一時間的自救法，並教您如何從發燒、紅腫等症狀，判斷該預約<span class="text-sage-600 font-bold">「泌乳師」</span>進行專業疏通，還是尋求<span class="text-sage-600 font-bold">「婦產科醫師」</span>醫療介入。透過正確的預防與照護觀念，讓您擺脫塞奶困擾，找回哺乳的輕盈節奏。
+                    </p>
+
+                    <!-- 第一段 -->
+                    <div>
+                        <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-exclamation text-sage-400 text-base"></i> 一、 為什麼會突然塞奶？常見的原因與徵兆</h3>
+                        <p class="mb-4">對於正在哺乳的媽媽來說，塞奶（乳汁淤積）往往來得突然。最常見的原因包括：</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/60 p-5 rounded-xl border border-stone-100 shadow-sm">
+                                <h4 class="font-medium text-stone-800 mb-1"><i class="fa-solid fa-clock text-sage-400 mr-1"></i> 作息改變</h4>
+                                <p class="text-[14px]">長時間未排空乳汁，例如寶寶突然睡過夜或工作忙碌錯過擠奶時間。</p>
+                            </div>
+                            <div class="bg-white/60 p-5 rounded-xl border border-stone-100 shadow-sm">
+                                <h4 class="font-medium text-stone-800 mb-1"><i class="fa-solid fa-utensils text-sage-400 mr-1"></i> 飲食影響</h4>
+                                <p class="text-[14px]">攝取過多高油脂食物（如炸物、麻油雞），導致乳汁過於黏稠。</p>
+                            </div>
+                            <div class="bg-white/60 p-5 rounded-xl border border-stone-100 shadow-sm">
+                                <h4 class="font-medium text-stone-800 mb-1"><i class="fa-solid fa-compress text-sage-400 mr-1"></i> 物理壓迫</h4>
+                                <p class="text-[14px]">穿著過緊的內衣、背帶壓迫，或睡覺時不小心壓到乳房。</p>
+                            </div>
+                            <div class="bg-white/60 p-5 rounded-xl border border-stone-100 shadow-sm">
+                                <h4 class="font-medium text-stone-800 mb-1"><i class="fa-solid fa-battery-empty text-sage-400 mr-1"></i> 身心疲累</h4>
+                                <p class="text-[14px]">壓力大、水分攝取不足也會影響排乳反射，讓乳汁滯留形成硬塊。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第二段 -->
+                    <div>
+                        <h3 class="text-xl text-stone-800 font-medium mb-6 flex items-center gap-2"><i class="fa-solid fa-kit-medical text-sage-400 text-base"></i> 二、 發現硬塊第一時間可以怎麼做？居家自救 3 步驟</h3>
+                        <p class="mb-4">當感覺到乳房有局部硬塊、觸碰會痛時，請保持冷靜，嘗試以下步驟：</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">1</div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800 text-lg mb-1">調整姿勢讓寶寶幫忙</h4>
+                                    <p>寶寶是最好的「最強通乳師」，嘗試變換姿勢（如橄欖球式、側臥餵），讓寶寶的下巴對準硬塊方向吸吮。</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">2</div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800 text-lg mb-1">冷敷取代熱敷</h4>
+                                    <p>在硬塊處進行局部冷敷（如冷敷墊或乾淨的高麗菜葉），能有效緩解組織腫脹與減輕疼痛。切記此時應<span class="text-rose-500 font-medium">避免熱敷</span>，以免引發更嚴重的發炎。</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 text-lg shadow-sm">3</div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800 text-lg mb-1">輕柔的淋巴撥筋</h4>
+                                    <p>由乳頭周邊往腋下方向輕輕撥動，幫助淋巴回流，切記<span class="text-rose-500 font-medium">不可直接在硬塊上暴力揉捏</span>，以免乳腺管受損。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第三段 -->
+                    <div>
+                        <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-user-doctor text-sage-400 text-base"></i> 三、 我該找泌乳師還是就醫？如何判斷乳腺炎？</h3>
+                        <p class="mb-4">這是媽媽們最常問的問題。我們可以從「全身性症狀」與「局部反應」來做初步評估：</p>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-sage-50/80 p-6 rounded-xl border border-sage-100 shadow-sm">
+                                <h4 class="font-medium text-sage-700 text-[17px] mb-2"><i class="fa-solid fa-hands text-sage-500 mr-2"></i> 什麼情況可以找「泌乳師」？</h4>
+                                <p class="text-stone-700">如果妳的硬塊明顯，但<span class="font-medium">沒有發燒、身體活動力正常</span>，只是單純的乳汁排不出來。這時專業的泌乳師能透過無痛的手法，協助疏通乳腺管，解除塞奶帶來的緊繃感，並教導正確的排空技巧。</p>
+                            </div>
+                            <div class="bg-rose-50/60 p-6 rounded-xl border border-rose-100 shadow-sm">
+                                <h4 class="font-medium text-rose-700 text-[17px] mb-2"><i class="fa-solid fa-hospital text-rose-400 mr-2"></i> 什麼情況必須找「婦產科醫師」？</h4>
+                                <p class="text-stone-700">若妳發現乳房硬塊範圍擴大，且局部出現明顯的紅、腫、熱、痛，更重要的是伴隨有<span class="font-medium text-rose-600">發燒超過 38.5 度、畏寒、全身痠痛（類似流感症狀）</span>時，這極有可能是乳腺炎。此時請務必立即尋求婦產科醫師的診斷，醫師會視情況開立適合哺乳媽媽使用的抗生素或止痛藥物。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第四段 -->
+                    <div>
+                        <h3 class="text-xl text-stone-800 font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-shield-heart text-sage-400 text-base"></i> 四、 如何預防塞奶？從日常習慣開始保養</h3>
+                        <p class="mb-4">想要告別反覆塞奶的惡夢，日常的預防措施至關重要：</p>
+                        
+                        <ul class="list-disc pl-6 space-y-3 marker:text-sage-400">
+                            <li><span class="font-medium text-stone-800">定時排空：</span> 建立規律的哺乳或擠奶節奏，避免乳汁長時間滯留。</li>
+                            <li><span class="font-medium text-stone-800">水分與營養：</span> 每日攝取充足水分（建議 2500c.c.），並可適量補充卵磷脂來協助乳汁流動。</li>
+                            <li><span class="font-medium text-stone-800">穿著寬鬆：</span> 選擇舒適的哺乳內衣，避免鋼絲壓迫乳腺管。</li>
+                            <li><span class="font-medium text-stone-800">放鬆身心：</span> 「緩生」的理念正是希望媽媽能慢下來。身心放鬆能促進催產素分泌，讓排乳過程更加順遂。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 結語 -->
+                    <div class="border-t border-stone-200 pt-8 mt-12">
+                        <h3 class="text-xl text-stone-800 font-medium mb-4 text-center"><i class="fa-solid fa-seedling text-sage-500 mr-2"></i> 五、 結語：溫柔陪伴妳的哺乳時光</h3>
+                        <p class="text-center italic text-stone-600 mb-6">
+                            塞奶與乳腺炎雖然令人困擾，但只要掌握正確的評估方法與自救技巧，就能從容應對。無論是需要泌乳師的專業疏通，還是婦產科醫師的藥物治療，及早處理才是關鍵。<br><br>在哺乳的這條路上，緩生工作室會一直陪著妳，讓育兒生活多一點溫潤，少一點痛楚。<br>想預約專業泌乳疏通或了解更多產後照護資訊嗎？歡迎聯繫【緩生工作室】。
+                        </p>
+                        <div class="text-center">
+                            <button onclick="navigateTo('booking')" class="bg-[#06C755] hover:bg-[#05B34C] text-white px-8 py-3 rounded-full tracking-widest font-medium transition-all shadow-md inline-flex items-center gap-2">
+                                <i class="fa-brands fa-line text-xl"></i> 預約泌乳疏通
+                            </button>
+                        </div>
+                        
+                        <!-- Tags -->
+                        <div class="mt-10 flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#塞奶</span>
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#乳腺炎</span>
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#石頭奶</span>
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#無痛疏通</span>
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#泌乳師</span>
+                            <span class="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-xs tracking-wider">#緩生工作室</span>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- 文章底部：回上頁按鈕並回到專屬分類 -->
+                <div class="bg-stone-100 p-6 text-center border-t border-stone-200">
+                    <button onclick="navigateTo('knowledge'); switchTab('tab-nursing');" class="text-stone-600 hover:text-sage-600 font-medium tracking-widest transition-colors inline-flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> 回到知識分享列表
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div> <!-- /#page-article-9 -->
+
     <!-- 頁尾 (全域顯示) -->
     <footer class="bg-stone-800/95 text-stone-400 py-16 text-center text-sm font-light">
         <div class="max-w-6xl mx-auto px-6">
@@ -1587,7 +1746,8 @@
                 'article-5': document.getElementById('page-article-5'),
                 'article-6': document.getElementById('page-article-6'),
                 'article-7': document.getElementById('page-article-7'),
-                'article-8': document.getElementById('page-article-8')
+                'article-8': document.getElementById('page-article-8'),
+                'article-9': document.getElementById('page-article-9')
             };
 
             // 隱藏所有頁面並移除動畫 class
@@ -1646,6 +1806,10 @@
             } else if (target === 'article-8') {
                 pages['article-8'].classList.replace('hidden', 'block');
                 pages['article-8'].classList.add('page-enter');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (target === 'article-9') {
+                pages['article-9'].classList.replace('hidden', 'block');
+                pages['article-9'].classList.add('page-enter');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 // 回到首頁 (含 story, booking 的捲動)

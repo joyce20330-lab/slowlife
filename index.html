@@ -225,8 +225,8 @@
                             <div>
                                 <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest"><i class="fa-solid fa-hospital text-sage-500"></i> 【專業醫療與教學背景】</h4>
                                 <ul class="space-y-4 pl-4 md:pl-8">
-                                    <!-- 修改：網頁版強制單行 (隱藏 md 上的 <br>)，手機版可斷行 -->
-                                    <li class="text-center md:text-left py-3 border-y border-stone-200/50 mb-4 text-stone-600 font-light">學歷：國立台灣大學研究所畢業<br class="md:hidden">（婦女健康及母嬰護理組）</li>
+                                    <!-- 修改：徹底移除強制換行標籤，讓它不管在電腦或手機版都是同一句 -->
+                                    <li class="text-center md:text-left py-3 border-y border-stone-200/50 mb-4 text-stone-600 font-light">學歷：國立台灣大學研究所畢業（婦女健康及母嬰護理組）</li>
                                     <li>• 臨床：三軍總醫院 兒科護理師 (5年)</li>
                                     <li>• 公衛：公共托育中心 護理師 (2年)</li>
                                     <li>• 教學：康寧大學 臨床實習教師 (1年)</li>
@@ -274,7 +274,8 @@
                         <img src="https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
                             <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">產後腹部按摩</h3>
-                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">溫和的觸壓，<br>緩解產後腹部的緊繃與壓力。</p>
+                            <!-- 加上 whitespace-nowrap 確保手機版不會自然擠斷，嚴格執行一句話一行 -->
+                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">溫和的觸壓，<br>緩解產後腹部的緊繃與壓力。</p>
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
                     </div>
@@ -282,7 +283,7 @@
                         <img src="https://lh3.googleusercontent.com/d/1LpY-Ex0HIpmZAfEot7JcOMLP6abQl-57" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
                             <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">泌乳支持與陪伴</h3>
-                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">順應身體的節奏，<br>給予最實際的哺乳協助。</p>
+                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">順應身體的節奏，<br>給予最實際的哺乳協助。</p>
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
                     </div>
@@ -290,7 +291,7 @@
                         <img src="https://lh3.googleusercontent.com/d/1xPLAJ5XE-b6AKr7LTbIL2TRFAaK3iH__" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
                             <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">身心整聊</h3>
-                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">接住那些說不出口的焦慮，<br>梳理身心變化的過程。</p>
+                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">接住那些說不出口的焦慮，<br>梳理身心變化的過程。</p>
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
                     </div>
@@ -298,7 +299,7 @@
                         <img src="https://lh3.googleusercontent.com/d/19e_VvQadX5Mwg63NQ-xILtt4QbHmlzwn" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
                             <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">生活空間支持</h3>
-                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">結合整聊技巧，<br>陪妳整理產後混亂的環境，<br>找回家的呼吸感。</p>
+                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">結合整聊技巧，<br>陪妳整理產後混亂的環境，<br>找回家的呼吸感。</p>
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
                     </div>
@@ -320,6 +321,13 @@
                 <div class="relative z-10">
                     <span class="text-sage-600 text-sm tracking-[0.3em] font-medium uppercase mb-4 block">Our Space</span>
                     <h2 class="text-[clamp(20px,5.5vw,36px)] whitespace-nowrap text-stone-800 mb-12 tracking-wider md:tracking-widest font-medium">關於「緩生工作室」的環境</h2>
+                    
+                    <div class="mb-12 relative max-w-3xl mx-auto">
+                        <img src="https://lh3.googleusercontent.com/d/1bg3AAhcdKx_5MP8U4EEgkbcThtUQvp6q" alt="環境空間" class="rounded-2xl w-full h-[300px] md:h-[450px] object-cover shadow-md border border-white/40">
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-3 md:p-4 rounded-xl shadow-sm border border-white/40">
+                            <span class="text-sm tracking-widest text-stone-600 font-light">位於宜蘭冬山，溫暖安定的空間</span>
+                        </div>
+                    </div>
                     
                     <div class="space-y-6 text-stone-600 font-light tracking-wide leading-[2.2] text-[15px] md:text-base">
                         <p class="flex flex-col items-center">

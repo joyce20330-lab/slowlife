@@ -13,7 +13,11 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { stone: { 50: '#FAF8F5', 600: '#7A6F62', 800: '#4A4238' }, sage: { 50: '#F0F3F0', 500: '#8A9A86', 600: '#6B7A68' }, clay: { 50: '#F4EFEA' } },
+                    colors: { 
+                        stone: { 50: '#FAF8F5', 600: '#7A6F62', 800: '#4A4238' }, 
+                        sage: { 50: '#F0F3F0', 500: '#8A9A86', 600: '#6B7A68' }, 
+                        clay: { 50: '#F4EFEA' } 
+                    },
                     fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
                 }
             }
@@ -23,11 +27,12 @@
         body { background-color: #FAF8F5; line-height: 1.8; }
         .service-content p { margin-bottom: 1.5rem; color: #4A4238; font-weight: 300; }
         .service-content h3 { font-size: 1.25rem; font-weight: 500; color: #1c1917; margin-top: 2.5rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .service-content h4 { font-weight: 500; color: #444; margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="font-sans antialiased text-stone-800">
 
-    <!-- 導覽 -->
+    <!-- 導覽列 -->
     <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 shadow-sm">
         <div class="max-w-4xl mx-auto px-6 h-16 flex items-center">
             <a href="../index.html#services" class="flex items-center gap-2 text-stone-600 hover:text-sage-600 transition-colors">
@@ -39,48 +44,107 @@
 
     <main class="pt-24 pb-20 px-4">
         <article class="max-w-4xl mx-auto bg-white shadow-xl rounded-[2.5rem] overflow-hidden">
-            <!-- 封面圖：已修正為正確連結 -->
-            <div class="w-full h-[250px] md:h-[400px] relative overflow-hidden">
+            <!-- 封面圖 -->
+            <div class="w-full h-[250px] md:h-[450px] relative overflow-hidden bg-stone-100">
                 <img src="https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i" alt="產後腹部按摩" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-stone-900/20"></div>
+                <div class="absolute inset-0 bg-stone-900/30"></div>
                 <div class="absolute bottom-8 left-8">
                     <h1 class="text-3xl md:text-4xl text-white font-medium tracking-widest drop-shadow-md">產後腹部按摩</h1>
-                    <p class="text-white/90 mt-2 tracking-wide font-light">引導核心覺察，找回身體的支撐力量</p>
+                    <p class="text-white/90 mt-2 tracking-wide font-light">（本服務為非醫療行為）</p>
                 </div>
             </div>
 
-            <div class="p-8 md:p-16 service-content">
+            <div class="p-8 md:p-12 lg:p-16 service-content">
                 <p class="text-lg font-medium border-l-4 border-sage-400 pl-4 py-2 bg-sage-50 rounded-r-lg">
-                    產後的腹部，是修復的起點。透過專業、溫和的物理觸壓，我們陪伴妳有節奏地與變化的身體共處，重拾核心力量。
+                    產後的腹部，曾經承載過一個生命，它是身體最具力量、也最需要被溫柔呵護的地方。我們透過專業的引導，陪伴妳重新找回核心的律動。
                 </p>
 
-                <h3><i class="fa-solid fa-wind text-sage-400"></i> 一、 核心喚醒：從「覺察」開始修復</h3>
-                <p>懷孕期間腹部組織經歷了長期的拉伸，產後許多媽媽常感覺腹部鬆弛、使不上力，甚至對這塊區域感到陌生。緩生的腹部按摩透過有節奏的手法，<span class="font-medium text-stone-800">協助大腦重新與核心肌群建立連結</span>。這並非強力的訓練，而是一種溫和的「提醒」，讓沉睡的核心力量慢慢找回支撐感。</p>
+                <h3><i class="fa-solid fa-heart text-sage-400"></i> 一、 服務對象：誰適合這項溫柔支持？</h3>
+                <p>在產後恢復的這條路上，如果妳有以下感受，這項服務將是妳最好的身心獻禮：</p>
+                <div class="space-y-4 mb-10">
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex gap-4">
+                        <i class="fa-solid fa-circle-check text-sage-500 mt-1"></i>
+                        <div>
+                            <h4>尋找身體連結的媽媽</h4>
+                            <p class="text-sm text-stone-600 mb-0">經歷了懷孕期的拉伸與生產，許多媽媽會覺得腹部「空空的」或「像不屬於自己一樣」。這項服務適合想要重新建立大腦與深層肌群連結、找回身體主控權的妳。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex gap-4">
+                        <i class="fa-solid fa-circle-check text-sage-500 mt-1"></i>
+                        <div>
+                            <h4>感到腹部沉重、循環不佳者</h4>
+                            <p class="text-sm text-stone-600 mb-0">產後若常感到肚子冰涼、悶脹，或是覺得下腹部沉重使不上力。我們透過溫熱的手感與按摩，幫助改善局部的循環感。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex gap-4">
+                        <i class="fa-solid fa-circle-check text-sage-500 mt-1"></i>
+                        <div>
+                            <h4>不適合激烈運動的初期修復者</h4>
+                            <p class="text-sm text-stone-600 mb-0">在還不能進行核心重訓或高強度活動的產後初期，透過溫和的物理按壓與揉捏，能先啟動身體的覺察，為未來的運動打下穩定的基礎。</p>
+                        </div>
+                    </div>
+                </div>
 
-                <h3><i class="fa-solid fa-hand-sparkles text-sage-400"></i> 二、 按摩手法：調節張力與流動</h3>
-                <p>我們結合了解剖學觀點與溫柔的物理按壓與揉捏，針對產後腹部組織進行放鬆與整理：</p>
-                <ul class="list-disc pl-6 space-y-3 mb-8 marker:text-sage-400 font-light">
-                    <li><span class="font-medium text-stone-800">平衡組織張力：</span> 改善產後因肌肉緊繃造成的負擔，透過手法喚醒肌肉恢復應有的彈性與柔軟度。</li>
-                    <li><span class="font-medium text-stone-800">優化循環代謝：</span> 溫和帶動局部的液體循環，舒緩產後容易產生的腹部沉重與悶脹感。</li>
-                    <li><span class="font-medium text-stone-800">視覺上的線條優化：</span> 透過改變軟組織的張力狀態，施作後在視覺上的線條優化，讓妳對身體的修復更有信心。</li>
-                </ul>
+                <h3><i class="fa-solid fa-hands-holding text-sage-400"></i> 二、 服務內容：全方位的覺察與修復</h3>
+                <p>我們結合物理按壓、能量支持與傳統智慧，提供深度的產後照護：</p>
+                <div class="space-y-6 mt-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 shadow-sm">1</div>
+                        <div>
+                            <h4 class="text-stone-800">核心肌群喚醒與溫和按摩</h4>
+                            <p class="text-sm text-stone-600">不採用暴力的強力揉捏，而是以有節奏的觸壓與推撫，針對產後鬆弛的組織進行張力調節。這能「提醒」身體深處的肌肉甦醒，讓身體核心重新找回安定的支撐感。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 shadow-sm">2</div>
+                        <div>
+                            <h4 class="text-stone-800">產後呼吸引導與身體覺察</h4>
+                            <p class="text-sm text-stone-600">結合呼吸練習，引導妳感受氣息在腹部的起伏。當呼吸能落地，腹部的壓力也會跟著釋放，不僅能支持內在系統的平穩，也能讓妳的精神狀態獲得深度的放鬆。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 shadow-sm">3</div>
+                        <div>
+                            <h4 class="text-stone-800">古法紮肚 (傳統腹部支撐)</h4>
+                            <p class="text-sm text-stone-600">融合傳統智慧的紮肚技術。在按摩放鬆後，透過特定長度的布帶給予腹部穩定的包裹與支撐，讓妳在日常行走中感受到被穩穩保護的力量。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center font-bold shrink-0 shadow-sm">4</div>
+                        <div>
+                            <h4 class="text-stone-800">視覺線條的微雕塑</h4>
+                            <p class="text-sm text-stone-600">透過手法改變筋膜與軟組織的張力，施作後常會感到腰線視覺上的收斂與緊實。這雖然是短暫的物理現象，但能給予產後媽媽極大的信心，看見身體恢復的可能性。</p>
+                        </div>
+                    </div>
+                </div>
 
-                <h3><i class="fa-solid fa-leaf text-sage-400"></i> 三、 支持身心的平穩律動</h3>
-                <p>產後的消化系統與能量調節往往需要較長的復原時間。透過溫潤的按摩，能協助釋放腹部周邊的累積壓力點，支持身體內在的流動與穩定。這不僅是外在狀態的修飾，更是一段讓媽媽放掉焦慮、在溫暖陪伴中找回自我的過程。</p>
+                <h3><i class="fa-solid fa-clock text-sage-400"></i> 三、 時間與費用</h3>
+                <div class="bg-clay-50 border border-clay-100 p-6 rounded-2xl mb-8">
+                    <ul class="space-y-4 text-stone-700">
+                        <li class="flex gap-3">
+                            <i class="fa-solid fa-hourglass-half text-sage-500 mt-1"></i>
+                            <div><span class="font-bold">服務時長：</span> 60 - 90 分鐘</div>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fa-solid fa-tag text-sage-500 mt-1"></i>
+                            <div><span class="font-bold">單次費用：</span> <span class="text-stone-800 text-lg font-bold">$2800</span> 元</div>
+                        </li>
+                    </ul>
+                    <p class="mt-4 text-sm text-stone-500 italic"><i class="fa-solid fa-info-circle mr-1"></i> 可搭配套課計畫（歡迎私訊了解專屬優惠）</p>
+                </div>
 
-                <!-- 服務聲明 -->
-                <div class="mt-12 p-6 bg-clay-50 rounded-2xl border border-stone-100">
+                <div class="mt-12 p-6 bg-stone-50 rounded-2xl border border-stone-100">
                     <h4 class="font-medium mb-4 text-stone-800"><i class="fa-solid fa-circle-info text-sage-500"></i> 服務提醒：</h4>
                     <ul class="text-sm space-y-2 text-stone-600 font-light">
                         <li>• 自然產建議產後 4-6 週、剖腹產建議 8-12 週（務必確認惡露排淨且傷口癒合良好）開始。</li>
-                        <li>• 本服務以「放鬆」與「肌群覺察」為主，非醫療診斷或治療行為。</li>
+                        <li>• 本服務以「放鬆」與「肌群覺察」為主，並非醫療診斷或治療行為。</li>
                         <li>• 建議穿著兩截式、腰部寬鬆舒適的衣物前來。</li>
                     </ul>
                 </div>
 
                 <div class="mt-16 text-center">
-                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-medium tracking-widest shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-3">
-                        <i class="fa-brands fa-line text-2xl"></i> 預約諮詢
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="inline-flex items-center gap-2 bg-[#06C755] text-white px-10 py-4 rounded-full font-medium tracking-widest shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-3">
+                        <i class="fa-brands fa-line text-2xl"></i> LINE 預約諮詢
                     </a>
                 </div>
             </div>

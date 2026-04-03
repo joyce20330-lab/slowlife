@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生活空間支持與整聊 | 緩生工作室</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        stone: { 50: '#FAF8F5', 600: '#7A6F62', 800: '#4A4238' }, 
+                        sage: { 50: '#F0F3F0', 500: '#8A9A86', 600: '#6B7A68' }, 
+                        clay: { 50: '#F4EFEA' } 
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FAF8F5; line-height: 1.8; }
+        .service-content p { margin-bottom: 1.5rem; color: #4A4238; font-weight: 300; }
+        .service-content h3 { font-size: 1.25rem; font-weight: 500; color: #1c1917; margin-top: 2.5rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .service-content h4 { font-weight: 500; color: #444; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="font-sans antialiased text-stone-800">
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center">
+            <a href="../index.html#services" class="flex items-center gap-2 text-stone-600 hover:text-sage-600 transition-colors">
+                <i class="fa-solid fa-chevron-left text-sm"></i>
+                <span class="tracking-widest font-medium">回到服務項目</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-4">
+        <article class="max-w-4xl mx-auto bg-white shadow-xl rounded-[2.5rem] overflow-hidden">
+            <!-- 封面圖 -->
+            <div class="w-full h-[250px] md:h-[450px] relative overflow-hidden bg-stone-100">
+                <img src="https://lh3.googleusercontent.com/d/19e_VvQadX5Mwg63NQ-xILtt4QbHmlzwn" alt="生活空間支持" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-stone-900/30"></div>
+                <div class="absolute bottom-8 left-8">
+                    <h1 class="text-3xl md:text-4xl text-white font-medium tracking-widest drop-shadow-md">生活空間支持</h1>
+                    <p class="text-white/90 mt-2 tracking-wide font-light">建立「現在做得到的生活方式」</p>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12 lg:p-16 service-content">
+                <p class="text-lg font-medium border-l-4 border-sage-400 pl-4 py-2 bg-sage-50 rounded-r-lg">
+                    本服務為陪伴媽媽在恢復期，建立「現在做得到的生活方式」。<br>
+                    <span class="text-rose-500 font-medium">※ 請注意：這不是清潔服務，亦不提供大量家事代工。</span>
+                </p>
+
+                <h3><i class="fa-solid fa-comments text-sage-400"></i> 第一階段：線上初談（必經過程）</h3>
+                <p>在實際進入空間前，我們需要先釐清現況，確保支持能精準到位。</p>
+                <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm mb-6">
+                    <ul class="list-disc pl-5 space-y-2 text-stone-600 marker:text-sage-400">
+                        <li>產後身心與生活狀態釐清</li>
+                        <li>空間使用困擾點評估</li>
+                        <li>是否需要到府支持的專業判斷</li>
+                    </ul>
+                    <div class="mt-6 pt-4 border-t border-stone-50 flex justify-between items-center">
+                        <span class="text-stone-800 font-medium">30 - 40 分鐘</span>
+                        <span class="text-stone-800 font-bold text-xl">$1,300</span>
+                    </div>
+                    <p class="mt-2 text-xs text-rose-500 font-medium italic">◆ 若後續進行到府服務，可折抵 $300</p>
+                </div>
+
+                <h3><i class="fa-solid fa-house-chimney-window text-sage-400"></i> 第二階段：深度整聊（工作室對談）</h3>
+                <p>透過深度的面談，梳理生活的雜訊，為空間重新定義。</p>
+                <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm mb-6">
+                    <ul class="list-disc pl-5 space-y-2 text-stone-600 marker:text-sage-400">
+                        <li>產後生活節奏與空間使用梳理</li>
+                        <li>整理「該動／不該動」的空間</li>
+                        <li>到府範圍與界線確認（若需要）</li>
+                    </ul>
+                    <div class="mt-6 pt-4 border-t border-stone-50 flex justify-between items-center">
+                        <span class="text-stone-800 font-medium">120 分鐘（冬山工作室）</span>
+                        <span class="text-stone-800 font-bold text-xl">$2,500</span>
+                    </div>
+                    <p class="mt-2 text-xs text-stone-500 italic">※ 改到府施作酌收車馬費 $8 / 公里</p>
+                </div>
+
+                <h3><i class="fa-solid fa-truck-fast text-sage-400"></i> 到府生活空間支持服務</h3>
+                <p>實際走入妳的生活場域，陪妳動手整理，找回家的呼吸感。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <!-- 半日支持 -->
+                    <div class="bg-clay-50/50 p-6 rounded-2xl border border-clay-100 flex flex-col">
+                        <h4 class="text-stone-800 font-bold mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-sun text-orange-400"></i> 半日支持
+                        </h4>
+                        <ul class="text-sm text-stone-600 space-y-2 flex-grow">
+                            <li>• 3 小時內服務</li>
+                            <li>• 含整聊引導 + 實際空間整理陪伴</li>
+                            <li>• <span class="font-medium">冬山/羅東/五結/蘇澳市區</span>含車馬</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-clay-200 text-right">
+                            <span class="text-stone-800 font-bold text-xl">$3,200</span>
+                        </div>
+                    </div>
+
+                    <!-- 整日支持 -->
+                    <div class="bg-clay-50/50 p-6 rounded-2xl border border-clay-100 flex flex-col">
+                        <h4 class="text-stone-800 font-bold mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-mountain-sun text-orange-500"></i> 整日支持
+                        </h4>
+                        <ul class="text-sm text-stone-600 space-y-2 flex-grow">
+                            <li>• 5 小時內服務</li>
+                            <li>• 含空間整理 + 情緒與決策支持</li>
+                            <li>• 使用方式示範</li>
+                            <li>• <span class="font-medium">冬山/羅東/五結/蘇澳市區</span>含車馬</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-clay-200 text-right">
+                            <span class="text-stone-800 font-bold text-xl">$5,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 p-6 bg-stone-50 rounded-2xl border border-stone-100">
+                    <h4 class="font-medium mb-4 text-stone-800"><i class="fa-solid fa-circle-info text-sage-500"></i> 重要說明：</h4>
+                    <ul class="text-sm space-y-2 text-stone-600 font-light">
+                        <li>• 車馬費計算：其他地區按來回公里數計費，每公里 $8 元。</li>
+                        <li>• 預約請至少提前一週，以便安排線上初談的時間。</li>
+                        <li>• 服務過程中，我們將引導您練習篩選與分類，建立長效的生活秩序。</li>
+                    </ul>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-medium tracking-widest shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-3">
+                        <i class="fa-brands fa-line text-2xl"></i> LINE 諮詢預約
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="py-12 text-center text-stone-400 text-sm font-light">
+        <p>© 2024 緩生工作室. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

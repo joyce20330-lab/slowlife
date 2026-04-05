@@ -7,6 +7,7 @@
     <meta name="google-site-verification" content="GUuYVQhVSYwxWugfPp0_Zs-3vg8drWDwhmtGIfP8mPo" />
     <meta name="description" content="提供專業泌乳支持、產後腹部放鬆、身心整聊與生活空間支持。緩生工作室位於宜蘭冬山，由台大護理碩士呸呸主持。">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +85,7 @@
 </head>
 <body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
 
+    <!-- 全站稻穗底圖 -->
     <div class="global-rice-bg"></div>
 
     <nav class="fixed w-full z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-100 h-20 flex items-center transition-all duration-300">
@@ -104,6 +106,7 @@
         </div>
     </nav>
 
+    <!-- 手機選單 -->
     <div id="mobile-menu" class="fixed inset-0 bg-stone-50/95 backdrop-blur-xl z-[60] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-stone-800 text-4xl"><i class="fa-solid fa-xmark"></i></button>
         <a href="#" onclick="navigateTo('story'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於緩生</a>
@@ -115,8 +118,10 @@
         <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="mt-8 bg-[#06C755] text-white px-8 py-3 rounded-full tracking-widest font-medium flex items-center gap-2"><i class="fa-brands fa-line text-xl"></i> LINE 預約</a>
     </div>
 
+    <!-- 首頁 -->
     <div id="page-home" class="page-container block page-enter">
         <header class="relative h-screen flex items-center justify-center">
+            <!-- 無縫淡出的背景層與模糊層 -->
             <div class="hero-bg-layer"></div>
             <div class="hero-blur-layer"></div>
             
@@ -129,8 +134,10 @@
             </div>
         </header>
 
+        <!-- 關於緩生 -->
         <section id="story" class="pt-20 pb-10 md:pt-28 md:pb-12 px-4 sm:px-6">
             <div class="max-w-6xl mx-auto bg-stone-100/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
+                <!-- 單欄置中排版 -->
                 <div class="max-w-3xl mx-auto w-full">
                     <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium text-center">關於緩生</h2>
                     
@@ -158,6 +165,7 @@
             </div>
         </section>
 
+        <!-- 預約與地圖 -->
         <section id="booking" class="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6">
             <div class="max-w-4xl mx-auto bg-stone-100/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-6 sm:p-16 text-center">
                 <h2 class="text-3xl md:text-4xl text-stone-800 mb-12 tracking-widest font-medium">預約與資訊</h2>
@@ -186,6 +194,7 @@
         </section>
     </div>
 
+    <!-- 關於呸呸 -->
     <div id="page-profile" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-6xl mx-auto bg-sage-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
@@ -216,6 +225,7 @@
                             <div>
                                 <h4 class="flex items-center gap-3 text-lg text-stone-800 mb-5 font-bold tracking-widest"><i class="fa-solid fa-hospital text-sage-500"></i> 【專業醫療與教學背景】</h4>
                                 <ul class="space-y-4 pl-4 md:pl-8">
+                                    <!-- 修改：加上 md:whitespace-nowrap 確保電腦版強制呈現單行，手機版透過 br 斷行 -->
                                     <li class="text-center md:text-left md:whitespace-nowrap py-3 border-y border-stone-200/50 mb-4 text-stone-600 font-light">學歷：國立台灣大學護理研究所畢業<br class="md:hidden">（婦女健康及母嬰護理組）</li>
                                     <li>• 臨床：三軍總醫院 兒科護理師 (5年)</li>
                                     <li>• 公衛：公共托育中心 護理師 (2年)</li>
@@ -252,6 +262,7 @@
         </section>
     </div>
 
+    <!-- 服務項目 -->
     <div id="page-services" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-6xl mx-auto bg-clay-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16 text-center">
@@ -263,6 +274,7 @@
                         <img src="https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
                             <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">產後腹部放鬆</h3>
+                            <!-- 加上 whitespace-nowrap 確保手機版不會自然擠斷，嚴格執行一句話一行 -->
                             <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">溫和的觸壓，<br>緩解產後腹部的緊繃與壓力。</p>
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
@@ -291,6 +303,18 @@
                             <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
                         </div>
                     </div>
+                    
+                    <!-- 新增：媽媽肚回歸 卡片 -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] cursor-pointer group transition-all duration-500 transform hover:-translate-y-1 flex flex-col h-full" onclick="window.location.href='./services/mommy-belly-return.html'">
+                        <!-- 已使用您提供的 Google Drive 圖片連結 (轉換為直接顯示格式) -->
+                        <img src="https://lh3.googleusercontent.com/d/1UQ57_10FxeueMUmyol7025-gyhKacixu" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
+                            <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">媽媽肚回歸</h3>
+                            <!-- 嚴格執行一句話一行設定 -->
+                            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8] whitespace-nowrap">結合古法紮肚與張力微雕塑，<br>給予腹部最安定的包覆支撐。</p>
+                            <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i></span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="mt-16"><button onclick="navigateTo('home')" class="bg-sage-500 hover:bg-sage-600 text-white px-8 py-3 rounded-full tracking-widest font-medium transition-all shadow-md inline-flex items-center justify-center gap-3"><i class="fa-solid fa-arrow-left"></i> 回到首頁</button></div>
@@ -298,6 +322,7 @@
         </section>
     </div>
 
+    <!-- 環境介紹：指定排版，不縮小字體 -->
     <div id="page-environment" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-4xl mx-auto bg-white/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-5 sm:p-12 md:p-16 relative overflow-hidden text-center">
@@ -343,6 +368,7 @@
         </section>
     </div>
 
+    <!-- 知識分享 -->
     <div id="page-knowledge" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
             <div class="max-w-5xl mx-auto bg-clay-50/80 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-4 sm:p-12 md:p-16">
@@ -386,6 +412,7 @@
         <p>© 2024 緩生工作室. All rights reserved.</p>
     </footer>
 
+    <!-- 音樂控制與 LINE -->
     <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
         <button id="music-toggle" class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all pulse-music border-2 border-white/40"><i id="music-icon" class="fa-solid fa-music"></i></button>
         <div id="music-status" class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-stone-500 text-xs opacity-0 pointer-events-none transition-opacity">點擊播放音樂</div>

@@ -8,28 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            color: #4a4a4a;
-            line-height: 1.8;
-            background-color: #fdfbf7;
-        }
-        .content-shadow {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .accent-border {
-            border-left: 4px solid #c2a68a;
-        }
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
-        }
+        body { font-family: 'Noto Sans TC', sans-serif; color: #4a4a4a; line-height: 1.8; background-color: #fdfbf7; }
+        .content-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .accent-border { border-left: 4px solid #c2a68a; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.5)); }
     </style>
 </head>
 <body class="bg-[#fdfbf7]">
 
     <!-- Header / Meta Info -->
-    <header class="relative w-full h-[60vh] overflow-hidden bg-[#e5e7eb]">
-        <!-- 標題照片 (封面照片) - 使用指定的 1a7SkqhvxsitMXv4FKKScscjNGI4WnrkQ -->
+    <header class="relative w-full h-[55vh] md:h-[65vh] overflow-hidden bg-[#e5e7eb]">
+        <!-- 標題照片 (封面照片) -->
         <img src="https://lh3.googleusercontent.com/d/1a7SkqhvxsitMXv4FKKScscjNGI4WnrkQ" 
              alt="小孩能吃多少糖？封面照片" 
              class="absolute inset-0 w-full h-full object-cover"
@@ -37,7 +26,7 @@
         <div class="absolute inset-0 hero-gradient flex items-center justify-center p-6 text-center">
             <div class="max-w-4xl">
                 <p class="text-white/90 text-sm md:text-base tracking-widest mb-4 uppercase font-medium">緩生工作室 自然飲食系列</p>
-                <h1 class="text-white text-3xl md:text-6xl font-bold leading-tight drop-shadow-lg text-center">
+                <h1 class="text-white text-3xl md:text-6xl font-bold leading-tight drop-shadow-lg">
                     小孩能吃多少糖？
                 </h1>
             </div>
@@ -77,8 +66,7 @@
                 <div class="bg-gray-100 rounded-2xl overflow-hidden mb-8 shadow-md">
                     <img src="https://lh3.googleusercontent.com/d/1NjaP3Knd84NvbxyxEl-DMW0XUou1o1wQ" 
                          alt="不同年齡層糖攝取量標準" 
-                         class="w-full h-auto"
-                         onerror="this.src='https://via.placeholder.com/800x450?text=糖攝取量標準示意圖';">
+                         class="w-full h-auto">
                 </div>
             </section>
 
@@ -154,6 +142,7 @@
                     </div>
                     <div class="bg-[#fcfdfa] p-6 rounded-2xl">
                         <h4 class="font-bold mb-4 text-[#a68a6d] flex items-center">2. 居家烘焙建議</h4>
+                        <p class="mb-4 text-sm text-gray-500">如果您想親自為孩子製作甜點，建議微調配方：</p>
                         <ul class="list-none space-y-3 ml-2">
                             <li class="flex items-start">
                                 <span class="text-[#c2a68a] mr-2">✦</span>
@@ -165,7 +154,7 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-[#c2a68a] mr-2">✦</span>
-                                <div><strong>天然粉類應用：</strong> 嘗試使用「米粉」取代部分麵粉，並利用香蕉泥提供黏性與甜度。</div>
+                                <div><strong>天然粉類應用：</strong> 嘗試使用「米粉」取代部分麵粉，並利用香蕉泥提供黏性與甜度，減少砂糖用量。</div>
                             </li>
                         </ul>
                     </div>
@@ -186,12 +175,12 @@
                     <div class="border border-gray-100 p-6 rounded-2xl text-center shadow-sm hover:bg-[#faf7f4] transition-colors">
                         <div class="text-3xl mb-3">🍰</div>
                         <p class="font-bold text-[#8c7355] mb-2">分享制</p>
-                        <p class="text-xs text-gray-500">點一份甜點全家分享，既能滿足渴望又能控制糖量。</p>
+                        <p class="text-xs text-gray-500">點一份甜點全家分享，既能滿足渴望又能控制單人糖攝取量。</p>
                     </div>
                     <div class="border border-gray-100 p-6 rounded-2xl text-center shadow-sm hover:bg-[#faf7f4] transition-colors">
                         <div class="text-3xl mb-3">🥗</div>
                         <p class="font-bold text-[#8c7355] mb-2">進食順序</p>
-                        <p class="text-xs text-gray-500">先吃蛋白質或纖維類，再吃甜點，減緩血糖波動。</p>
+                        <p class="text-xs text-gray-500">先吃蛋白質或纖維類（如堅果），再吃甜點，減緩血糖波動。</p>
                     </div>
                 </div>
             </section>

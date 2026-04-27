@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【奶水不足？】哺乳媽媽必看 | 緩生工作室</title>
+    <meta name="description" content="擔心奶水不足是許多媽媽的壓力來源。本文由「緩生工作室」整理專業指引，教你區分「真性」與「假性」奶水不足，掌握寶寶吃飽的 3 大關鍵指標。面對母乳哺餵困難，我們提供實用的追奶與親餵建議，陪伴妳建立哺乳信心，讓母乳之路更自在。">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
+                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
+                        clay: { 50: '#F4EFEA', 100: '#EAE1D8' },
+                        rose: { 50: '#FDF8F8', 500: '#B36D61' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .global-rice-bg { 
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+            z-index: -10; 
+            background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA'); 
+            background-size: cover; background-position: center; 
+            filter: blur(8px) brightness(1.05); opacity: 0.5; pointer-events: none;
+            animation: flowingBg 25s infinite alternate ease-in-out; will-change: transform;
+        }
+        @keyframes flowingBg { 0% { transform: scale(1.0); } 100% { transform: scale(1.15); } }
+        .logo-filter { mix-blend-mode: multiply; filter: contrast(1.1) brightness(1.05); }
+        
+        /* 文章內文排版樣式 */
+        .article-content h2 { color: #4A4238; font-size: 1.35rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #8A9A86; padding-left: 0.75rem; letter-spacing: 0.05em; }
+        @media (min-width: 768px) { .article-content h2 { font-size: 1.5rem; } }
+        .article-content h3 { color: #6B7A68; font-size: 1.15rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .article-content p { margin-bottom: 1.25rem; text-align: justify; }
+        .article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #7A6F62; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .article-content strong { color: #4A4238; font-weight: 500; }
+        .num-badge { background-color: #8A9A86; color: white; border-radius: 9999px; min-width: 1.5rem; height: 1.5rem; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; margin-right: 0.5rem; }
+    </style>
+</head>
+<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
+
+    <div class="global-rice-bg"></div>
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-100 h-20 flex items-center transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="緩生工作室 Logo" class="h-12 w-auto logo-filter">
+                <span class="font-medium text-xl tracking-widest text-stone-800 hidden sm:block">緩生工作室</span>
+            </a>
+            <div class="flex space-x-4 md:space-x-8 items-center">
+                <a href="../index.html#knowledge" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium flex items-center gap-2"><i class="fa-solid fa-arrow-left"></i> 回到知識分享</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 px-4 sm:px-6 min-h-screen flex justify-center">
+        <article class="max-w-3xl w-full bg-white/80 backdrop-blur-md border border-white/60 rounded-[2rem] md:rounded-[3rem] shadow-xl overflow-hidden">
+            
+            <!-- 標題照片 -->
+            <div class="w-full h-64 sm:h-80 md:h-[450px] relative bg-stone-100">
+                <img src="https://lh3.googleusercontent.com/d/15tAMBydBvrj40SW9K-3VLyU5keRg2Xt_" alt="奶水不足" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full p-6 md:p-10 text-white">
+                    <span class="bg-sage-500/90 text-white text-xs tracking-widest px-3 py-1 rounded-full font-medium mb-3 inline-block shadow-sm">享受哺乳時光</span>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-medium tracking-wider leading-snug drop-shadow-md">【奶水不足？】<br class="hidden sm:block">哺乳媽媽必看</h1>
+                </div>
+            </div>
+
+            <!-- 內文區塊 -->
+            <div class="p-6 md:p-10 lg:p-14 article-content text-[15px] md:text-base text-stone-600 font-light leading-[2.2] tracking-wide">
+                
+                <p class="text-lg md:text-xl text-stone-700 font-medium leading-relaxed mb-8 border-b border-stone-200 pb-8">
+                    對於許多新手媽媽來說，「寶寶到底有沒有吃飽？」是產後最大的焦慮來源。在網路討論區搜尋「奶水不足」時，往往會看到琳瑯滿目的發奶食譜，但其實大部分的媽媽並非真的分泌不足，而是陷入了「假性缺奶」的恐懼。<br><br>
+                    <span class="text-sage-600 font-bold">「緩生工作室」希望陪妳一起慢下來，讀懂身體與寶寶的信號，找回哺乳的親密感。</span>
+                </p>
+
+                <h2>一、我是真的奶水不足嗎？先排除這些「假性缺奶」徵兆</h2>
+                <p>很多媽媽在遇到以下情況時，會直覺認為自己遇到了母乳哺餵困難，但其實這些通常是正常的生理反應：</p>
+                <ul>
+                    <li><strong>乳房變軟、不再脹奶：</strong> 這是乳房與寶寶供需平衡的表現，不代表沒奶。</li>
+                    <li><strong>擠不出來：</strong> 擠乳器的效率不代表寶寶吸吮的效率，親餵往往能引發更多奶水。</li>
+                    <li><strong>寶寶頻繁討奶：</strong> 寶寶可能正處於「猛長期」，或是單純需要安全感。</li>
+                </ul>
+
+                <h2>二、如何正確判斷寶寶是否吃飽？觀察這 3 大指標</h2>
+                <p>比起觀察乳房的感受，觀察寶寶的「產出」才是最科學的方法。</p>
+                
+                <div class="space-y-4 my-6">
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+                        <h3 class="!mt-0 !mb-2 flex items-center"><span class="num-badge">1</span> 尿布的量（最直觀的指標）</h3>
+                        <p class="!mb-0 text-sm">出生 5 天後，每天應有 6 片以上重甸甸的尿布，顏色呈透明或淡黃色。</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+                        <h3 class="!mt-0 !mb-2 flex items-center"><span class="num-badge">2</span> 體重增長</h3>
+                        <p class="!mb-0 text-sm">在排除生理性脫水後，寶寶每週的體重應穩定增加（通常每週約 150-200 克）。</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+                        <h3 class="!mt-0 !mb-2 flex items-center"><span class="num-badge">3</span> 觀察吸吮與吞嚥</h3>
+                        <p class="!mb-0 text-sm">親餵時，觀察寶寶是否有「深而慢」的吸吮節奏，並能聽到明顯的吞嚥聲，而非只是淺快的吸吮。</p>
+                    </div>
+                </div>
+
+                <h2>三、遇到母乳哺餵困難怎麼辦？實用的解決方案</h2>
+                <p>若經過評估發現確實有奶水不足的狀況，請別灰心，透過以下方式可以逐步提升奶量：</p>
+                <ul>
+                    <li><strong>增加親餵次數：</strong> 大腦是依據「需求」來決定生產量。多抱、多親餵是最好的催乳劑。</li>
+                    <li><strong>肌膚接觸（Skin to Skin）：</strong> 褪去衣物與寶寶胸貼胸，能刺激催產素分泌，讓奶水流動更順暢。</li>
+                    <li><strong>調整含乳姿勢：</strong> 有時並非沒奶，而是寶寶含乳不正確導致吸吮無效率。建議尋求專業泌乳顧問協助調整。</li>
+                    <li><strong>保持心情放鬆：</strong> 壓力會抑制排乳反射。給自己一杯茶的時間，相信妳的身體有足夠的本能。</li>
+                </ul>
+
+                <div class="mt-12 bg-sage-50/50 p-6 md:p-8 rounded-2xl border border-sage-100 text-center">
+                    <h3 class="text-sage-600 mb-4 tracking-widest text-lg font-bold"><i class="fa-solid fa-heart"></i> 四、相信自己，哺乳是一場與寶寶的圓舞曲</h3>
+                    <p class="mb-0 text-stone-700 text-[15px]">
+                        母乳哺餵不應該只有壓力與數字。在「緩生工作室」，我們相信每一位媽媽的節奏都是獨特的。當妳學會放下對「產量」的執著，開始觀察寶寶的飽足信號，妳會發現，原來妳給予的已經遠比妳想像的多。<br><br>
+                        如果您在哺餵過程中感到挫折或不安，歡迎聯繫「緩生工作室」，讓我們陪伴妳找回哺乳的初心與力量，協助妳找到真正奶水不足的原因。
+                    </p>
+                </div>
+                
+                <!-- 底部導覽按鈕 -->
+                <div class="mt-16 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../index.html#knowledge" class="bg-white border border-stone-300 text-stone-600 px-8 py-3 rounded-full tracking-widest font-medium hover:bg-stone-50 transition-all text-center shadow-sm">
+                        返回文章列表
+                    </a>
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-sage-500 text-white px-8 py-3 rounded-full tracking-widest font-medium hover:bg-sage-600 transition-all text-center shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-line text-lg"></i> 預約泌乳諮詢
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-stone-800/95 text-stone-400 py-12 text-center text-sm font-light relative z-10">
+        <p>© 2024 緩生工作室. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

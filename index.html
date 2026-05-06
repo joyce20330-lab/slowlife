@@ -60,34 +60,49 @@
                 }
             }
         }
+
     </script>
     <style>
-        body { background-color: #FAF8F5; }
-        
+        /* 稻穗底圖：絕對釘死於視窗，不會掉到最下面 */
         .global-rice-bg { 
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
             z-index: -10; 
             background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA'); 
-            background-size: cover; background-position: center; 
-            filter: blur(8px) brightness(1.05); opacity: 0.5; pointer-events: none;
-            animation: flowingBg 25s infinite alternate ease-in-out; will-change: transform;
+            background-size: cover; 
+            background-position: center; 
+            filter: blur(8px) brightness(1.05); 
+            opacity: 0.5; 
+            pointer-events: none;
+            animation: flowingBg 25s infinite alternate ease-in-out;
+            will-change: transform;
         }
         @keyframes flowingBg { 0% { transform: scale(1.0); } 100% { transform: scale(1.15); } }
         
+        /* 首頁背景與霧化淡出漸層，消除邊界感 */
         .hero-bg-layer {
-            position: absolute; inset: 0;
+            position: absolute;
+            inset: 0;
             background-image: url('https://lh3.googleusercontent.com/d/1syvx4RN5vvDCyaqgiLCW9fjnFPBQ0azg'); 
-            background-size: cover; background-position: center; background-attachment: scroll; 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: scroll; 
             -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 100%); z-index: 0;
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            z-index: 0;
         }
         @media (min-width: 768px) { .hero-bg-layer { background-attachment: fixed; } }
         
         .hero-blur-layer {
-            position: absolute; inset: 0;
-            background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            position: absolute;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 100%); z-index: 1; will-change: transform;
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            z-index: 1;
+            will-change: transform;
         }
 
         .logo-filter { mix-blend-mode: multiply; filter: contrast(1.1) brightness(1.05); }
@@ -101,37 +116,172 @@
         .animate-music { animation: musicRotate 6s linear infinite; }
         @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
+                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
 
-        /* 呼吸球專屬動畫 */
+    <style>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
+                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FAF8F5; }
+
+        /* --- 呼吸球專屬動畫 --- */
         @keyframes breatheAnimation {
             0%, 100% { transform: scale(0.8); opacity: 0.8; }
             50% { transform: scale(1.25); opacity: 0.3; }
         }
-        .animate-breathe { animation: breatheAnimation 8s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-        .breathe-side-hidden { transform: translateX(-210px); }
 
-        /* FAQ 動畫 */
-        .faq-content { transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; }
-        .faq-btn i { transition: transform 0.3s ease; }
+        .animate-breathe {
+            animation: breatheAnimation 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* --- 側邊切換動畫 --- */
+        /* 計算：卡片寬度 210px，所以往左推 210px 剛好藏起卡片，只留下按鈕 */
+        .breathe-side-hidden {
+            transform: translateX(-210px); 
+        }
+
+        /* 音樂按鈕的 pulse 動畫 (取自首頁) */
+        @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
     </style>
 </head>
-<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50 overflow-x-hidden">
+    <!-- ========================================== -->
+    <!-- 1. 側邊呼吸引導器 (已將位置改為 top-28 左上角) -->
+    <!-- ========================================== -->
+    <!-- 將 top-1/2 -translate-y-1/2 替換成了 top-28 (距離頂部約112px) -->
+    <div id="breathe-side-widget" class="fixed left-0 top-28 -translate-x-[210px] z-[999] transition-transform duration-700 ease-in-out flex items-center">
+        <!-- 呼吸卡片本體 (寬度剛好是 210px) -->
+        <div class="bg-white/95 backdrop-blur-md border-y border-r border-sage-100 shadow-lg rounded-r-[2rem] p-4 flex items-center gap-4 w-[210px]">
+            <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
+                <div class="absolute inset-0 bg-sage-500 rounded-full animate-breathe"></div>
+                <div class="absolute w-3 h-3 bg-sage-600 rounded-full"></div>
+            </div>
+            <div class="flex-1">
+                <p class="text-[10px] text-stone-400 tracking-widest mb-0.5 font-medium uppercase">Take a breath</p>
+                <p id="breathe-text-side" class="text-stone-700 text-sm font-medium tracking-widest transition-opacity duration-1000">吸氣...</p>
+            </div>
+        </div>
+        
+        <!-- 側邊開關標籤 (小葉子) -->
+        <button onclick="toggleBreatheSide()" class="bg-sage-500 text-white w-10 h-16 rounded-r-xl flex items-center justify-center shadow-[4px_0_15px_rgba(0,0,0,0.1)] hover:bg-sage-600 transition-colors border-y border-r border-sage-600/30">
+            <i id="breathe-icon-side" class="fa-solid fa-leaf transition-transform duration-500"></i>
+        </button>
+    </div>
 
-    <!-- 背景與導覽列 -->
+    <!-- ========================================== -->
+    <!-- 2. 左下角音樂按鈕 -->
+    <!-- ========================================== -->
+    <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
+        <button class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all pulse-music border-2 border-white/40">
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3. 右下角 LINE 按鈕 -->
+    <!-- ========================================== -->
+    <a href="#" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
+        <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
+    </a>
+
+    <script>
+        // --- 呼吸文字切換邏輯 ---
+        const sideBreatheText = document.getElementById('breathe-text-side');
+        let sideIsInhaling = true;
+        
+        setInterval(() => {
+            sideBreatheText.style.opacity = '0';
+            setTimeout(() => {
+                sideIsInhaling = !sideIsInhaling;
+                sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
+                sideBreatheText.style.opacity = '1';
+            }, 500);
+        }, 4000);
+
+        // --- 側邊欄展開/收合邏輯 ---
+        function toggleBreatheSide() {
+            const widget = document.getElementById('breathe-side-widget');
+            const icon = document.getElementById('breathe-icon-side');
+            
+            // 檢查是否處於隱藏狀態 (-translate-x-[210px])
+            if (widget.classList.contains('-translate-x-[210px]')) {
+                // 展開：移除隱藏，加上 0 (歸位)
+                widget.classList.remove('-translate-x-[210px]');
+                widget.classList.add('translate-x-0');
+                icon.style.transform = 'rotate(180deg)'; // 葉子翻轉
+            } else {
+                // 收合：移除 0，加上隱藏
+                widget.classList.remove('translate-x-0');
+                widget.classList.add('-translate-x-[210px]');
+                icon.style.transform = 'rotate(0deg)'; // 葉子翻轉回來
+            }
+        }
+    </script>
+</body>
+</html>
+    </style>
+</head>
+<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
+
+    <!-- 全站稻穗底圖 -->
     <div class="global-rice-bg"></div>
-    <nav class="fixed w-full z-[100] bg-stone-50/80 backdrop-blur-md border-b border-stone-100 h-20 flex items-center transition-all duration-300">
+
+    <nav class="fixed w-full z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-100 h-20 flex items-center transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full flex items-center justify-between">
             <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3">
                 <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="緩生工作室 Logo" class="h-12 w-auto logo-filter">
                 <span class="font-medium text-xl tracking-widest text-stone-800">緩生工作室</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#" onclick="navigateTo('story'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">緩生故事</a>
+                <a href="#" onclick="navigateTo('story'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">關於緩生</a>
                 <a href="#" onclick="navigateTo('profile'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">關於呸呸</a>
                 <a href="#" onclick="navigateTo('environment'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">環境介紹</a>
                 <a href="#" onclick="navigateTo('services'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">服務項目</a>
                 <a href="#" onclick="navigateTo('knowledge'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">知識分享</a>
-                <a href="#" onclick="navigateTo('faq'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">常見問題</a>
                 <a href="#" onclick="navigateTo('booking'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">預約資訊</a>
             </div>
             <button id="mobile-menu-btn" class="md:hidden text-stone-800 text-2xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
@@ -139,21 +289,25 @@
     </nav>
 
     <!-- 手機選單 -->
-    <div id="mobile-menu" class="fixed inset-0 bg-stone-50/98 z-[200] hidden flex-col items-center justify-center space-y-10 opacity-0 transition-opacity duration-300">
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-50/95 backdrop-blur-xl z-[60] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-stone-800 text-4xl"><i class="fa-solid fa-xmark"></i></button>
         <a href="#" onclick="navigateTo('story'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於緩生</a>
         <a href="#" onclick="navigateTo('profile'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於呸呸</a>
         <a href="#" onclick="navigateTo('environment'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">環境介紹</a>
         <a href="#" onclick="navigateTo('services'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">服務項目</a>
         <a href="#" onclick="navigateTo('knowledge'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">知識分享</a>
-        <a href="#" onclick="navigateTo('faq'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">常見問題</a>
         <a href="#" onclick="navigateTo('booking'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">預約資訊</a>
         <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="mt-8 bg-[#06C755] text-white px-8 py-3 rounded-full tracking-widest font-medium flex items-center gap-2"><i class="fa-brands fa-line text-xl"></i> LINE 預約</a>
     </div>
-   <div id="page-home" class="page-container block page-enter">
+
+    <!-- 首頁 -->
+    <div id="page-home" class="page-container block page-enter">
         <header class="relative h-screen flex items-center justify-center">
-            <div class="hero-bg-layer"></div><div class="hero-blur-layer"></div>
-            <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto">
+            <!-- 無縫淡出的背景層與模糊層 -->
+            <div class="hero-bg-layer"></div>
+            <div class="hero-blur-layer"></div>
+            
+            <div class="relative z-10 text-center px-4 fade-in w-full max-w-5xl mx-auto">
                 <h1 class="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl text-stone-800 mb-6 tracking-[0.15em] font-medium leading-tight whitespace-nowrap drop-shadow-sm">緩緩地，陪伴每一位媽媽</h1>
                 <p class="text-stone-600 text-base sm:text-lg md:text-xl tracking-widest mb-10 font-light">走在成為母親、也成為自己的路上。</p>
                 <a href="#" onclick="navigateTo('story'); return false;" class="inline-flex flex-col items-center text-stone-500 hover:text-sage-600 transition-colors mt-8">
@@ -162,15 +316,19 @@
             </div>
         </header>
 
-        <!-- 緩生故事 -->
+        <!-- 關於緩生 -->
         <section id="story" class="pt-20 pb-10 md:pt-28 md:pb-12 px-4 sm:px-6">
             <div class="max-w-6xl mx-auto bg-stone-100/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
+                <!-- 單欄置中排版 -->
                 <div class="max-w-3xl mx-auto w-full">
-                    <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium text-center">緩生故事</h2>
+                    <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium text-center">關於緩生</h2>
+                    
                     <div class="w-full mb-10 flex justify-center">
                         <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="緩生工作室品牌標誌" class="w-full h-auto logo-filter max-w-[480px]">
                     </div>
+                    
                     <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-8"></div>
+                    
                     <div class="text-stone-600 leading-[2.2] tracking-wide font-light space-y-6 text-[15px] md:text-base text-justify">
                         <p>我來自中部。小時候的夢想很單純——到大都市讀書、工作，在那裡站穩腳步。從大學開始，我一路生活在台北，努力在雙北成家立業，一轉眼，十二年就這樣過去了。</p>
                         <p>六年前，第一個孩子出生後，心裡其實一直有個聲音，很想回到鄉下、回到更貼近稻田的地方。但在工作與經濟的現實考量下，我們選擇繼續留在雙北努力。</p>
@@ -178,6 +336,7 @@
                         <p>即使，我們才剛搬進板橋的新家不久。老公一句話：「我朋友住宜蘭，來回上班很不錯。」於是我們開始看房子、看學校，就這樣，緣份把我們牽到了宜蘭・冬山。也在這裡，遇見了一眼就喜歡的家。</p>
                         <p>真正搬來之後，放慢腳步，才發現——原來這才是生活，這才是人生。孩子需要這樣緩慢而安定的節奏長大，而身為媽媽的我，也終於在這裡，找到屬於自己的生活步調。</p>
                         <p>我始終對雙北充滿感謝。因為那些年的歷練，造就了今天的我——一個有能力照顧自己、也有能力溫柔陪伴她人的我。</p>
+                        
                         <div class="pt-8 text-center">
                             <p class="font-bold text-stone-800 text-lg md:text-xl tracking-widest leading-loose">
                                 「緩生工作室」，<br>就是在這樣的生命節奏裡誕生的。
@@ -215,14 +374,15 @@
                 </div>
             </div>
         </section>
-
-        <!-- CTA -->
+        
+        <!-- CTA 區塊 -->
         <section class="py-16 px-4 text-center max-w-4xl mx-auto">
             <h3 class="text-2xl text-stone-800 mb-4 font-medium tracking-widest">需要聊聊嗎？</h3>
             <p class="text-stone-600 mb-8 font-light tracking-wide leading-relaxed">從臨床數據的嚴謹，到人智醫學對生命本質的關懷。<br class="hidden sm:block">無論是泌乳照護，還是想梳理產後的焦慮心情，我都在這裡接住妳。</p>
             <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-sage-500 text-white px-10 py-4 rounded-full tracking-widest hover:bg-sage-600 transition-all shadow-md inline-flex items-center gap-2">預約與諮詢 <i class="fa-solid fa-arrow-right text-sm"></i></a>
         </section>
     </div>
+
     <!-- 關於呸呸 -->
     <div id="page-profile" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
@@ -368,6 +528,7 @@
             </div>
         </section>
     </div>
+
     <!-- 環境介紹 -->
     <div id="page-environment" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
@@ -413,6 +574,7 @@
             </div>
         </section>
     </div>
+
     <!-- 知識分享 -->
     <div id="page-knowledge" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
@@ -480,159 +642,10 @@
             </div>
         </section>
     </div>
-   <div id="page-faq" class="page-container hidden pt-24 pb-20 min-h-screen relative z-10">
-        <section class="max-w-4xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12">
-                <span class="text-sage-600 text-sm tracking-[0.3em] font-medium uppercase mb-4 block">Q & A</span>
-                <h2 class="text-3xl md:text-4xl text-stone-800 tracking-widest font-medium">常見問題</h2>
-                <div class="w-12 h-[1px] bg-sage-500 mx-auto mt-6"></div>
-            </div>
-
-            <!-- 類別一 -->
-            <div class="mb-10">
-                <h3 class="text-lg text-sage-600 font-bold tracking-widest mb-4 flex items-center gap-2">
-                    <i class="fa-regular fa-calendar-check"></i> 關於服務與預約
-                </h3>
-                <div class="bg-white/80 backdrop-blur-md rounded-3xl p-2 sm:p-4 border border-stone-100 shadow-sm">
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">預約宜蘭「泌乳服務」或「身心整聊」需要提前多久呢？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">為了確保能為妳保留專屬且放鬆的時間，建議至少提前 <strong>1-3 天</strong> 預約。妳可以直接點擊網站上的 LINE 圖示，我會親自與妳確認細節。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">除了冬山工作室，有提供「到府服務」嗎？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">有的。除了歡迎妳來到溫暖的冬山工作室，我也提供 <strong>宜蘭地區</strong> 的居家到府服務（視距離酌收車馬費）；「身心整聊」亦可選擇 <strong>線上對談</strong>，不受地區限制。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">如果當天突然有塞奶等緊急狀況，可以臨時插單嗎？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">哺乳的突發狀況往往令人焦慮，我非常理解。若遇到緊急塞奶或石頭奶，請直接在 LINE 留言並註明「緊急」，我會盡力協調現有的行程，優先為妳安排空檔。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 類別二 -->
-            <div class="mb-10">
-                <h3 class="text-lg text-sage-600 font-bold tracking-widest mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-hand-holding-heart"></i> 關於泌乳與身體照護
-                </h3>
-                <div class="bg-white/80 backdrop-blur-md rounded-3xl p-2 sm:p-4 border border-stone-100 shadow-sm">
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">呸呸老師的手法會痛嗎？我好怕被「暴力通乳」。</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">請完全放心。緩生工作室堅持 <strong>「順應身體節奏」</strong> 的手法。我們不提倡強硬推擠硬塊，而是透過溫和觸壓，在妳最放鬆的狀態下排解緊繃。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">乳腺炎發燒了，還可以進行泌乳服務嗎？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">若妳正在發高燒，建議先就醫確認是否需要用藥（如抗生素）。在藥物配合下，同步進行溫柔的泌乳服務，能有效協助乳腺疏通並縮短修復期。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">「媽媽肚回歸」跟一般的產後按摩有什麼不同？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">我們使用的是 <strong>「俏媽咪專業團隊」</strong> 的獨家手法，結合古法紮肚與張力微雕塑，重點在於給予腹部安定的包覆與骨盆支撐，而非單純的肌肉放鬆，更專注於產後身體結構的修復。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 類別三 -->
-            <div class="mb-10">
-                <h3 class="text-lg text-sage-600 font-bold tracking-widest mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-mug-hot"></i> 關於身心整聊與空間
-                </h3>
-                <div class="bg-white/80 backdrop-blur-md rounded-3xl p-2 sm:p-4 border border-stone-100 shadow-sm">
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">「身心整聊」跟心理諮商有什麼不一樣？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">「身心整聊」是 <strong>陪伴式的對談</strong>。我不做病理診斷，而是以過來人與醫護背景的身分，傾聽妳說不出口的焦慮，陪妳梳理產後混亂的思緒，找回當下最真實的需要。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">在整聊過程中，如果我哭了或情緒激動怎麼辦？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">沒關係，這裡就是讓妳可以安心流淚的地方。在緩生，妳不需要扮演完美的母親，只需要當妳自己。所有的情緒都會被溫柔地接住。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">「生活空間支持」是真的會幫我打掃家裡嗎？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">這不是家事服務，而是 <strong>「環境的整理與心靈的梳理」</strong>。我會運用居家整聊技巧，陪妳一起規劃育兒動線，斷捨離那些讓妳感到壓抑的雜物，找回家的呼吸感。</p>
-                        </div>
-                    </div>
-                    <div class="border-b border-stone-100 last:border-0">
-                        <button class="faq-btn w-full text-left flex justify-between items-center py-5 px-4 focus:outline-none hover:text-sage-600 transition-colors group">
-                            <span class="font-medium tracking-wide text-[15px] md:text-base pr-4">我想預約服務，但我需要帶孩子一起來嗎？</span>
-                            <i class="fa-solid fa-chevron-down text-stone-300 group-hover:text-sage-400 transition-transform duration-300 shrink-0"></i>
-                        </button>
-                        <div class="faq-content max-h-0 overflow-hidden opacity-0">
-                            <p class="px-4 pb-5 text-stone-500 font-light text-sm md:text-[15px] leading-relaxed">工作室非常歡迎孩子同行。但若妳預約的是「身心整聊」，如果環境允許，我們會建議妳給自己一段「Me Time」，獨自前來能讓妳更專注於自己的內在空間。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                <button onclick="navigateTo('home')" class="bg-sage-500 hover:bg-sage-600 text-white px-8 py-3 rounded-full tracking-widest font-medium transition-all shadow-md inline-flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-arrow-left"></i> 回到首頁
-                </button>
-            </div>
-        </section>
-    </div>
 
     <footer class="bg-stone-800/95 text-stone-400 py-16 text-center text-sm font-light relative z-10">
-        <p>© 2026 緩生工作室. All rights reserved.</p>
+        <p>© 2024 緩生工作室. All rights reserved.</p>
     </footer>
-
-    <!-- 側邊呼吸引導器 (左上角) -->
-    <div id="breathe-side-widget" class="fixed left-0 top-28 -translate-x-[210px] z-[999] transition-transform duration-700 ease-in-out flex items-center">
-        <div class="bg-white/95 backdrop-blur-md border-y border-r border-sage-100 shadow-lg rounded-r-[2rem] p-4 flex items-center gap-4 w-[210px]">
-            <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
-                <div class="absolute inset-0 bg-sage-500 rounded-full animate-breathe"></div>
-                <div class="absolute w-3 h-3 bg-sage-600 rounded-full"></div>
-            </div>
-            <div class="flex-1">
-                <p class="text-[10px] text-stone-400 tracking-widest mb-0.5 font-medium uppercase">Take a breath</p>
-                <p id="breathe-text-side" class="text-stone-700 text-sm font-medium tracking-widest transition-opacity duration-1000">吸氣...</p>
-            </div>
-        </div>
-        <button onclick="toggleBreatheSide()" class="bg-sage-500 text-white w-10 h-16 rounded-r-xl flex items-center justify-center shadow-[4px_0_15px_rgba(0,0,0,0.1)] hover:bg-sage-600 transition-colors border-y border-r border-sage-600/30">
-            <i id="breathe-icon-side" class="fa-solid fa-leaf transition-transform duration-500"></i>
-        </button>
-    </div>
 
     <!-- 音樂控制與 LINE -->
     <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
@@ -643,211 +656,73 @@
     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all"><i class="fa-brands fa-line text-3xl md:text-4xl"></i></a>
 
     <script>
-        // --- 核心：安全防呆導航邏輯 ---
-        mobile-menu
-function navigateTo(target) {
-            const pages = { 
-                home: document.getElementById('page-home'), 
-                profile: document.getElementById('page-profile'), 
-                services: document.getElementById('page-services'), 
-                environment: document.getElementById('page-environment'), 
-                knowledge: document.getElementById('page-knowledge'),
-                faq: document.getElementById('page-faq') 
-            };
-
-            // 隱藏所有
-            Object.values(pages).forEach(p => { 
-                if(p) { p.classList.add('hidden'); p.classList.remove('block', 'page-enter'); } 
-            });
-
-            // 顯示目標
-            if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
-                if(pages[target]) { pages[target].classList.remove('hidden'); pages[target].classList.add('block', 'page-enter'); }
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            } else { 
-                if(pages.home) { pages.home.classList.remove('hidden'); pages.home.classList.add('block'); }
-                if(target === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
-                else {
-                    setTimeout(() => { 
-                        const el = document.getElementById(target); 
-                        if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
-                    }, 50); 
-                }
-            }
-
-            // 強制關閉手機選單
-            const menu = document.getElementById('mobile-menu');
-            if(menu && !menu.classList.contains('hidden')) {
-                menu.classList.add('opacity-0');
-                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300);
-                document.body.style.overflow = ''; 
-            }
+        function navigateTo(target) {
+            const pages = { home: document.getElementById('page-home'), profile: document.getElementById('page-profile'), services: document.getElementById('page-services'), environment: document.getElementById('page-environment'), knowledge: document.getElementById('page-knowledge') };
+            Object.values(pages).forEach(p => { if(p) { p.classList.replace('block', 'hidden'); p.classList.remove('page-enter'); } });
+            if(['profile', 'services', 'environment', 'knowledge'].includes(target)) { pages[target].classList.replace('hidden', 'block'); pages[target].classList.add('page-enter'); window.scrollTo({ top: 0, behavior: 'smooth' }); } 
+            else { pages.home.classList.replace('hidden', 'block'); if(target === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setTimeout(() => { const el = document.getElementById(target); if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }, 50); }
+            const menu = document.getElementById('mobile-menu'); if(!menu.classList.contains('hidden')) toggleMenu();
         }
 
-        // 2. 手機選單開關
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            if(menu.classList.contains('hidden')) { 
-                menu.classList.remove('hidden'); menu.classList.add('flex'); 
-                setTimeout(() => menu.classList.remove('opacity-0'), 10); 
-                document.body.style.overflow = 'hidden'; 
-            } else { 
-                menu.classList.add('opacity-0'); 
-                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); 
-                document.body.style.overflow = ''; 
-            }
+            if(menu.classList.contains('hidden')) { menu.classList.remove('hidden'); menu.classList.add('flex'); setTimeout(() => menu.classList.remove('opacity-0'), 10); document.body.style.overflow = 'hidden'; } 
+            else { menu.classList.add('opacity-0'); setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); document.body.style.overflow = ''; }
         }
         document.getElementById('mobile-menu-btn').onclick = toggleMenu;
         document.getElementById('close-menu-btn').onclick = toggleMenu;
 
-        // 3. FAQ 摺疊邏輯
-        document.querySelectorAll('.faq-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                const isOpen = content.style.maxHeight;
-
-                document.querySelectorAll('.faq-content').forEach(el => {
-                    el.style.maxHeight = null; el.classList.remove('opacity-100');
-                    el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-                });
-
-                if (!isOpen) {
-                    content.classList.add('opacity-100');
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon.classList.add('rotate-180');
-                }
+        function initArticles() {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                const articles = Array.from(tab.querySelectorAll('.article-card'));
+                const loadBtn = tab.querySelector('.load-more-container');
+                articles.forEach((art, idx) => art.style.display = idx < 5 ? 'flex' : 'none');
+                if(articles.length > 5 && loadBtn) {
+                    loadBtn.classList.remove('hidden');
+                    loadBtn.querySelector('button').onclick = () => { articles.forEach(a => a.style.display = 'flex'); loadBtn.classList.add('hidden'); };
+                } else if(loadBtn) { loadBtn.classList.add('hidden'); }
             });
-        });
-
-        // 4. 呼吸球控制
-        let inhaling = true;
-        setInterval(() => {
-            inhaling = !inhaling;
-            document.getElementById('breathe-text-side').innerText = inhaling ? '吸氣...' : '慢慢吐氣...';
-        }, 4000);
-
-        function toggleBreatheSide() {
-            const w = document.getElementById('breathe-side-widget');
-            if (w.classList.contains('-translate-x-[210px]')) {
-                w.classList.remove('-translate-x-[210px]'); w.classList.add('translate-x-0');
-            } else {
-                w.classList.remove('translate-x-0'); w.classList.add('-translate-x-[210px]');
-            }
         }
-    </script>
-</body>
-</html>
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.replace('block', 'hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.className = 'tab-btn px-6 py-2 rounded-full border border-sage-500 text-sage-600 font-medium text-sm transition-all');
             const target = document.getElementById(tabId); if(target) target.classList.replace('hidden', 'block');
             const b = document.getElementById('btn-' + tabId); if(b) b.className = 'tab-btn px-6 py-2 rounded-full bg-sage-500 text-white font-medium text-sm transition-all shadow-md';
-            const searchInput = document.getElementById('article-search');
-            if(searchInput) searchInput.value = ''; 
-            initArticles();
+            document.getElementById('article-search').value = ''; initArticles();
         }
 
-        // --- 音樂播放控制 ---
         const audio = document.getElementById('bg-music'); let isPlaying = false;
         document.getElementById('music-toggle').onclick = () => {
             const icon = document.getElementById('music-icon');
-            if(!isPlaying) { audio.play().then(() => { isPlaying = true; icon.className = "fa-solid fa-compact-disc animate-music"; }); } 
+            if(!isPlaying) { audio.play().then(() => { isPlaying = true; icon.className = "fa-solid fa-compact-disc animate-music"; }).catch(()=>console.log("Music file not found in preview.")); } 
             else { audio.pause(); isPlaying = false; icon.className = "fa-solid fa-music"; }
         };
 
-        // --- 網頁載入後執行 ---
         window.addEventListener('DOMContentLoaded', () => {
             initArticles();
-            
-            // 文章搜尋
-            const searchInput = document.getElementById('article-search');
-            if(searchInput) {
-                searchInput.addEventListener('input', function(e) {
-                    const keyword = e.target.value.toLowerCase().trim();
-                    const activeTab = document.querySelector('.tab-content.block') || document.querySelector('#tab-nursing');
-                    if(!activeTab) return;
-                    const articles = Array.from(activeTab.querySelectorAll('.article-card'));
-                    if (keyword === '') { initArticles(); } else {
-                        articles.forEach(art => { const match = art.querySelector('h3').textContent.toLowerCase().includes(keyword); art.style.display = match ? 'flex' : 'none'; });
-                    }
-                });
-            }
-
-            // 檢查 Hash 路由
+            document.getElementById('article-search').addEventListener('input', function(e) {
+                const keyword = e.target.value.toLowerCase().trim();
+                const activeTab = document.querySelector('.tab-content.block') || document.querySelector('#tab-maternity');
+                const articles = Array.from(activeTab.querySelectorAll('.article-card'));
+                if (keyword === '') { initArticles(); } else {
+                    articles.forEach(art => { const match = art.querySelector('h3').textContent.toLowerCase().includes(keyword); art.style.display = match ? 'flex' : 'none'; });
+                }
+            });
             const hash = window.location.hash.replace('#', '');
-            if(['knowledge', 'profile', 'services', 'environment', 'faq'].includes(hash)) navigateTo(hash);
+            if(['knowledge', 'profile', 'services', 'environment'].includes(hash)) navigateTo(hash);
             
-            // 音樂提示小動畫
+            // 音樂提示小動畫：進站後 2.5 秒顯示，5 秒後隱藏
             setTimeout(() => {
                 const musicStatus = document.getElementById('music-status');
                 if(musicStatus) {
                     musicStatus.classList.remove('opacity-0');
-                    setTimeout(() => { musicStatus.classList.add('opacity-0'); }, 5000);
+                    setTimeout(() => {
+                        musicStatus.classList.add('opacity-0');
+                    }, 5000);
                 }
             }, 2500);
-
-            // FAQ 摺疊展開邏輯
-            const faqBtns = document.querySelectorAll('.faq-btn');
-            faqBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    const isOpen = content.style.maxHeight;
-
-                    document.querySelectorAll('.faq-content').forEach(el => {
-                        el.style.maxHeight = null;
-                        el.classList.remove('opacity-100');
-                        el.classList.add('opacity-0');
-                        if(el.previousElementSibling) {
-                            el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-                            el.previousElementSibling.classList.remove('text-sage-600');
-                        }
-                    });
-
-                    if (!isOpen) {
-                        content.classList.remove('opacity-0');
-                        content.classList.add('opacity-100');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.classList.add('rotate-180');
-                        this.classList.add('text-sage-600');
-                    }
-                });
-            });
         });
-
-        // --- 呼吸球控制 ---
-        const sideBreatheText = document.getElementById('breathe-text-side');
-        let sideIsInhaling = true;
-        
-        setInterval(() => {
-            if (sideBreatheText) {
-                sideBreatheText.style.opacity = '0';
-                setTimeout(() => {
-                    sideIsInhaling = !sideIsInhaling;
-                    sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
-                    sideBreatheText.style.opacity = '1';
-                }, 500);
-            }
-        }, 4000);
-
-        function toggleBreatheSide() {
-            const widget = document.getElementById('breathe-side-widget');
-            const icon = document.getElementById('breathe-icon-side');
-            
-            if (widget && icon) {
-                if (widget.classList.contains('-translate-x-[210px]')) {
-                    widget.classList.remove('-translate-x-[210px]');
-                    widget.classList.add('translate-x-0');
-                    icon.style.transform = 'rotate(180deg)'; 
-                } else {
-                    widget.classList.remove('translate-x-0');
-                    widget.classList.add('-translate-x-[210px]');
-                    icon.style.transform = 'rotate(0deg)'; 
-                }
-            }
-        }
     </script>
 </body>
 </html>

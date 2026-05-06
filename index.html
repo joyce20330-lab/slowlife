@@ -644,8 +644,8 @@
 
     <script>
         // --- 核心：安全防呆導航邏輯 ---
-        function navigateTo(target) {
-            // 1. 確保這裡有把妳所有的頁面 ID 都寫進去（包含 faq）
+        mobile-menu
+function navigateTo(target) {
             const pages = { 
                 home: document.getElementById('page-home'), 
                 profile: document.getElementById('page-profile'), 
@@ -655,24 +655,17 @@
                 faq: document.getElementById('page-faq') 
             };
 
-            // 2. 先把所有頁面都隱藏起來
+            // 隱藏所有
             Object.values(pages).forEach(p => { 
                 if(p) { p.classList.add('hidden'); p.classList.remove('block', 'page-enter'); } 
             });
 
-            // 3. 判斷要打開哪一頁 (這裡一定要有 'faq')
+            // 顯示目標
             if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
-                if(pages[target]) {
-                    pages[target].classList.remove('hidden'); 
-                    pages[target].classList.add('block', 'page-enter');
-                }
+                if(pages[target]) { pages[target].classList.remove('hidden'); pages[target].classList.add('block', 'page-enter'); }
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
             } else { 
-                // 回到首頁並滾動
-                if(pages.home) {
-                    pages.home.classList.remove('hidden'); 
-                    pages.home.classList.add('block');
-                }
+                if(pages.home) { pages.home.classList.remove('hidden'); pages.home.classList.add('block'); }
                 if(target === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
                 else {
                     setTimeout(() => { 
@@ -682,17 +675,69 @@
                 }
             }
 
-            // 4. 關鍵修復：跳轉後強制關閉手機選單，並解除螢幕鎖定
+            // 強制關閉手機選單
             const menu = document.getElementById('mobile-menu');
             if(menu && !menu.classList.contains('hidden')) {
                 menu.classList.add('opacity-0');
-                setTimeout(() => { 
-                    menu.classList.add('hidden'); 
-                    menu.classList.remove('flex'); 
-                }, 300);
-                document.body.style.overflow = ''; // 恢復手機可以上下滑動
+                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300);
+                document.body.style.overflow = ''; 
             }
         }
+
+        // 2. 手機選單開關
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if(menu.classList.contains('hidden')) { 
+                menu.classList.remove('hidden'); menu.classList.add('flex'); 
+                setTimeout(() => menu.classList.remove('opacity-0'), 10); 
+                document.body.style.overflow = 'hidden'; 
+            } else { 
+                menu.classList.add('opacity-0'); 
+                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); 
+                document.body.style.overflow = ''; 
+            }
+        }
+        document.getElementById('mobile-menu-btn').onclick = toggleMenu;
+        document.getElementById('close-menu-btn').onclick = toggleMenu;
+
+        // 3. FAQ 摺疊邏輯
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                const isOpen = content.style.maxHeight;
+
+                document.querySelectorAll('.faq-content').forEach(el => {
+                    el.style.maxHeight = null; el.classList.remove('opacity-100');
+                    el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                });
+
+                if (!isOpen) {
+                    content.classList.add('opacity-100');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // 4. 呼吸球控制
+        let inhaling = true;
+        setInterval(() => {
+            inhaling = !inhaling;
+            document.getElementById('breathe-text-side').innerText = inhaling ? '吸氣...' : '慢慢吐氣...';
+        }, 4000);
+
+        function toggleBreatheSide() {
+            const w = document.getElementById('breathe-side-widget');
+            if (w.classList.contains('-translate-x-[210px]')) {
+                w.classList.remove('-translate-x-[210px]'); w.classList.add('translate-x-0');
+            } else {
+                w.classList.remove('translate-x-0'); w.classList.add('-translate-x-[210px]');
+            }
+        }
+    </script>
+</body>
+</html>
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.replace('block', 'hidden'));

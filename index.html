@@ -115,6 +115,36 @@
         .animate-music { animation: musicRotate 6s linear infinite; }
         @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
+// --- 呼吸文字切換 ---
+const sideBreatheText = document.getElementById('breathe-text-side');
+let sideIsInhaling = true;
+setInterval(() => {
+    sideBreatheText.style.opacity = '0';
+    setTimeout(() => {
+        sideIsInhaling = !sideIsInhaling;
+        sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
+        sideBreatheText.style.opacity = '1';
+    }, 500);
+}, 4000);
+
+// --- 側邊欄展開/收合 ---
+function toggleBreatheSide() {
+    const widget = document.getElementById('breathe-side-widget');
+    const icon = document.getElementById('breathe-icon-side');
+    
+    if (widget.classList.contains('breathe-side-hidden')) {
+        widget.classList.remove('breathe-side-hidden');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        widget.classList.add('breathe-side-hidden');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// 預設進站 5 秒後，自動縮回側邊 (如果妳希望它一開始是展開吸引注意的話)
+// window.addEventListener('DOMContentLoaded', () => {
+//    setTimeout(toggleBreatheSide, 5000);
+// });
     </style>
 </head>
 <body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">

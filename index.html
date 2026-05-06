@@ -139,7 +139,7 @@
     </nav>
 
     <!-- 手機選單 -->
-    <div id="mobile-menu" class="fixed inset-0 bg-stone-50/95 backdrop-blur-xl z-[110] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-50/98 z-[200] hidden flex-col items-center justify-center space-y-10 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-stone-800 text-4xl"><i class="fa-solid fa-xmark"></i></button>
         <a href="#" onclick="navigateTo('story'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於緩生</a>
         <a href="#" onclick="navigateTo('profile'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於呸呸</a>
@@ -645,60 +645,52 @@
     <script>
         // --- 核心：安全防呆導航邏輯 ---
         function navigateTo(target) {
-            const pages = { 
-                home: document.getElementById('page-home'), 
-                profile: document.getElementById('page-profile'), 
-                services: document.getElementById('page-services'), 
-                environment: document.getElementById('page-environment'), 
-                knowledge: document.getElementById('page-knowledge'),
-                faq: document.getElementById('page-faq') 
-            };
+    const pages = { 
+        home: document.getElementById('page-home'), 
+        profile: document.getElementById('page-profile'), // 確保妳有這個 ID
+        services: document.getElementById('page-services'), // 確保妳有這個 ID
+        environment: document.getElementById('page-environment'), // 確保妳有這個 ID
+        knowledge: document.getElementById('page-knowledge'),
+        faq: document.getElementById('page-faq') 
+    };
 
-            // 1. 安全隱藏所有頁面
-            Object.values(pages).forEach(p => { 
-                if(p) { 
-                    p.classList.remove('block', 'page-enter'); 
-                    p.classList.add('hidden'); 
-                } 
-            });
+    // 1. 隱藏所有頁面
+    Object.values(pages).forEach(p => { 
+        if(p) { p.classList.add('hidden'); p.classList.remove('block', 'page-enter'); } 
+    });
 
-            // 2. 顯示目標頁面
-            if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
-                if(pages[target]) {
-                    pages[target].classList.remove('hidden'); 
-                    pages[target].classList.add('block', 'page-enter'); 
-                }
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            } 
-            else { 
-                // 若為 home, story, booking 則回到首頁
-                if(pages.home) {
-                    pages.home.classList.remove('hidden'); 
-                    pages.home.classList.add('block'); 
-                }
-                
-                if(target === 'home') {
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                } else {
-                    setTimeout(() => { 
-                        const el = document.getElementById(target); 
-                        if(el) {
-                            // 計算捲動位置扣除導覽列高度 (80px)
-                            const y = el.getBoundingClientRect().top + window.scrollY - 80;
-                            window.scrollTo({ top: y, behavior: 'smooth' }); 
-                        }
-                    }, 50); 
-                }
-            }
-
-            // 3. 關閉手機選單
-            const menu = document.getElementById('mobile-menu'); 
-            if(menu && !menu.classList.contains('hidden')) {
-                toggleMenu();
-            }
+    // 2. 顯示目標頁面
+    if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
+        if(pages[target]) {
+            pages[target].classList.remove('hidden'); 
+            pages[target].classList.add('block', 'page-enter');
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    } else { 
+        if(pages.home) {
+            pages.home.classList.remove('hidden'); 
+            pages.home.classList.add('block');
+        }
+        if(target === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
+        else {
+            setTimeout(() => { 
+                const el = document.getElementById(target); 
+                if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
+            }, 50); 
+        }
+    }
 
-        // --- 手機選單開關 ---
+    // --- 關鍵修正：點擊後強制關閉手機選單 ---
+    const menu = document.getElementById('mobile-menu');
+    if(menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('opacity-0');
+        setTimeout(() => { 
+            menu.classList.add('hidden'); 
+            menu.classList.remove('flex'); 
+        }, 300);
+        document.body.style.overflow = ''; // 恢復網頁捲動
+    }
+}
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             if(menu.classList.contains('hidden')) { 

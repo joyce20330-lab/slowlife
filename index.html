@@ -37,6 +37,85 @@
         }
       ]
     }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
+                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
+                        clay: { 50: '#F4EFEA', 100: '#EAE1D8' },
+                        rose: { 50: '#FDF8F8', 500: '#B36D61' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+
+    </script>
+    <style>
+        /* 稻穗底圖：絕對釘死於視窗，不會掉到最下面 */
+        .global-rice-bg { 
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            z-index: -10; 
+            background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA'); 
+            background-size: cover; 
+            background-position: center; 
+            filter: blur(8px) brightness(1.05); 
+            opacity: 0.5; 
+            pointer-events: none;
+            animation: flowingBg 25s infinite alternate ease-in-out;
+            will-change: transform;
+        }
+        @keyframes flowingBg { 0% { transform: scale(1.0); } 100% { transform: scale(1.15); } }
+        
+        /* 首頁背景與霧化淡出漸層，消除邊界感 */
+        .hero-bg-layer {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://lh3.googleusercontent.com/d/1syvx4RN5vvDCyaqgiLCW9fjnFPBQ0azg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: scroll; 
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            z-index: 0;
+        }
+        @media (min-width: 768px) { .hero-bg-layer { background-attachment: fixed; } }
+        
+        .hero-blur-layer {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .logo-filter { mix-blend-mode: multiply; filter: contrast(1.1) brightness(1.05); }
+        img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; pointer-events: none; -webkit-user-drag: none; }
+        nav img, .fixed img, a img, button, a { pointer-events: auto !important; }
+        
+        @keyframes pageFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page-enter { animation: pageFadeIn 0.6s ease-out forwards; }
+        
+        @keyframes musicRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-music { animation: musicRotate 6s linear infinite; }
+        @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -168,6 +247,7 @@
     </script>
 </body>
 </html>
+    </style>
 </head>
 <body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
 

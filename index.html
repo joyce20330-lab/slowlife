@@ -643,211 +643,85 @@
     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all"><i class="fa-brands fa-line text-3xl md:text-4xl"></i></a>
 
     <script>
-        // --- 核心：安全防呆導航邏輯 ---
-        mobile-menu
-function navigateTo(target) {
-            const pages = { 
-                home: document.getElementById('page-home'), 
-                profile: document.getElementById('page-profile'), 
-                services: document.getElementById('page-services'), 
-                environment: document.getElementById('page-environment'), 
-                knowledge: document.getElementById('page-knowledge'),
-                faq: document.getElementById('page-faq') 
-            };
+        function navigateTo(target) {
+    const pages = { 
+        home: document.getElementById('page-home'), 
+        profile: document.getElementById('page-profile'), 
+        services: document.getElementById('page-services'), 
+        environment: document.getElementById('page-environment'), 
+        knowledge: document.getElementById('page-knowledge'),
+        faq: document.getElementById('page-faq') 
+    };
 
-            // 隱藏所有
-            Object.values(pages).forEach(p => { 
-                if(p) { p.classList.add('hidden'); p.classList.remove('block', 'page-enter'); } 
-            });
+    // 1. 隱藏所有頁面容器
+    Object.values(pages).forEach(p => { 
+        if(p) { 
+            p.classList.add('hidden'); 
+            p.classList.remove('block', 'page-enter'); 
+        } 
+    });
 
-            // 顯示目標
-            if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
-                if(pages[target]) { pages[target].classList.remove('hidden'); pages[target].classList.add('block', 'page-enter'); }
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            } else { 
-                if(pages.home) { pages.home.classList.remove('hidden'); pages.home.classList.add('block'); }
-                if(target === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
-                else {
-                    setTimeout(() => { 
-                        const el = document.getElementById(target); 
-                        if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
-                    }, 50); 
-                }
-            }
+    // 2. 顯示目標頁面
+    const targetPage = pages[target] || pages.home;
+    if(targetPage) {
+        targetPage.classList.remove('hidden');
+        targetPage.classList.add('block', 'page-enter');
+    }
 
-            // 強制關閉手機選單
-            const menu = document.getElementById('mobile-menu');
-            if(menu && !menu.classList.contains('hidden')) {
-                menu.classList.add('opacity-0');
-                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300);
-                document.body.style.overflow = ''; 
-            }
-        }
+    // 3. 處理捲動邏輯
+    if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    } else if (target !== 'home') {
+        // 如果是 home 內部的錨點 (例如 #story, #booking)
+        setTimeout(() => { 
+            const el = document.getElementById(target); 
+            if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
+        }, 50); 
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        // 2. 手機選單開關
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if(menu.classList.contains('hidden')) { 
-                menu.classList.remove('hidden'); menu.classList.add('flex'); 
-                setTimeout(() => menu.classList.remove('opacity-0'), 10); 
-                document.body.style.overflow = 'hidden'; 
-            } else { 
-                menu.classList.add('opacity-0'); 
-                setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); 
-                document.body.style.overflow = ''; 
-            }
-        }
-        document.getElementById('mobile-menu-btn').onclick = toggleMenu;
-        document.getElementById('close-menu-btn').onclick = toggleMenu;
+    // 4. 強制關閉手機選單（這行是手機版失效的關鍵）
+    closeMobileMenu();
+}
 
-        // 3. FAQ 摺疊邏輯
-        document.querySelectorAll('.faq-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                const isOpen = content.style.maxHeight;
+function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if(menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('opacity-0');
+        setTimeout(() => { 
+            menu.classList.add('hidden'); 
+            menu.classList.remove('flex'); 
+        }, 300);
+        document.body.style.overflow = ''; 
+    }
+}
 
-                document.querySelectorAll('.faq-content').forEach(el => {
-                    el.style.maxHeight = null; el.classList.remove('opacity-100');
-                    el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-                });
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if(menu.classList.contains('hidden')) { 
+        menu.classList.remove('hidden'); 
+        menu.classList.add('flex'); 
+        setTimeout(() => menu.classList.remove('opacity-0'), 10); 
+        document.body.style.overflow = 'hidden'; 
+    } else { 
+        closeMobileMenu();
+    }
+}
 
-                if (!isOpen) {
-                    content.classList.add('opacity-100');
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon.classList.add('rotate-180');
-                }
-            });
-        });
+// 初始化事件監聽
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    
+    if(menuBtn) menuBtn.onclick = toggleMenu;
+    if(closeBtn) closeBtn.onclick = toggleMenu;
 
-        // 4. 呼吸球控制
-        let inhaling = true;
-        setInterval(() => {
-            inhaling = !inhaling;
-            document.getElementById('breathe-text-side').innerText = inhaling ? '吸氣...' : '慢慢吐氣...';
-        }, 4000);
-
-        function toggleBreatheSide() {
-            const w = document.getElementById('breathe-side-widget');
-            if (w.classList.contains('-translate-x-[210px]')) {
-                w.classList.remove('-translate-x-[210px]'); w.classList.add('translate-x-0');
-            } else {
-                w.classList.remove('translate-x-0'); w.classList.add('-translate-x-[210px]');
-            }
-        }
-    </script>
-</body>
-</html>
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.replace('block', 'hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.className = 'tab-btn px-6 py-2 rounded-full border border-sage-500 text-sage-600 font-medium text-sm transition-all');
-            const target = document.getElementById(tabId); if(target) target.classList.replace('hidden', 'block');
-            const b = document.getElementById('btn-' + tabId); if(b) b.className = 'tab-btn px-6 py-2 rounded-full bg-sage-500 text-white font-medium text-sm transition-all shadow-md';
-            const searchInput = document.getElementById('article-search');
-            if(searchInput) searchInput.value = ''; 
-            initArticles();
-        }
-
-        // --- 音樂播放控制 ---
-        const audio = document.getElementById('bg-music'); let isPlaying = false;
-        document.getElementById('music-toggle').onclick = () => {
-            const icon = document.getElementById('music-icon');
-            if(!isPlaying) { audio.play().then(() => { isPlaying = true; icon.className = "fa-solid fa-compact-disc animate-music"; }); } 
-            else { audio.pause(); isPlaying = false; icon.className = "fa-solid fa-music"; }
-        };
-
-        // --- 網頁載入後執行 ---
-        window.addEventListener('DOMContentLoaded', () => {
-            initArticles();
-            
-            // 文章搜尋
-            const searchInput = document.getElementById('article-search');
-            if(searchInput) {
-                searchInput.addEventListener('input', function(e) {
-                    const keyword = e.target.value.toLowerCase().trim();
-                    const activeTab = document.querySelector('.tab-content.block') || document.querySelector('#tab-nursing');
-                    if(!activeTab) return;
-                    const articles = Array.from(activeTab.querySelectorAll('.article-card'));
-                    if (keyword === '') { initArticles(); } else {
-                        articles.forEach(art => { const match = art.querySelector('h3').textContent.toLowerCase().includes(keyword); art.style.display = match ? 'flex' : 'none'; });
-                    }
-                });
-            }
-
-            // 檢查 Hash 路由
-            const hash = window.location.hash.replace('#', '');
-            if(['knowledge', 'profile', 'services', 'environment', 'faq'].includes(hash)) navigateTo(hash);
-            
-            // 音樂提示小動畫
-            setTimeout(() => {
-                const musicStatus = document.getElementById('music-status');
-                if(musicStatus) {
-                    musicStatus.classList.remove('opacity-0');
-                    setTimeout(() => { musicStatus.classList.add('opacity-0'); }, 5000);
-                }
-            }, 2500);
-
-            // FAQ 摺疊展開邏輯
-            const faqBtns = document.querySelectorAll('.faq-btn');
-            faqBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    const isOpen = content.style.maxHeight;
-
-                    document.querySelectorAll('.faq-content').forEach(el => {
-                        el.style.maxHeight = null;
-                        el.classList.remove('opacity-100');
-                        el.classList.add('opacity-0');
-                        if(el.previousElementSibling) {
-                            el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-                            el.previousElementSibling.classList.remove('text-sage-600');
-                        }
-                    });
-
-                    if (!isOpen) {
-                        content.classList.remove('opacity-0');
-                        content.classList.add('opacity-100');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.classList.add('rotate-180');
-                        this.classList.add('text-sage-600');
-                    }
-                });
-            });
-        });
-
-        // --- 呼吸球控制 ---
-        const sideBreatheText = document.getElementById('breathe-text-side');
-        let sideIsInhaling = true;
-        
-        setInterval(() => {
-            if (sideBreatheText) {
-                sideBreatheText.style.opacity = '0';
-                setTimeout(() => {
-                    sideIsInhaling = !sideIsInhaling;
-                    sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
-                    sideBreatheText.style.opacity = '1';
-                }, 500);
-            }
-        }, 4000);
-
-        function toggleBreatheSide() {
-            const widget = document.getElementById('breathe-side-widget');
-            const icon = document.getElementById('breathe-icon-side');
-            
-            if (widget && icon) {
-                if (widget.classList.contains('-translate-x-[210px]')) {
-                    widget.classList.remove('-translate-x-[210px]');
-                    widget.classList.add('translate-x-0');
-                    icon.style.transform = 'rotate(180deg)'; 
-                } else {
-                    widget.classList.remove('translate-x-0');
-                    widget.classList.add('-translate-x-[210px]');
-                    icon.style.transform = 'rotate(0deg)'; 
-                }
-            }
-        }
-    </script>
+    // 修正手機版圖片可能遮擋點擊的問題
+    const serviceLinks = document.querySelectorAll('#page-services a, .article-card');
+    serviceLinks.forEach(link => {
+        link.style.pointerEvents = 'auto';
+    });
+});
 </body>
 </html>

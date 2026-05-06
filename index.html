@@ -537,7 +537,13 @@
             </div>
         </section>
     </div>
-
+<div id="page-faq" class="page-container hidden pt-24 pb-20 min-h-screen">
+        <div id="faq-content-loader">
+            <div class="text-center py-20">
+                <p class="text-stone-400 animate-pulse tracking-widest">正在載入常見問題...</p>
+            </div>
+        </div>
+    </div>
     <!-- 環境介紹 -->
     <div id="page-environment" class="page-container hidden pt-24 pb-20 min-h-screen">
         <section class="px-4 sm:px-6">
@@ -666,42 +672,47 @@
 
     <script>
         function navigateTo(target) {
+    // 1. 定義所有的獨立頁面 ID
     const pages = { 
         home: document.getElementById('page-home'), 
         profile: document.getElementById('page-profile'), 
         services: document.getElementById('page-services'), 
         environment: document.getElementById('page-environment'), 
-        knowledge: document.getElementById('page-knowledge') 
+        knowledge: document.getElementById('page-knowledge'),
+        faq: document.getElementById('page-faq') // 新增這一行
     };
 
-    // 隱藏所有頁面
-    Object.values(pages).forEach(p => { if(p) { p.classList.replace('block', 'hidden'); p.classList.remove('page-enter'); } });
+    // 2. 隱藏所有頁面
+    Object.values(pages).forEach(p => { 
+        if(p) { 
+            p.classList.replace('block', 'hidden'); 
+            p.classList.remove('page-enter'); 
+        } 
+    });
 
-    // 判斷是要跳轉頁面，還是留在首頁捲動
-    if(['profile', 'services', 'environment', 'knowledge'].includes(target)) { 
+    // 3. 判斷顯示邏輯
+    // 如果目標是這些獨立頁面之一
+    if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
         pages[target].classList.replace('hidden', 'block'); 
         pages[target].classList.add('page-enter'); 
         window.scrollTo({ top: 0, behavior: 'smooth' }); 
-    } else { 
-        // 目標在首頁內 (home, story, faq, booking)
+        
+        // 如果點的是 faq，順便執行載入內容
+        if(target === 'faq') loadFAQ(); 
+    } 
+    else { 
+        // 目標在首頁內 (home, story, booking)
         pages.home.classList.replace('hidden', 'block'); 
         if(target === 'home') {
             window.scrollTo({ top: 0, behavior: 'smooth' }); 
         } else {
             setTimeout(() => { 
                 const el = document.getElementById(target); 
-                if(el) {
-                    const offset = 80; // 扣除導覽列高度
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = el.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); 
-                }
+                if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
             }, 50); 
         }
     }
+
     const menu = document.getElementById('mobile-menu'); 
     if(!menu.classList.contains('hidden')) toggleMenu();
 }
@@ -751,29 +762,45 @@ async function loadFAQ() {
         loader.innerHTML = '<p class="text-center text-stone-400">連線異常。</p>';
     }
 }
+async function loadFAQ() {
+    const loader = document.getElementById('faq-content-loader');
+    // 如果已經載入過了，就不重複抓取
+    if (loader.dataset.loaded === 'true') return;
 
-// 在 DOM 載入完成後執行
-window.addEventListener('DOMContentLoaded', () => {
-    loadFAQ(); // 執行載入 FAQ
-    // ... 原有的 initArticles() 等程式碼
-});
-        const audio = document.getElementById('bg-music'); let isPlaying = false;
-        document.getElementById('music-toggle').onclick = () => {
-            const icon = document.getElementById('music-icon');
-            if(!isPlaying) { audio.play().then(() => { isPlaying = true; icon.className = "fa-solid fa-compact-disc animate-music"; }).catch(()=>console.log("Music file not found in preview.")); } 
-            else { audio.pause(); isPlaying = false; icon.className = "fa-solid fa-music"; }
-        };
+    try {
+        const response = await fetch('faq-demo.html');
+        if (response.ok) {
+            const html = await response.text();
+            loader.innerHTML = html;
+            loader.dataset.loaded = 'true'; // 標記已載入
 
-        window.addEventListener('DOMContentLoaded', () => {
-            initArticles();
-            document.getElementById('article-search').addEventListener('input', function(e) {
-                const keyword = e.target.value.toLowerCase().trim();
-                const activeTab = document.querySelector('.tab-content.block') || document.querySelector('#tab-maternity');
-                const articles = Array.from(activeTab.querySelectorAll('.article-card'));
-                if (keyword === '') { initArticles(); } else {
-                    articles.forEach(art => { const match = art.querySelector('h3').textContent.toLowerCase().includes(keyword); art.style.display = match ? 'flex' : 'none'; });
-                }
+            // 綁定摺疊按鈕點擊事件
+            const faqBtns = loader.querySelectorAll('.faq-btn');
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isOpen = content.style.maxHeight;
+
+                    // 收合其他
+                    loader.querySelectorAll('.faq-content').forEach(el => {
+                        el.style.maxHeight = null;
+                        el.classList.remove('opacity-100');
+                        el.classList.add('opacity-0');
+                    });
+
+                    // 展開自己
+                    if (!isOpen) {
+                        content.classList.remove('opacity-0');
+                        content.classList.add('opacity-100');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
             });
+        }
+    } catch (error) {
+        console.error('無法載入 FAQ:', error);
+    }
+}
             const hash = window.location.hash.replace('#', '');
             if(['knowledge', 'profile', 'services', 'environment'].includes(hash)) navigateTo(hash);
             

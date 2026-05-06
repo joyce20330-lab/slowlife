@@ -376,7 +376,14 @@
                 </div>
             </div>
         </section>
-        
+<section id="faq" class="pt-10 pb-12 md:pt-12 md:pb-16 px-4 sm:px-6">
+    <div id="faq-content-loader" class="max-w-4xl mx-auto">
+        <!-- 這裡會由 JavaScript 自動填入 faq-demo.html 的內容 -->
+        <div class="text-center py-20">
+            <p class="text-stone-400 animate-pulse tracking-widest">正在為您準備常見問題...</p>
+        </div>
+    </div>
+</section>
         <!-- CTA 區塊 -->
         <section class="py-16 px-4 text-center max-w-4xl mx-auto">
             <h3 class="text-2xl text-stone-800 mb-4 font-medium tracking-widest">需要聊聊嗎？</h3>
@@ -659,13 +666,45 @@
 
     <script>
         function navigateTo(target) {
-            const pages = { home: document.getElementById('page-home'), profile: document.getElementById('page-profile'), services: document.getElementById('page-services'), environment: document.getElementById('page-environment'), knowledge: document.getElementById('page-knowledge') };
-            Object.values(pages).forEach(p => { if(p) { p.classList.replace('block', 'hidden'); p.classList.remove('page-enter'); } });
-            if(['profile', 'services', 'environment', 'knowledge'].includes(target)) { pages[target].classList.replace('hidden', 'block'); pages[target].classList.add('page-enter'); window.scrollTo({ top: 0, behavior: 'smooth' }); } 
-            else { pages.home.classList.replace('hidden', 'block'); if(target === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setTimeout(() => { const el = document.getElementById(target); if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }, 50); }
-            const menu = document.getElementById('mobile-menu'); if(!menu.classList.contains('hidden')) toggleMenu();
-        }
+    const pages = { 
+        home: document.getElementById('page-home'), 
+        profile: document.getElementById('page-profile'), 
+        services: document.getElementById('page-services'), 
+        environment: document.getElementById('page-environment'), 
+        knowledge: document.getElementById('page-knowledge') 
+    };
 
+    // 隱藏所有頁面
+    Object.values(pages).forEach(p => { if(p) { p.classList.replace('block', 'hidden'); p.classList.remove('page-enter'); } });
+
+    // 判斷是要跳轉頁面，還是留在首頁捲動
+    if(['profile', 'services', 'environment', 'knowledge'].includes(target)) { 
+        pages[target].classList.replace('hidden', 'block'); 
+        pages[target].classList.add('page-enter'); 
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    } else { 
+        // 目標在首頁內 (home, story, faq, booking)
+        pages.home.classList.replace('hidden', 'block'); 
+        if(target === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        } else {
+            setTimeout(() => { 
+                const el = document.getElementById(target); 
+                if(el) {
+                    const offset = 80; // 扣除導覽列高度
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = el.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); 
+                }
+            }, 50); 
+        }
+    }
+    const menu = document.getElementById('mobile-menu'); 
+    if(!menu.classList.contains('hidden')) toggleMenu();
+}
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             if(menu.classList.contains('hidden')) { menu.classList.remove('hidden'); menu.classList.add('flex'); setTimeout(() => menu.classList.remove('opacity-0'), 10); document.body.style.overflow = 'hidden'; } 

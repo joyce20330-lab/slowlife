@@ -20,6 +20,7 @@
                             50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF',
                             400: '#8A9A86', // 鼠尾草綠
                             500: '#7A6F62', // 大地褐
+                            600: '#6B7A5E',
                             800: '#4A4238',
                         }
                     }
@@ -32,24 +33,26 @@
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         input[type="radio"] { display: none; }
+        .advice-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .advice-list li::before { content: "•"; position: absolute; left: 0; color: #8A9A86; font-weight: bold; }
     </style>
 </head>
-<body class="antialiased min-h-screen py-12 px-4 md:px-8">
+<body class="antialiased min-h-screen py-10 px-4 md:px-8">
 
     <div class="max-w-2xl mx-auto">
         
         <!-- Header -->
-        <header class="text-center mb-12 fade-in">
-            <a href="../index.html" class="inline-block mb-6 text-brand-400 hover:text-brand-500 transition-colors">
+        <header class="text-center mb-10 fade-in">
+            <a href="../index.html" class="inline-block mb-6 text-brand-400 hover:text-brand-500 transition-colors text-sm">
                 <i class="fa-solid fa-house-chimney mr-2"></i> 回到首頁
             </a>
-            <h1 class="text-3xl md:text-4xl font-medium text-brand-800 mb-6 tracking-widest">愛丁堡產後憂鬱量表</h1>
-            <div class="bg-white rounded-3xl p-8 shadow-sm text-left relative overflow-hidden border border-brand-200">
+            <h1 class="text-2xl md:text-3xl font-medium text-brand-800 mb-6 tracking-widest">愛丁堡產後憂鬱量表</h1>
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm text-left relative overflow-hidden border border-brand-200">
                 <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-400"></div>
-                <p class="text-brand-800 leading-relaxed font-bold mb-3 uppercase tracking-widest">DEAR,</p>
+                <p class="text-brand-800 leading-relaxed font-bold mb-2 uppercase tracking-widest text-sm">Dear,</p>
                 <p class="text-stone-500 leading-relaxed text-sm md:text-base font-light">
-                    產後的角色轉換與身體變化，伴隨而來的壓力與情緒起伏是非常自然的。這份量表能幫助您覺察過去七天內的心情狀態。請根據您的直覺，選擇最接近您近期感受的選項。<br><br>
-                    這不是一個嚴格的診斷，而是給自己的一份溫柔提醒。在<strong>緩生工作室</strong>，我們陪您一起梳理這些情緒。
+                    產後的角色轉換與身體變化，伴隨而來的壓力與情緒起伏是非常自然的。這份量表能幫助您覺察過去七天內的心情狀態。請根據您的直覺選擇選項。<br><br>
+                    這不是嚴格的診斷，而是給自己的一份溫柔提醒。在<strong>緩生工作室</strong>，我們陪您梳理情緒。
                 </p>
             </div>
         </header>
@@ -71,17 +74,18 @@
 
         <!-- Result Section -->
         <div id="result-section" class="hidden fade-in space-y-6">
-            <div class="bg-white rounded-[2.5rem] p-10 shadow-xl border border-brand-100 text-center">
-                <h2 class="text-lg text-brand-500 mb-2 tracking-widest">您的情緒覺察分數</h2>
+            <div class="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-xl border border-brand-100 text-center">
+                <h2 class="text-base text-brand-500 mb-2 tracking-widest">您的情緒覺察分數</h2>
                 <div class="text-6xl md:text-7xl font-bold text-brand-400 mb-8" id="total-score-display">0</div>
                 
-                <div id="result-advice" class="text-left text-brand-800 leading-[1.8] space-y-4 bg-brand-50/50 p-8 rounded-3xl font-light">
+                <!-- 優化後的分段建議區塊 -->
+                <div id="result-advice" class="text-left text-brand-800 leading-relaxed rounded-3xl font-light">
                     <!-- JS Inject -->
                 </div>
 
                 <!-- Urgent Warning (Q10) -->
                 <div id="urgent-warning" class="hidden mt-8 text-left bg-rose-50 text-rose-700 p-6 rounded-3xl text-sm leading-relaxed border border-rose-100 shadow-sm">
-                    <strong class="text-lg block mb-2"><i class="fa-solid fa-circle-exclamation mr-2"></i>給您的一份特別關心：</strong>
+                    <strong class="text-base block mb-2"><i class="fa-solid fa-circle-exclamation mr-2"></i>給您的一份特別關心：</strong>
                     我們注意到您提及有傷害自己的念頭。無論您現在感到多麼疲憊或痛苦，請記得您並不孤單。請立刻尋求身邊親友的陪伴，或撥打 24 小時免付費安心專線 <strong class="text-lg">1925</strong>，讓我們陪您度過這個時刻。
                 </div>
             </div>
@@ -91,7 +95,7 @@
                 <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="w-full block text-center bg-[#06C755] hover:opacity-90 text-white font-medium py-5 rounded-2xl transition-all shadow-md tracking-widest">
                     <i class="fa-brands fa-line mr-2 text-xl"></i> 預約身心整聊 (Line)
                 </a>
-                <button onclick="resetQuiz()" class="w-full text-stone-400 hover:text-brand-500 font-light py-3 transition-all text-sm">
+                <button onclick="resetQuiz()" class="w-full text-stone-400 hover:text-brand-500 font-light py-3 transition-all text-xs">
                     重新填寫量表
                 </button>
             </div>
@@ -117,13 +121,13 @@
         function renderQuestions() {
             const container = document.getElementById('questions-container');
             container.innerHTML = questionsData.map((q, i) => `
-                <div class="bg-white p-8 rounded-3xl shadow-sm mb-6 border border-brand-100">
-                    <h3 class="text-lg font-medium text-brand-800 mb-6">${q.text}</h3>
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm mb-6 border border-brand-100">
+                    <h3 class="text-base md:text-lg font-medium text-brand-800 mb-6">${q.text}</h3>
                     <div class="grid grid-cols-1 gap-3">
                         ${q.options.map((opt, oi) => `
                             <label class="cursor-pointer block relative group">
                                 <input type="radio" name="${q.id}" value="${opt.value}" class="peer hidden" onchange="hideError()">
-                                <div class="w-full p-4 rounded-xl border border-stone-100 bg-stone-50 text-stone-600 transition-all peer-checked:bg-brand-400 peer-checked:border-brand-400 peer-checked:text-white group-hover:border-brand-200">
+                                <div class="w-full p-4 rounded-xl border border-stone-100 bg-stone-50 text-stone-600 transition-all peer-checked:bg-brand-400 peer-checked:border-brand-400 peer-checked:text-white group-hover:border-brand-200 text-sm md:text-base">
                                     ${opt.text}
                                 </div>
                             </label>
@@ -158,12 +162,49 @@
             document.getElementById('total-score-display').innerText = totalScore;
             
             const advice = document.getElementById('result-advice');
+            
             if (totalScore <= 9) {
-                advice.innerHTML = `<p class="font-bold text-brand-800 text-lg">情緒狀態平穩，請繼續保持</p><p>目前您的適應狀況很不錯。產後的日子裡，請繼續保持您的步調，享受與孩子相處的時光。若偶爾感到疲憊，別忘了給自己一個擁抱。</p>`;
+                advice.innerHTML = `
+                    <div class="mb-6 pb-4 border-b border-brand-200">
+                        <p class="font-bold text-brand-800 text-xl tracking-wider">🌱 情緒狀態平穩</p>
+                    </div>
+                    <div class="space-y-4 text-sm md:text-base">
+                        <p>目前您的情緒適應狀況很不錯，請為這段時間的努力給自己一點掌聲。</p>
+                        <p class="font-medium text-brand-400">我們可以：</p>
+                        <ul class="advice-list text-stone-600">
+                            <li>繼續保持現有的生活步調。</li>
+                            <li>享受與孩子相處的時光。</li>
+                            <li>即使狀態好，偶爾感到疲憊也是正常的，記得適時休息。</li>
+                        </ul>
+                    </div>`;
             } else if (totalScore <= 12) {
-                advice.innerHTML = `<p class="font-bold text-brand-800 text-lg">情緒有些起伏，給自己留點空間</p><p>您最近可能承受了一些壓力。建議您可以多留意自己的感受，找信任的親友聊聊。如果您需要一個安全的傾聽空間，歡迎聯繫我們，讓我們陪您梳理情緒。</p>`;
+                advice.innerHTML = `
+                    <div class="mb-6 pb-4 border-b border-amber-200">
+                        <p class="font-bold text-amber-700 text-xl tracking-wider">☁️ 情緒有些起伏</p>
+                    </div>
+                    <div class="space-y-4 text-sm md:text-base">
+                        <p>您最近可能承受了一些壓力，這些心累與不安的感覺，我們都聽見了。</p>
+                        <p class="font-medium text-amber-600">建議您可以：</p>
+                        <ul class="advice-list text-stone-600">
+                            <li>多留意自己的情緒變化，不急著趕走負面心情。</li>
+                            <li>嘗試找信任的親友聊聊目前的壓力源。</li>
+                            <li>如果您需要一個<strong>不帶評判、安全</strong>的傾聽空間，歡迎聯繫我們。</li>
+                        </ul>
+                    </div>`;
             } else {
-                advice.innerHTML = `<p class="font-bold text-rose-600 text-lg">承受著較大的壓力，讓我們陪您尋求支持</p><p>親愛的，這不是您的錯。我們建議您尋求專業心理諮商或醫師協助。請隨時透過 LINE 聯繫緩生工作室，我們可以陪您一起找尋合適的專業資源。</p>`;
+                advice.innerHTML = `
+                    <div class="mb-6 pb-4 border-b border-rose-200">
+                        <p class="font-bold text-rose-600 text-xl tracking-wider">🌊 承受著較大壓力</p>
+                    </div>
+                    <div class="space-y-4 text-sm md:text-base">
+                        <p>親愛的，這段時間辛苦妳了。請記得，現在的感覺<strong>並不是您的錯</strong>，這只是身體與心靈發出的求救訊號。</p>
+                        <p class="font-medium text-rose-700">我們建議：</p>
+                        <ul class="advice-list text-rose-900/70">
+                            <li>這是一個需要專業支持的訊號，建議尋求專業心理諮商或醫師協助。</li>
+                            <li>不要獨自承擔，請告訴身邊的人您現在需要幫助。</li>
+                            <li>您可以隨時透過 LINE 聯繫<strong>緩生工作室</strong>，我們會陪您一起找尋資源。</li>
+                        </ul>
+                    </div>`;
             }
 
             if (q10Score > 0) document.getElementById('urgent-warning').classList.remove('hidden');

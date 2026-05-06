@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛丁堡產後憂鬱量表 (EPDS) 自我檢測 - 緩生工作室</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', '"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF',
+                            400: '#8A9A86', // 鼠尾草綠
+                            500: '#7A6F62', // 大地褐
+                            800: '#4A4238',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FAF8F5; color: #4A4238; -webkit-tap-highlight-color: transparent; }
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        input[type="radio"] { display: none; }
+    </style>
+</head>
+<body class="antialiased min-h-screen py-12 px-4 md:px-8">
+
+    <div class="max-w-2xl mx-auto">
+        
+        <!-- Header -->
+        <header class="text-center mb-12 fade-in">
+            <a href="../index.html" class="inline-block mb-6 text-brand-400 hover:text-brand-500 transition-colors">
+                <i class="fa-solid fa-house-chimney mr-2"></i> 回到首頁
+            </a>
+            <h1 class="text-3xl md:text-4xl font-medium text-brand-800 mb-6 tracking-widest">愛丁堡產後憂鬱量表</h1>
+            <div class="bg-white rounded-3xl p-8 shadow-sm text-left relative overflow-hidden border border-brand-200">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-400"></div>
+                <p class="text-brand-800 leading-relaxed font-bold mb-3 uppercase tracking-widest">Dear Mama,</p>
+                <p class="text-stone-500 leading-relaxed text-sm md:text-base font-light">
+                    產後的角色轉換與身體變化，伴隨而來的壓力與情緒起伏是非常自然的。這份量表能幫助您覺察過去七天內的心情狀態。請根據您的直覺，選擇最接近您近期感受的選項。<br><br>
+                    這不是一個嚴格的診斷，而是給自己的一份溫柔提醒。在<strong>緩生工作室</strong>，我們陪您一起梳理這些情緒。
+                </p>
+            </div>
+        </header>
+
+        <!-- Quiz Form -->
+        <form id="quiz-form" class="space-y-6 fade-in">
+            <div id="questions-container">
+                <!-- JS Inject -->
+            </div>
+
+            <div id="error-message" class="hidden bg-red-50 text-red-500 p-4 rounded-2xl text-center text-sm font-medium border border-red-100">
+                請確保所有題目都已勾選，才能為您計算結果喔。
+            </div>
+
+            <button type="button" onclick="submitQuiz()" class="w-full bg-brand-400 hover:bg-brand-500 text-white font-medium text-lg py-5 rounded-2xl shadow-lg transition-all active:scale-[0.98] tracking-widest">
+                查看測驗結果
+            </button>
+        </form>
+
+        <!-- Result Section -->
+        <div id="result-section" class="hidden fade-in space-y-6">
+            <div class="bg-white rounded-[2.5rem] p-10 shadow-xl border border-brand-100 text-center">
+                <h2 class="text-lg text-brand-500 mb-2 tracking-widest">您的情緒覺察分數</h2>
+                <div class="text-6xl md:text-7xl font-bold text-brand-400 mb-8" id="total-score-display">0</div>
+                
+                <div id="result-advice" class="text-left text-brand-800 leading-[1.8] space-y-4 bg-brand-50/50 p-8 rounded-3xl font-light">
+                    <!-- JS Inject -->
+                </div>
+
+                <!-- Urgent Warning (Q10) -->
+                <div id="urgent-warning" class="hidden mt-8 text-left bg-rose-50 text-rose-700 p-6 rounded-3xl text-sm leading-relaxed border border-rose-100 shadow-sm">
+                    <strong class="text-lg block mb-2"><i class="fa-solid fa-circle-exclamation mr-2"></i>給您的一份特別關心：</strong>
+                    我們注意到您提及有傷害自己的念頭。無論您現在感到多麼疲憊或痛苦，請記得您並不孤單。請立刻尋求身邊親友的陪伴，或撥打 24 小時免付費安心專線 <strong class="text-lg">1925</strong>，讓我們陪您度過這個時刻。
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col gap-4">
+                <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="w-full block text-center bg-[#06C755] hover:opacity-90 text-white font-medium py-5 rounded-2xl transition-all shadow-md tracking-widest">
+                    <i class="fa-brands fa-line mr-2 text-xl"></i> 預約身心整聊 (Line)
+                </a>
+                <button onclick="resetQuiz()" class="w-full text-stone-400 hover:text-brand-500 font-light py-3 transition-all text-sm">
+                    重新填寫量表
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionsData = [
+            { id: 'q1', text: '1. 我能看到事物好的一面，並以此為樂：', options: [{ text: '同以前一樣', value: 0 }, { text: '沒以前那麼多', value: 1 }, { text: '肯定比以前少', value: 2 }, { text: '完全不能', value: 3 }] },
+            { id: 'q2', text: '2. 我欣然期待未來的事物：', options: [{ text: '同以前一樣', value: 0 }, { text: '不如以前多', value: 1 }, { text: '肯定比以前少', value: 2 }, { text: '完全沒有', value: 3 }] },
+            { id: 'q3', text: '3. 當事情出錯時，我會不必要地責備自己：', options: [{ text: '大部分時候是', value: 3 }, { text: '有時候是', value: 2 }, { text: '不經常是', value: 1 }, { text: '沒有', value: 0 }] },
+            { id: 'q4', text: '4. 我無緣無故感到焦慮和擔心：', options: [{ text: '沒有', value: 0 }, { text: '極少有', value: 1 }, { text: '有時候有', value: 2 }, { text: '經常有', value: 3 }] },
+            { id: 'q5', text: '5. 我無緣無故感到害怕或恐慌：', options: [{ text: '相當多', value: 3 }, { text: '有時候', value: 2 }, { text: '不經常', value: 1 }, { text: '沒有', value: 0 }] },
+            { id: 'q6', text: '6. 我覺得事情多得無法承受：', options: [{ text: '大多數時候', value: 3 }, { text: '有時候', value: 2 }, { text: '不經常', value: 1 }, { text: '沒有', value: 0 }] },
+            { id: 'q7', text: '7. 我因為不開心而失眠：', options: [{ text: '大多數時候', value: 3 }, { text: '有時候', value: 2 }, { text: '不經常', value: 1 }, { text: '沒有', value: 0 }] },
+            { id: 'q8', text: '8. 我感到難過或悲傷：', options: [{ text: '大多數時候', value: 3 }, { text: '有時候', value: 2 }, { text: '不經常', value: 1 }, { text: '沒有', value: 0 }] },
+            { id: 'q9', text: '9. 我因為不開心而哭泣：', options: [{ text: '大多數時候', value: 3 }, { text: '有時候', value: 2 }, { text: '只偶爾', value: 1 }, { text: '從不', value: 0 }] },
+            { id: 'q10', text: '10. 我有傷害自己的念頭：', options: [{ text: '相當多', value: 3 }, { text: '有時候', value: 2 }, { text: '很少', value: 1 }, { text: '從沒有', value: 0 }] }
+        ];
+
+        window.onload = renderQuestions;
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = questionsData.map((q, i) => `
+                <div class="bg-white p-8 rounded-3xl shadow-sm mb-6 border border-brand-100">
+                    <h3 class="text-lg font-medium text-brand-800 mb-6">${q.text}</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${q.options.map((opt, oi) => `
+                            <label class="cursor-pointer block relative group">
+                                <input type="radio" name="${q.id}" value="${opt.value}" class="peer hidden" onchange="hideError()">
+                                <div class="w-full p-4 rounded-xl border border-stone-100 bg-stone-50 text-stone-600 transition-all peer-checked:bg-brand-400 peer-checked:border-brand-400 peer-checked:text-white group-hover:border-brand-200">
+                                    ${opt.text}
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function hideError() { document.getElementById('error-message').classList.add('hidden'); }
+
+        function submitQuiz() {
+            let totalScore = 0, answered = 0, q10Score = 0;
+            questionsData.forEach(q => {
+                const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+                if (selected) {
+                    answered++;
+                    totalScore += parseInt(selected.value);
+                    if (q.id === 'q10') q10Score = parseInt(selected.value);
+                }
+            });
+
+            if (answered < questionsData.length) {
+                const err = document.getElementById('error-message');
+                err.classList.remove('hidden');
+                err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            document.getElementById('quiz-form').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+            document.getElementById('total-score-display').innerText = totalScore;
+            
+            const advice = document.getElementById('result-advice');
+            if (totalScore <= 9) {
+                advice.innerHTML = `<p class="font-bold text-brand-800 text-lg">情緒狀態平穩，請繼續保持</p><p>目前您的適應狀況很不錯。產後的日子裡，請繼續保持您的步調，享受與孩子相處的時光。若偶爾感到疲憊，別忘了給自己一個擁抱。</p>`;
+            } else if (totalScore <= 12) {
+                advice.innerHTML = `<p class="font-bold text-brand-800 text-lg">情緒有些起伏，給自己留點空間</p><p>您最近可能承受了一些壓力。建議您可以多留意自己的感受，找信任的親友聊聊。如果您需要一個安全的傾聽空間，歡迎聯繫我們，讓我們陪您梳理情緒。</p>`;
+            } else {
+                advice.innerHTML = `<p class="font-bold text-rose-600 text-lg">承受著較大的壓力，讓我們陪您尋求支持</p><p>親愛的，這不是您的錯。我們建議您尋求專業心理諮商或醫師協助。請隨時透過 LINE 聯繫緩生工作室，我們可以陪您一起找尋合適的專業資源。</p>`;
+            }
+
+            if (q10Score > 0) document.getElementById('urgent-warning').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            document.getElementById('result-section').classList.add('hidden');
+            document.getElementById('quiz-form').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

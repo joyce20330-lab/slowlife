@@ -141,6 +141,31 @@
     </script>
 
     <style>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
+                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
         body { background-color: #FAF8F5; }
 
         /* --- 呼吸球專屬動畫 --- */
@@ -165,10 +190,11 @@
     </style>
 </head>
     <!-- ========================================== -->
-    <!-- 1. 側邊呼吸引導器 (新增的組件) -->
+    <!-- 1. 側邊呼吸引導器 (已將位置改為 top-28 左上角) -->
     <!-- ========================================== -->
-    <div id="breathe-side-widget" class="fixed left-0 top-1/2 -translate-y-1/2 z-[999] transition-transform duration-700 ease-in-out breathe-side-hidden flex items-center">
-        <!-- 呼吸卡片本體 -->
+    <!-- 將 top-1/2 -translate-y-1/2 替換成了 top-28 (距離頂部約112px) -->
+    <div id="breathe-side-widget" class="fixed left-0 top-28 -translate-x-[210px] z-[999] transition-transform duration-700 ease-in-out flex items-center">
+        <!-- 呼吸卡片本體 (寬度剛好是 210px) -->
         <div class="bg-white/95 backdrop-blur-md border-y border-r border-sage-100 shadow-lg rounded-r-[2rem] p-4 flex items-center gap-4 w-[210px]">
             <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
                 <div class="absolute inset-0 bg-sage-500 rounded-full animate-breathe"></div>
@@ -187,7 +213,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 2. 左下角音樂按鈕 (原有的組件) -->
+    <!-- 2. 左下角音樂按鈕 -->
     <!-- ========================================== -->
     <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
         <button class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all pulse-music border-2 border-white/40">
@@ -196,7 +222,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 3. 右下角 LINE 按鈕 (原有的組件) -->
+    <!-- 3. 右下角 LINE 按鈕 -->
     <!-- ========================================== -->
     <a href="#" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
         <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
@@ -221,13 +247,16 @@
             const widget = document.getElementById('breathe-side-widget');
             const icon = document.getElementById('breathe-icon-side');
             
-            if (widget.classList.contains('breathe-side-hidden')) {
-                // 展開
-                widget.classList.remove('breathe-side-hidden');
+            // 檢查是否處於隱藏狀態 (-translate-x-[210px])
+            if (widget.classList.contains('-translate-x-[210px]')) {
+                // 展開：移除隱藏，加上 0 (歸位)
+                widget.classList.remove('-translate-x-[210px]');
+                widget.classList.add('translate-x-0');
                 icon.style.transform = 'rotate(180deg)'; // 葉子翻轉
             } else {
-                // 收合
-                widget.classList.add('breathe-side-hidden');
+                // 收合：移除 0，加上隱藏
+                widget.classList.remove('translate-x-0');
+                widget.classList.add('-translate-x-[210px]');
                 icon.style.transform = 'rotate(0deg)'; // 葉子翻轉回來
             }
         }

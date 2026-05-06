@@ -37,13 +37,14 @@
         }
       ]
     }
-    </script>
-
-    <!-- Tailwind CSS -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -51,101 +52,122 @@
             theme: {
                 extend: {
                     colors: {
-                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
-                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
-                        clay: { 50: '#F4EFEA', 100: '#EAE1D8' },
-                        rose: { 50: '#FDF8F8', 500: '#B36D61' }
+                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
+                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
                     },
                     fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
                 }
             }
         }
     </script>
+
     <style>
-        /* 稻穗底圖：絕對釘死於視窗，不會掉到最下面 */
-        .global-rice-bg { 
-            position: fixed; 
-            top: 0; left: 0; right: 0; bottom: 0; 
-            z-index: -10; 
-            background-image: url('https://lh3.googleusercontent.com/d/1WuIx0WpBzHP_bhatHMNI4HHCshGTFufA'); 
-            background-size: cover; 
-            background-position: center; 
-            filter: blur(8px) brightness(1.05); 
-            opacity: 0.5; 
-            pointer-events: none;
-            animation: flowingBg 25s infinite alternate ease-in-out;
-            will-change: transform;
-        }
-        @keyframes flowingBg { 0% { transform: scale(1.0); } 100% { transform: scale(1.15); } }
-        
-        /* 首頁背景與霧化淡出漸層，消除邊界感 */
-        .hero-bg-layer {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://lh3.googleusercontent.com/d/1syvx4RN5vvDCyaqgiLCW9fjnFPBQ0azg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: scroll; 
-            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            z-index: 0;
-        }
-        @media (min-width: 768px) { .hero-bg-layer { background-attachment: fixed; } }
-        
-        .hero-blur-layer {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            z-index: 1;
-            will-change: transform;
+        body { background-color: #FAF8F5; }
+
+        /* --- 呼吸球專屬動畫 --- */
+        @keyframes breatheAnimation {
+            0%, 100% { transform: scale(0.8); opacity: 0.8; }
+            50% { transform: scale(1.25); opacity: 0.3; }
         }
 
-        .logo-filter { mix-blend-mode: multiply; filter: contrast(1.1) brightness(1.05); }
-        img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; pointer-events: none; -webkit-user-drag: none; }
-        nav img, .fixed img, a img, button, a { pointer-events: auto !important; }
-        
-        @keyframes pageFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .page-enter { animation: pageFadeIn 0.6s ease-out forwards; }
-        
-        @keyframes musicRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-music { animation: musicRotate 6s linear infinite; }
+        .animate-breathe {
+            animation: breatheAnimation 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* --- 側邊切換動畫 --- */
+        /* 計算：卡片寬度 210px，所以往左推 210px 剛好藏起卡片，只留下按鈕 */
+        .breathe-side-hidden {
+            transform: translateX(-210px); 
+        }
+
+        /* 音樂按鈕的 pulse 動畫 (取自首頁) */
         @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
-// --- 呼吸文字切換 ---
-const sideBreatheText = document.getElementById('breathe-text-side');
-let sideIsInhaling = true;
-setInterval(() => {
-    sideBreatheText.style.opacity = '0';
-    setTimeout(() => {
-        sideIsInhaling = !sideIsInhaling;
-        sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
-        sideBreatheText.style.opacity = '1';
-    }, 500);
-}, 4000);
-
-// --- 側邊欄展開/收合 ---
-function toggleBreatheSide() {
-    const widget = document.getElementById('breathe-side-widget');
-    const icon = document.getElementById('breathe-icon-side');
-    
-    if (widget.classList.contains('breathe-side-hidden')) {
-        widget.classList.remove('breathe-side-hidden');
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        widget.classList.add('breathe-side-hidden');
-        icon.style.transform = 'rotate(0deg)';
-    }
-}
-
-// 預設進站 5 秒後，自動縮回側邊 (如果妳希望它一開始是展開吸引注意的話)
-// window.addEventListener('DOMContentLoaded', () => {
-//    setTimeout(toggleBreatheSide, 5000);
-// });
     </style>
+</head>
+<body class="min-h-[150vh] flex flex-col items-center justify-center relative overflow-x-hidden">
+
+    <div class="text-center p-8 border-2 border-dashed border-stone-300 rounded-3xl max-w-lg mt-20">
+        <h1 class="text-2xl text-stone-800 font-medium mb-4 tracking-widest">微互動佈局模擬</h1>
+        <p class="text-stone-500 leading-relaxed mb-6">
+            請觀察畫面的三個角落：<br>
+            1. <strong class="text-sage-600">左側中央：</strong> 呼吸引導器 (點擊小葉子展開)<br>
+            2. <strong class="text-sage-600">左下方：</strong> 音樂播放按鈕<br>
+            3. <strong class="text-sage-600">右下方：</strong> LINE 預約按鈕
+        </p>
+        <p class="text-sm text-stone-400 font-light">（可以上下滑動頁面，確認它們懸浮的位置不會互相干擾）</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. 側邊呼吸引導器 (新增的組件) -->
+    <!-- ========================================== -->
+    <div id="breathe-side-widget" class="fixed left-0 top-1/2 -translate-y-1/2 z-[999] transition-transform duration-700 ease-in-out breathe-side-hidden flex items-center">
+        <!-- 呼吸卡片本體 -->
+        <div class="bg-white/95 backdrop-blur-md border-y border-r border-sage-100 shadow-lg rounded-r-[2rem] p-4 flex items-center gap-4 w-[210px]">
+            <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
+                <div class="absolute inset-0 bg-sage-500 rounded-full animate-breathe"></div>
+                <div class="absolute w-3 h-3 bg-sage-600 rounded-full"></div>
+            </div>
+            <div class="flex-1">
+                <p class="text-[10px] text-stone-400 tracking-widest mb-0.5 font-medium uppercase">Take a breath</p>
+                <p id="breathe-text-side" class="text-stone-700 text-sm font-medium tracking-widest transition-opacity duration-1000">吸氣...</p>
+            </div>
+        </div>
+        
+        <!-- 側邊開關標籤 (小葉子) -->
+        <button onclick="toggleBreatheSide()" class="bg-sage-500 text-white w-10 h-16 rounded-r-xl flex items-center justify-center shadow-[4px_0_15px_rgba(0,0,0,0.1)] hover:bg-sage-600 transition-colors border-y border-r border-sage-600/30">
+            <i id="breathe-icon-side" class="fa-solid fa-leaf transition-transform duration-500"></i>
+        </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. 左下角音樂按鈕 (原有的組件) -->
+    <!-- ========================================== -->
+    <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
+        <button class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all pulse-music border-2 border-white/40">
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3. 右下角 LINE 按鈕 (原有的組件) -->
+    <!-- ========================================== -->
+    <a href="#" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
+        <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
+    </a>
+
+    <script>
+        // --- 呼吸文字切換邏輯 ---
+        const sideBreatheText = document.getElementById('breathe-text-side');
+        let sideIsInhaling = true;
+        
+        setInterval(() => {
+            sideBreatheText.style.opacity = '0';
+            setTimeout(() => {
+                sideIsInhaling = !sideIsInhaling;
+                sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
+                sideBreatheText.style.opacity = '1';
+            }, 500);
+        }, 4000);
+
+        // --- 側邊欄展開/收合邏輯 ---
+        function toggleBreatheSide() {
+            const widget = document.getElementById('breathe-side-widget');
+            const icon = document.getElementById('breathe-icon-side');
+            
+            if (widget.classList.contains('breathe-side-hidden')) {
+                // 展開
+                widget.classList.remove('breathe-side-hidden');
+                icon.style.transform = 'rotate(180deg)'; // 葉子翻轉
+            } else {
+                // 收合
+                widget.classList.add('breathe-side-hidden');
+                icon.style.transform = 'rotate(0deg)'; // 葉子翻轉回來
+            }
+        }
+    </script>
+</body>
+</html>
 </head>
 <body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
 

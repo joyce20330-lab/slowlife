@@ -659,49 +659,49 @@
 
     <script>
         function navigateTo(target) {
-    const pages = { 
-        home: document.getElementById('page-home'), 
-        profile: document.getElementById('page-profile'), 
-        services: document.getElementById('page-services'), 
-        environment: document.getElementById('page-environment'), 
-        knowledge: document.getElementById('page-knowledge'), 
-        faq: document.getElementById('page-faq') // 確保這裡有 faq
-    };
+            // 1. 定義所有頁面，記得加入 faq
+            const pages = { 
+                home: document.getElementById('page-home'), 
+                profile: document.getElementById('page-profile'), 
+                services: document.getElementById('page-services'), 
+                environment: document.getElementById('page-environment'), 
+                knowledge: document.getElementById('page-knowledge'),
+                faq: document.getElementById('page-faq') // 這裡一定要加
+            };
 
-    // 1. 先隱藏所有頁面
-    Object.values(pages).forEach(p => { 
-        if(p) { 
-            p.classList.replace('block', 'hidden'); 
-            p.classList.remove('page-enter'); 
-        } 
-    });
+            // 2. 隱藏所有頁面
+            Object.values(pages).forEach(p => { 
+                if(p) { 
+                    p.classList.replace('block', 'hidden'); 
+                    p.classList.remove('page-enter'); 
+                } 
+            });
 
-    // 2. 判斷要跳往哪一頁
-    if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
-        // 顯示獨立的分頁
-        if(pages[target]) {
-            pages[target].classList.replace('hidden', 'block'); 
-            pages[target].classList.add('page-enter'); 
+            // 3. 判斷點擊的是否為獨立分頁，這裡也要加入 'faq'
+            if(['profile', 'services', 'environment', 'knowledge', 'faq'].includes(target)) { 
+                if(pages[target]) {
+                    pages[target].classList.replace('hidden', 'block'); 
+                    pages[target].classList.add('page-enter'); 
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            } 
+            else { 
+                // 回到首頁並捲動到指定位置 (如 story, booking)
+                if(pages.home) pages.home.classList.replace('hidden', 'block'); 
+                if(target === 'home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                } else {
+                    setTimeout(() => { 
+                        const el = document.getElementById(target); 
+                        if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
+                    }, 50); 
+                }
+            }
+
+            // 4. 關閉手機選單
+            const menu = document.getElementById('mobile-menu'); 
+            if(menu && !menu.classList.contains('hidden')) toggleMenu();
         }
-        window.scrollTo({ top: 0, behavior: 'smooth' }); 
-    } 
-    else { 
-        // 顯示首頁，並捲動到指定錨點 (如 story, booking)
-        pages.home.classList.replace('hidden', 'block'); 
-        if(target === 'home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' }); 
-        } else {
-            setTimeout(() => { 
-                const el = document.getElementById(target); 
-                if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); 
-            }, 50); 
-        }
-    }
-
-    // 3. 關閉手機選單
-    const menu = document.getElementById('mobile-menu'); 
-    if(!menu.classList.contains('hidden')) toggleMenu();
-}
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');

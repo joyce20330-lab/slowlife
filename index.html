@@ -60,7 +60,6 @@
                 }
             }
         }
-
     </script>
     <style>
         /* 稻穗底圖：絕對釘死於視窗，不會掉到最下面 */
@@ -116,85 +115,30 @@
         .animate-music { animation: musicRotate 6s linear infinite; }
         @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
-                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
-                    },
-                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-
-    <style>
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>側邊呼吸引導與音樂按鈕整合模擬</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sage: { 400: '#9CAEA9', 500: '#8A9A86', 600: '#6B7A68' },
-                        stone: { 50: '#FAF8F5', 500: '#78716c', 800: '#4A4238' }
-                    },
-                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body { background-color: #FAF8F5; }
 
         /* --- 呼吸球專屬動畫 --- */
         @keyframes breatheAnimation {
             0%, 100% { transform: scale(0.8); opacity: 0.8; }
             50% { transform: scale(1.25); opacity: 0.3; }
         }
-
         .animate-breathe {
             animation: breatheAnimation 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
-
-        /* --- 側邊切換動畫 --- */
-        /* 計算：卡片寬度 210px，所以往左推 210px 剛好藏起卡片，只留下按鈕 */
         .breathe-side-hidden {
             transform: translateX(-210px); 
         }
-
-        /* 音樂按鈕的 pulse 動畫 (取自首頁) */
-        @keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-        .pulse-music { animation: musicPulse 3s infinite ease-in-out; }
     </style>
 </head>
+<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
+
+    <!-- 全站稻穗底圖 -->
+    <div class="global-rice-bg"></div>
+
     <!-- ========================================== -->
-    <!-- 1. 側邊呼吸引導器 (已將位置改為 top-28 左上角) -->
+    <!-- 1. 側邊呼吸引導器 (固定於左上角) -->
     <!-- ========================================== -->
-    <!-- 將 top-1/2 -translate-y-1/2 替換成了 top-28 (距離頂部約112px) -->
     <div id="breathe-side-widget" class="fixed left-0 top-28 -translate-x-[210px] z-[999] transition-transform duration-700 ease-in-out flex items-center">
-        <!-- 呼吸卡片本體 (寬度剛好是 210px) -->
+        <!-- 呼吸卡片本體 (寬度 210px) -->
         <div class="bg-white/95 backdrop-blur-md border-y border-r border-sage-100 shadow-lg rounded-r-[2rem] p-4 flex items-center gap-4 w-[210px]">
             <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
                 <div class="absolute inset-0 bg-sage-500 rounded-full animate-breathe"></div>
@@ -212,64 +156,7 @@
         </button>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 2. 左下角音樂按鈕 -->
-    <!-- ========================================== -->
-    <div id="music-control-wrap" class="fixed bottom-6 left-6 z-[999] flex items-center gap-3">
-        <button class="bg-sage-500 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg transition-all pulse-music border-2 border-white/40">
-            <i class="fa-solid fa-music"></i>
-        </button>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- 3. 右下角 LINE 按鈕 -->
-    <!-- ========================================== -->
-    <a href="#" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
-        <i class="fa-brands fa-line text-3xl md:text-4xl"></i>
-    </a>
-
-    <script>
-        // --- 呼吸文字切換邏輯 ---
-        const sideBreatheText = document.getElementById('breathe-text-side');
-        let sideIsInhaling = true;
-        
-        setInterval(() => {
-            sideBreatheText.style.opacity = '0';
-            setTimeout(() => {
-                sideIsInhaling = !sideIsInhaling;
-                sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
-                sideBreatheText.style.opacity = '1';
-            }, 500);
-        }, 4000);
-
-        // --- 側邊欄展開/收合邏輯 ---
-        function toggleBreatheSide() {
-            const widget = document.getElementById('breathe-side-widget');
-            const icon = document.getElementById('breathe-icon-side');
-            
-            // 檢查是否處於隱藏狀態 (-translate-x-[210px])
-            if (widget.classList.contains('-translate-x-[210px]')) {
-                // 展開：移除隱藏，加上 0 (歸位)
-                widget.classList.remove('-translate-x-[210px]');
-                widget.classList.add('translate-x-0');
-                icon.style.transform = 'rotate(180deg)'; // 葉子翻轉
-            } else {
-                // 收合：移除 0，加上隱藏
-                widget.classList.remove('translate-x-0');
-                widget.classList.add('-translate-x-[210px]');
-                icon.style.transform = 'rotate(0deg)'; // 葉子翻轉回來
-            }
-        }
-    </script>
-</body>
-</html>
-    </style>
-</head>
-<body class="text-stone-800 font-sans antialiased selection:bg-sage-500 selection:text-white relative bg-stone-50">
-
-    <!-- 全站稻穗底圖 -->
-    <div class="global-rice-bg"></div>
-
+    <!-- 頂部導覽列 -->
     <nav class="fixed w-full z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-100 h-20 flex items-center transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full flex items-center justify-between">
             <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3">
@@ -277,7 +164,7 @@
                 <span class="font-medium text-xl tracking-widest text-stone-800">緩生工作室</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#" onclick="navigateTo('story'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">關於緩生</a>
+                <a href="#" onclick="navigateTo('story'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">緩生故事</a>
                 <a href="#" onclick="navigateTo('profile'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">關於呸呸</a>
                 <a href="#" onclick="navigateTo('environment'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">環境介紹</a>
                 <a href="#" onclick="navigateTo('services'); return false;" class="text-stone-600 hover:text-sage-600 transition-colors text-sm font-medium">服務項目</a>
@@ -291,7 +178,7 @@
     <!-- 手機選單 -->
     <div id="mobile-menu" class="fixed inset-0 bg-stone-50/95 backdrop-blur-xl z-[60] hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-stone-800 text-4xl"><i class="fa-solid fa-xmark"></i></button>
-        <a href="#" onclick="navigateTo('story'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於緩生</a>
+        <a href="#" onclick="navigateTo('story'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">緩生故事</a>
         <a href="#" onclick="navigateTo('profile'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">關於呸呸</a>
         <a href="#" onclick="navigateTo('environment'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">環境介紹</a>
         <a href="#" onclick="navigateTo('services'); return false;" class="mobile-link text-2xl font-medium tracking-widest text-stone-800">服務項目</a>
@@ -316,12 +203,12 @@
             </div>
         </header>
 
-        <!-- 關於緩生 -->
+        <!-- 緩生故事 -->
         <section id="story" class="pt-20 pb-10 md:pt-28 md:pb-12 px-4 sm:px-6">
             <div class="max-w-6xl mx-auto bg-stone-100/70 backdrop-blur-md border border-white/60 rounded-[2.5rem] shadow-xl p-8 md:p-16">
                 <!-- 單欄置中排版 -->
                 <div class="max-w-3xl mx-auto w-full">
-                    <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium text-center">關於緩生</h2>
+                    <h2 class="text-3xl md:text-4xl text-stone-800 mb-8 tracking-widest font-medium text-center">緩生故事</h2>
                     
                     <div class="w-full mb-10 flex justify-center">
                         <img src="https://lh3.googleusercontent.com/d/1WliLZ72v7Z6AYYYUHjyUpR2LXzIjcdJ6" alt="緩生工作室品牌標誌" class="w-full h-auto logo-filter max-w-[480px]">
@@ -458,30 +345,20 @@
                 <div class="w-12 h-[1px] bg-sage-500 mx-auto mb-12"></div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- 1. 宜蘭泌乳服務與陪伴 (完整的連結區塊) -->
-<a href="./services/lactation-support.html" class="block group h-full">
-    <div class="bg-white rounded-3xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all duration-500 transform hover:-translate-y-1 flex flex-col h-full">
-        
-        <!-- 圖片區：Alt 文字優化 -->
-        <img src="https://lh3.googleusercontent.com/d/1LpY-Ex0HIpmZAfEot7JcOMLP6abQl-57" alt="宜蘭泌乳推薦-緩生工作室專業泌乳諮詢" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-        
-        <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
-            <!-- 標題：加入地區關鍵字 -->
-            <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">宜蘭泌乳服務與陪伴</h3>
-            
-            <!-- 描述：加入地點與核心價值 -->
-            <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">
-                在宜蘭冬山，順應身體的節奏，<br>
-                給予您最專業溫柔的哺乳協助。
-            </p>
-
-            <!-- 按鈕：確保樣式一致且可點擊 -->
-            <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">
-                查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i>
-            </span>
-        </div>
-    </div>
-</a>
+                    <!-- 1. 宜蘭泌乳服務與陪伴 -->
+                    <a href="./services/lactation-support.html" class="block group h-full">
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all duration-500 transform hover:-translate-y-1 flex flex-col h-full">
+                            <img src="https://lh3.googleusercontent.com/d/1LpY-Ex0HIpmZAfEot7JcOMLP6abQl-57" alt="宜蘭泌乳推薦-緩生工作室專業泌乳諮詢" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <div class="p-6 md:p-8 flex flex-col items-center text-center bg-white flex-1">
+                                <h3 class="text-[17px] md:text-lg text-stone-800 mb-3 font-bold tracking-wide">宜蘭泌乳服務與陪伴</h3>
+                                <p class="text-stone-500 text-[13px] md:text-[14px] font-light tracking-wide leading-[1.8]">在宜蘭冬山，順應身體的節奏，<br>給予您最專業溫柔的哺乳協助。</p>
+                                <span class="text-sage-500 text-[13px] md:text-sm mt-auto pt-6 flex items-center gap-1 font-medium tracking-wider group-hover:text-sage-600 transition-colors">
+                                    查看詳情 <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    
                     <!-- 2. 產後腹部放鬆按摩 -->
                     <div class="bg-white rounded-3xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] cursor-pointer group transition-all duration-500 transform hover:-translate-y-1 flex flex-col h-full" onclick="window.location.href='./services/abdominal-massage.html'">
                         <img src="https://lh3.googleusercontent.com/d/15e49Ft7Ns-h6q8p1dukG0T-HTLA8DO1i" alt="產後腹部放鬆按摩" class="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -597,12 +474,12 @@
                 <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/handling-nursing-pressure.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1k0wsrrCv6Z8zATt0XwBMNTOg4G-pZV5H" alt="母乳哺育旁人壓力應對" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">哺乳期面對旁人壓力怎麼辦？用 3 個正向心法，找回妳的母乳哺育主導權</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-2">本文解析孕產期如何應對旁人壓力，並提供正向、不失禮的溝通技巧。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                 <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/nursing-family-support.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/12Oan2uagAVErGWbT4mVpzdgasIXPNa4S" alt="建立哺乳支持系統" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">哺乳期缺乏家人支持怎麼辦？建立屬於自己的支持系統</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1">從孕期開始建立強大的支持系統，讓良好的溝通陪伴您享受哺育旅程。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/workplace-breastfeeding.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1XenKP-H1_-I4c10DolwXKq18vJc1LcOW" alt="職場哺乳權益" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">職場哺乳與擠奶不便？重返職場的哺乳權益與實戰攻略</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1">深度解析職場哺乳難題，包含擠奶解決方案與母乳儲藏技巧。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
-                    <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/nursing-fatigue-relief.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/17RXwrKwixNxQGoVMy8Ruq_T5jKz0lWwY" alt="哺乳期睡眠不足與作息調整" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center min-w-0"><!-- 已改為 truncate，強制單行顯示 --><h3 class="text-[15px] md:text-xl font-medium truncate">哺乳期睡眠不足、身心俱疲？媽咪作息調整指南</h3> <span class="text-stone-500 text-xs mt-1 font-light truncate">分享如何透過環境營造與心態轉變，度過這段高壓時期。</span><span class="text-sage-500 text-xs mt-2 font-medium shrink-0">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div> </div>
+                    <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/nursing-fatigue-relief.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/17RXwrKwixNxQGoVMy8Ruq_T5jKz0lWwY" alt="哺乳期睡眠不足與作息調整" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center min-w-0"><h3 class="text-[15px] md:text-xl font-medium truncate">哺乳期睡眠不足、身心俱疲？媽咪作息調整指南</h3> <span class="text-stone-500 text-xs mt-1 font-light truncate">分享如何透過環境營造與心態轉變，度過這段高壓時期。</span><span class="text-sage-500 text-xs mt-2 font-medium shrink-0">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div> </div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/nipple-pain-relief.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1deMoMN9pi1bPDYE-UBMY-S6KXl8jSkTy" alt="乳頭破皮疼痛護理" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">乳頭破皮、疼痛怎麼辦？教妳 3 招找回舒適哺乳生活</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1">深度解析乳頭受傷常見原因，並提供專業緩解與居家護理建議。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/latching-difficulties-guide.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1OCespuumKeTysySIBmSqBputap8uWJQL" alt="寶寶含乳困難與拒絕親餵" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div> <div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">寶寶含乳困難與拒絕親餵怎麼辦？「送一面大貼紙」口訣讓母乳哺育更輕鬆</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">面對寶寶含乳困難，本文分享超實用含乳口訣「送一面大貼紙」，教您如何透過姿勢調整解決親餵困難。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
-                   <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/insufficient-milk-guide.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/15tAMBydBvrj40SW9K-3VLyU5keRg2Xt_" alt="奶水不足" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"> </div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">【奶水不足？】哺乳媽媽必看</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">擔心奶水不足是許多媽媽的壓力來源。本文教你區分「真性」與「假性」奶水不足，掌握寶寶吃飽的3大關鍵指標。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div> </div>
+                   <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/insufficient-milk-guide.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/15tAMBydBvrj40SW9K-3VLyU5keRg2Xt_" alt="奶水不足" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"> </div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">奶水不足？哺乳媽媽必看</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">擔心奶水不足是許多媽媽的壓力來源。本文教你區分「真性」與「假性」奶水不足，掌握寶寶吃飽的3大關鍵指標。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div> </div>
                    <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/breastfeeding-difficulties.html'"> <div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1BafOq826BXbQXgbzwCqGj0l_PdOqvAIe" alt="哺乳10大困難" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">破解「哺乳10大困難」，孕產媽咪必看的母乳哺餵指南</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">想要順利餵母奶，卻遇到塞奶、奶量不足等挑戰嗎？本文為孕產媽媽整理出常見的「哺乳10大困難」。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div> </div>
-                    <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/d-mer-guide.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1NpbIJOpeR_JfGpKN1ecVCWjXZY3wUalk" alt="D-MER是不愉快的母乳反射嗎" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">【不愉快的母乳反射 D-MER】是母乳憂鬱症嗎？</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">正在經歷餵奶時突如其來的強烈負面情緒嗎？這可能不是產後憂鬱，而是「D-MER」。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
+                    <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/d-mer-guide.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1NpbIJOpeR_JfGpKN1ecVCWjXZY3wUalk" alt="D-MER是不愉快的母乳反射嗎" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">不愉快的母乳反射 D-MER，是母乳憂鬱症嗎？</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1 hidden sm:block">正在經歷餵奶時突如其來的強烈負面情緒嗎？這可能不是產後憂鬱，而是「D-MER」。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/areolar-edema.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1iJlBPPooP487Q3XRPjz7c3LJfQQREpnF" alt="乳暈水腫緩解" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">什麼是乳暈水腫？3招解決方法告別親餵困難</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1">告別寶寶含乳不順與親餵疼痛，專業泌乳護理師帶妳解惑。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/nursing-cold-medicine.html'"> <div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"> <img src="https://lh3.googleusercontent.com/d/1BNFr04N_MUvFsEpKl7-3gTb4gdMvJSDO" alt="哺乳媽媽感冒用藥" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"></div> <div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">哺乳媽媽感冒怎麼辦？感冒用藥與安全性指南</h3><span class="text-stone-500 text-xs mt-1 font-light line-clamp-1">了解感冒時的哺乳建議，與如何確認藥物安全性。</span><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
                     <div class="article-card bg-white/80 rounded-2xl overflow-hidden border border-white/50 group flex flex-row cursor-pointer shadow-sm" onclick="window.location.href='./articles/bottle-materials.html'"><div class="w-24 h-24 sm:w-36 md:w-2/5 shrink-0 bg-stone-100 overflow-hidden"><img src="https://lh3.googleusercontent.com/d/1x5JbfFP8WlVmtoJW7cHAQRWSGdmVMnPn" alt="奶瓶材質" class="w-full h-full object-cover"></div><div class="p-4 md:p-8 flex-1 flex flex-col justify-center"><h3 class="text-[15px] md:text-xl font-medium line-clamp-2">奶瓶材質怎麼選？5大材質全解析</h3><span class="text-sage-500 text-xs mt-2 font-medium">閱讀全文 <i class="fa-solid fa-arrow-right"></i></span></div></div>
@@ -656,6 +533,40 @@
     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#06C755] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all"><i class="fa-brands fa-line text-3xl md:text-4xl"></i></a>
 
     <script>
+        // --- 呼吸文字切換邏輯 ---
+        const sideBreatheText = document.getElementById('breathe-text-side');
+        let sideIsInhaling = true;
+        
+        setInterval(() => {
+            if(!sideBreatheText) return;
+            sideBreatheText.style.opacity = '0';
+            setTimeout(() => {
+                sideIsInhaling = !sideIsInhaling;
+                sideBreatheText.innerText = sideIsInhaling ? '吸氣...' : '慢慢吐氣...';
+                sideBreatheText.style.opacity = '1';
+            }, 500);
+        }, 4000);
+
+        // --- 側邊欄展開/收合邏輯 ---
+        function toggleBreatheSide() {
+            const widget = document.getElementById('breathe-side-widget');
+            const icon = document.getElementById('breathe-icon-side');
+            
+            // 檢查是否處於隱藏狀態 (-translate-x-[210px])
+            if (widget.classList.contains('-translate-x-[210px]')) {
+                // 展開：移除隱藏，加上 0 (歸位)
+                widget.classList.remove('-translate-x-[210px]');
+                widget.classList.add('translate-x-0');
+                icon.style.transform = 'rotate(180deg)'; // 葉子翻轉
+            } else {
+                // 收合：移除 0，加上隱藏
+                widget.classList.remove('translate-x-0');
+                widget.classList.add('-translate-x-[210px]');
+                icon.style.transform = 'rotate(0deg)'; // 葉子翻轉回來
+            }
+        }
+
+        // --- 主站導覽控制邏輯 ---
         function navigateTo(target) {
             const pages = { home: document.getElementById('page-home'), profile: document.getElementById('page-profile'), services: document.getElementById('page-services'), environment: document.getElementById('page-environment'), knowledge: document.getElementById('page-knowledge') };
             Object.values(pages).forEach(p => { if(p) { p.classList.replace('block', 'hidden'); p.classList.remove('page-enter'); } });

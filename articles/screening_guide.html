@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兒童發展篩檢指南 | 緩生工作室</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (用於 LINE 圖示與返回箭頭) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto+Sans+TC', sans-serif;
+            background-color: #fdfbf7;
+            color: #4a4238;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        .transition-all { transition: all 0.3s ease; }
+        .active-tab {
+            background-color: #d4a373;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .step-node {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            color: #d4a373;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 頂部導覽列 -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-orange-50 px-6 py-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <!-- 修正：使用 window.history.back() 完全模擬瀏覽器「上一頁」的行為 -->
+            <a href="javascript:void(0);" onclick="window.history.back();" title="回到知識分享" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors cursor-pointer">
+                <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="tracking-[0.2em]">回到知識分享</span>
+            </a>
+            <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="#schedule" class="nav-link transition-all">篩檢時程</a>
+                <a href="#radar" class="nav-link transition-all">觀測面向</a>
+                <a href="#resources" class="nav-link transition-all">資源管道</a>
+                <a href="#guide" class="nav-link transition-all">安心指南</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto pb-20 pt-16">
+        <!-- 主視覺與標題 -->
+        <section class="relative mb-12 mt-6">
+            <div class="w-full h-64 md:h-96 overflow-hidden rounded-[2rem] shadow-sm bg-gray-100 border-4 border-white">
+                <img src="https://lh3.googleusercontent.com/d/1xvuQHUVJFVEwLj5iKsfcglrMCW-kE0V2" alt="兒童發展篩檢主圖" class="w-full h-full object-cover">
+            </div>
+            <div class="px-6 -mt-16 relative">
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-orange-50">
+                    <h1 class="text-3xl md:text-4xl font-bold text-[#4a4238] mb-4">育兒不害怕：兒童發展篩檢在幹嘛？</h1>
+                    <p class="text-lg text-[#8b7e6d] italic">「愛是陪伴，也是適時尋求支持。」</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 前言 -->
+        <section class="px-6 mb-16 text-center">
+            <div class="max-w-2xl mx-auto leading-relaxed space-y-4">
+                <p>身為父母，我們總是用充滿愛的目光注視著孩子的日常。但在育兒路上，難免會冒出小小的疑惑：「隔壁同齡的小朋友好像會跳了，我們家寶貝進度有落後嗎？」</p>
+                <p>發展篩檢不是考試，它更像是一份「健康健檢」。本指南整理了最新補助時程與資源，陪您與孩子一起安穩成長。</p>
+            </div>
+        </section>
+
+        <!-- 第一部分：互動時程 -->
+        <section id="schedule" class="px-6 mb-20 scroll-mt-24">
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-orange-50">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl font-bold mb-2 text-[#4a4238]">一、 篩檢補助幾歲要做？</h2>
+                    <p class="text-gray-500">家長最關心的 6 大黃金篩檢時程</p>
+                </div>
+
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-2 mb-8">
+                    <button onclick="showStage(0)" class="stage-btn active-tab p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20">第1階</button>
+                    <button onclick="showStage(1)" class="stage-btn p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20 bg-gray-50">第2階</button>
+                    <button onclick="showStage(2)" class="stage-btn p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20 bg-gray-50">第3階</button>
+                    <button onclick="showStage(3)" class="stage-btn p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20 bg-gray-50">第4階</button>
+                    <button onclick="showStage(4)" class="stage-btn p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20 bg-gray-50">第5階</button>
+                    <button onclick="showStage(5)" class="stage-btn p-3 rounded-xl text-xs md:text-sm transition-all border border-[#d4a373]/20 bg-gray-50">第6階</button>
+                </div>
+
+                <div id="stage-content" class="bg-[#fdfbf7] p-8 rounded-2xl min-h-[180px] flex flex-col justify-center items-center text-center transition-all duration-300">
+                    <h3 class="text-xl font-bold text-[#d4a373] mb-2" id="stage-title">第一階段</h3>
+                    <p class="text-2xl font-medium mb-4 text-[#4a4238]" id="stage-range">6 個月 ～ 10 個月</p>
+                    <p class="text-gray-600 max-w-md leading-relaxed" id="stage-desc">這是孩子開始嘗試翻身、建立基礎社交互動的重要時期。我們會觀察孩子的坐姿穩定度與對聲音的反應。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：篩檢面向與雷達圖 -->
+        <section id="radar" class="px-6 mb-20 scroll-mt-24">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold mb-4 text-[#4a4238]">篩檢到底在看什麼？</h2>
+                <p class="text-gray-600">醫師會透過以下四大核心面向，評估孩子是否跟上發展節奏：</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="chart-container">
+                    <canvas id="devChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-[#d4a373]">
+                        <h4 class="font-bold text-[#4a4238]">粗大動作</h4>
+                        <p class="text-sm text-gray-500">如翻身、爬行、站立、跳躍平衡。</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-[#8b7e6d]">
+                        <h4 class="font-bold text-[#4a4238]">精細動作</h4>
+                        <p class="text-sm text-gray-500">如抓握、疊積木、用筆塗鴉。</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-[#d4a373]">
+                        <h4 class="font-bold text-[#4a4238]">語言表達與理解</h4>
+                        <p class="text-sm text-gray-500">聽懂指令、發聲、說出單字或句子。</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-[#8b7e6d]">
+                        <h4 class="font-bold text-[#4a4238]">社會情緒與認知</h4>
+                        <p class="text-sm text-gray-500">眼神互動、模仿、邏輯與情緒反應。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：資源管道 -->
+        <section id="resources" class="px-6 mb-20 scroll-mt-24">
+            <h2 class="text-2xl font-bold mb-8 text-center text-[#4a4238]">二、 篩檢資訊哪裡找？</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 這裡加入您之前需要我們補上的正確連結 -->
+                <a href="https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=1139" target="_blank" rel="noopener noreferrer" class="block bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-[#d4a373] group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
+                    <h3 class="font-bold mb-3 text-[#4a4238] group-hover:text-[#d4a373] transition-colors">兒童健康手冊</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">內附綠色紀錄卡，就診前家長可先依據家中觀察進行勾選。</p>
+                </a>
+                <a href="https://www.hpa.gov.tw/Pages/List.aspx?nodeid=4821" target="_blank" rel="noopener noreferrer" class="block bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-[#d4a373] group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🌐</div>
+                    <h3 class="font-bold mb-3 text-[#4a4238] group-hover:text-[#d4a373] transition-colors">健康九九+ 網站</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">國健署線上平台，可下載各年齡層最新的篩檢量表。</p>
+                </a>
+                <a href="https://healthforkids.mohw.gov.tw/HospitalMap/?id=920da57226144ffab67339c1a5f2fec1" target="_blank" rel="noopener noreferrer" class="block bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-[#d4a373] group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🏥</div>
+                    <h3 class="font-bold mb-3 text-[#4a4238] group-hover:text-[#d4a373] transition-colors">醫療院所/衛生所</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">攜帶健保卡與手冊，由專業醫師進行評估與衛教。</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 第四部分：安心應對流程 -->
+        <section id="guide" class="px-6 mb-20 scroll-mt-24">
+            <div class="bg-[#4a4238] text-white p-10 md:p-16 rounded-3xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
+                <h2 class="text-2xl font-bold mb-10 text-center">三、 篩檢沒通過時，如何安心應對？</h2>
+                
+                <div class="space-y-12 max-w-2xl mx-auto">
+                    <div class="flex gap-6">
+                        <div class="flex-none">
+                            <div class="step-node bg-[#d4a373] text-white shadow-lg">1</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">轉介「兒童發展聯合評估中心」</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">經醫師轉介，由專業團隊進行全方位精準評估，確認孩子發展現況。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-none">
+                            <div class="step-node bg-[#d4a373] text-white shadow-lg">2</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">把握 0~3 歲「黃金療育期」</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">把握關鍵時刻，早療是孩子的專業教練，而非負面標籤。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-none">
+                            <div class="step-node bg-[#d4a373] text-white shadow-lg">3</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">建立「緩生」的生活節奏</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">透過親子共讀與安心環境，讓孩子在充滿安全感的節奏中自然發展。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結語與修正後的按鈕 -->
+        <footer class="px-6 text-center">
+            <div class="border-t border-gray-200 pt-16 pb-8">
+                <p class="text-xl font-bold text-[#4a4238] mb-4">緩生工作室</p>
+                <p class="text-gray-500 text-sm max-w-md mx-auto mb-8 leading-relaxed">關注發展是為了在孩子絆腳時接住他。讓我們用最溫柔的方式，陪伴孩子安穩開花。</p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-line text-xl"></i> 預約育兒諮詢
+                    </a>
+                </div>
+                
+                <p class="mt-16 text-xs text-gray-400">© 2024 緩生工作室 | 專業醫療建議請諮詢門診</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const stagesData = [
+            { title: "第一階段", range: "6 個月 ～ 10 個月", desc: "觀察重點：翻身、坐姿穩定度、對照顧者聲音的反應、物品抓握初步嘗試。" },
+            { title: "第二階段", range: "10 個月 ～ 1 歲 6 個月", desc: "觀察重點：獨自站立、嘗試邁步、模仿發聲、能指認熟知的家人或物品。" },
+            { title: "第三階段", range: "1 歲 6 個月 ～ 2 歲", desc: "觀察重點：行走穩健、能說出簡單單字、聽懂簡單生活指令、手部拿取更精準。" },
+            { title: "第四階段", range: "2 歲 ～ 3 歲", desc: "觀察重點：跑跳能力、短語表達需求、生活自理初步、開始有同儕互動意識。" },
+            { title: "第五階段", range: "3 歲 ～ 5 歲", desc: "觀察重點：平衡感提升、完整句子溝通、模仿與想像遊戲、情緒控制與表達。" },
+            { title: "第六階段", range: "5 歲 ～ 未滿 7 歲", desc: "觀察重點：學齡前準備、手部精細操作、邏輯理解、社會遊戲規則遵守。" }
+        ];
+
+        function showStage(index) {
+            const btns = document.querySelectorAll('.stage-btn');
+            btns.forEach((btn, i) => {
+                if(i === index) {
+                    btn.classList.add('active-tab');
+                    btn.classList.remove('bg-gray-50');
+                } else {
+                    btn.classList.remove('active-tab');
+                    btn.classList.add('bg-gray-50');
+                }
+            });
+
+            const content = stagesData[index];
+            const displayArea = document.getElementById('stage-content');
+            displayArea.style.opacity = 0;
+            
+            setTimeout(() => {
+                document.getElementById('stage-title').innerText = content.title;
+                document.getElementById('stage-range').innerText = content.range;
+                document.getElementById('stage-desc').innerText = content.desc;
+                displayArea.style.opacity = 1;
+            }, 150);
+        }
+
+        window.onload = function() {
+            const ctx = document.getElementById('devChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['粗大動作', '精細動作', '語言表達', '語言理解', '社會情緒', '認知邏輯'],
+                    datasets: [{
+                        label: '發展觀測強度',
+                        data: [100, 100, 100, 100, 100, 100],
+                        backgroundColor: 'rgba(212, 163, 115, 0.2)',
+                        borderColor: '#d4a373',
+                        pointBackgroundColor: '#8b7e6d',
+                        borderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#EAE6DF' },
+                            grid: { color: '#EAE6DF' },
+                            pointLabels: {
+                                font: { size: 12, family: "'Noto Sans TC'" },
+                                color: '#4A4238'
+                            },
+                            ticks: { display: false },
+                            beginAtZero: true,
+                            max: 120
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

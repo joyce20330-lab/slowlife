@@ -44,29 +44,13 @@
 </head>
 <body class="antialiased">
 
-    <!-- Chosen Palette: 晨曦木質 (Morning Wood) - 以暖米色為底，輔以粘土色 (#d4a373) 與深木色 (#4a4238) -->
-
-    <!-- Application Structure Plan: 
-         根據使用者指示，重新整理為四大階段流：
-         1. 居家觀察檢核清單：以互動式勾選清單啟動，讓家長在最放鬆的狀態下進行初步觀察。
-         2. 衛福部篩檢四大核心：將醫療專業指標模組化，清晰呈現粗大、精細、語言、社會四大面向。
-         3. 整合地圖：什麼是「入世」？：導入人智學深度觀點，透過雷達圖視覺化靈魂與身體的整合狀態。
-         4. 沒通過篩檢？請與我們一起「緩生」：提供感性的支持與直接的預約諮詢管道，移除外部轉介資訊以維持品牌凝聚力。
-         此結構從實務操作延伸至深度理解，最後提供具體支持，符合家長心理歷程。 -->
-
-    <!-- Visualization & Content Choices: 
-         - 檢核清單 -> 互動 Checkbox 清單 -> 強化參與感。
-         - 四大面向 -> 四宮格卡片設計 -> 資訊模組化呈現。
-         - 入世概念 -> 雷達圖 (Radar Chart) -> 呈現意志力量、垂直度、感官等維度 -> Chart.js。
-         - 行動指引 -> 溫暖色塊與單一呼籲按鈕 -> 減少決策壓力。
-         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2 font-bold text-[#4a4238]">
+            <!-- 修正：加入 a 標籤確保跳轉功能 -->
+            <a href="../index.html" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors">
                 <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs">緩</div>
                 <span class="tracking-[0.2em]">緩生工作室</span>
-            </div>
+            </a>
             <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-stone-400">
                 <a href="#observation" class="hover:text-[#d4a373] transition-colors">居家檢核</a>
                 <a href="#core" class="hover:text-[#d4a373] transition-colors">四大核心</a>
@@ -79,6 +63,11 @@
     <main class="pt-24">
         <!-- 英雄區段 -->
         <header class="max-w-4xl mx-auto px-6 mb-24 text-center">
+            <!-- 新增：照片放置於標題上方，使用簡單的圓角與陰影，不影響排版 -->
+            <div class="w-full h-64 md:h-96 mb-12 rounded-[2rem] overflow-hidden shadow-lg mx-auto border-4 border-white">
+                <img src="https://lh3.googleusercontent.com/d/1vf3I_NVLDEUYzFFPAD_xPdMrVG_cxe7y" alt="6-10個月發展指南照片" class="w-full h-full object-cover">
+            </div>
+
             <span class="inline-block px-4 py-1 bg-[#d4a373]/10 text-[#d4a373] text-sm font-bold rounded-full mb-6">6個月 ~ 10個月發展階段</span>
             <h1 class="text-3xl md:text-5xl font-bold text-[#4a4238] leading-tight mb-8">從躺臥到坐立：<br>看見孩子生命律動的轉變</h1>
             <p class="text-stone-500 text-lg leading-relaxed max-w-2xl mx-auto">
@@ -129,6 +118,7 @@
         </section>
 
         <!-- 二、衛福部篩檢四大核心 -->
+        <!-- 為了不要太無趣，這裡僅加入細微的 hover:-translate-y-1 互動效果，完全不改變您的原始排版與顏色 -->
         <section id="core" class="bg-stone-50 py-24 mb-32 border-y border-stone-100">
             <div class="max-w-5xl mx-auto px-6">
                 <div class="mb-16 text-center">
@@ -139,28 +129,28 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div class="text-[#d4a373] font-bold text-xs tracking-widest mb-4 uppercase">Gross Motor</div>
                         <h3 class="text-xl font-bold mb-4 text-[#4a4238]">1. 粗大動作</h3>
                         <p class="text-sm text-stone-500 leading-relaxed">
                             側重於大肌肉群的發展，特別是軀幹的控制與重心的轉移。包含由趴臥轉翻身、自行坐起、以及開始出現蠕動或爬行的企圖。
                         </p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div class="text-[#d4a373] font-bold text-xs tracking-widest mb-4 uppercase">Fine Motor</div>
                         <h3 class="text-xl font-bold mb-4 text-[#4a4238]">2. 精細動作</h3>
                         <p class="text-sm text-stone-500 leading-relaxed">
                             觀察手部小肌肉的精準度，如是否有意識地伸手抓取目標物、能用整個掌心包握物品、以及雙手交互操作的能力。
                         </p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div class="text-[#d4a373] font-bold text-xs tracking-widest mb-4 uppercase">Language</div>
                         <h3 class="text-xl font-bold mb-4 text-[#4a4238]">3. 語言與認知</h3>
                         <p class="text-sm text-stone-500 leading-relaxed">
                             不只是發聲，更在於對語言的「理解」。包含對自己名字的反應、對疊音（如噠噠、叭叭）的模仿嘗試。
                         </p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div class="text-[#d4a373] font-bold text-xs tracking-widest mb-4 uppercase">Social</div>
                         <h3 class="text-xl font-bold mb-4 text-[#4a4238]">4. 社會情緒</h3>
                         <p class="text-sm text-stone-500 leading-relaxed">
@@ -215,8 +205,8 @@
 
         <!-- 四、 沒通過篩檢？請與我們一起「緩生」 -->
         <section id="action" class="max-w-4xl mx-auto px-6 pb-32">
-            <div class="bg-[#4a4238] text-white p-12 md:p-20 rounded-[3.5rem] text-center shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-20 -mt-20"></div>
+            <div class="bg-[#4a4238] text-white p-12 md:p-20 rounded-[3.5rem] relative overflow-hidden text-center shadow-2xl">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
                 
                 <h2 class="text-3xl font-bold mb-8">四、 沒通過篩檢？<br>請與我們一起「緩生」</h2>
                 <p class="text-stone-300 leading-relaxed mb-12 max-w-2xl mx-auto">

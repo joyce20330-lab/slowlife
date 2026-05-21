@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1歲半至2歲兒童發展篩檢：衛福部指標與人智學居家觀察指南 | 緩生工作室</title>
+    <meta name="description" content="孩子發展慢半拍？1歲6個月至2歲是關鍵期。緩生工作室為您整理衛福部兒童發展篩檢重點與實用居家檢核清單，並帶入人智醫學視角，陪伴爸媽在忙亂育兒中找回自然的節奏，為孩子掌握早期療育的黃金支持期。">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
+                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
+                        clay: { 50: '#F4EFEA', 100: '#EAE1D8', 500: '#d4a373' },
+                        rose: { 50: '#FDF8F8', 500: '#B36D61' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FAF8F5;
+            color: #4A4238;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 450px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .checkbox-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .checkbox-card:hover {
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        .check-input:checked + label {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 頂部導覽列 -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="../index.html#knowledge" class="flex items-center gap-2 font-bold text-[#4A4238] hover:text-[#8A9A86] transition-all group">
+                <i class="fa-solid fa-arrow-left text-lg group-hover:-translate-x-1 transition-transform"></i>
+                <span class="tracking-widest">回到知識分享</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-stone-600">
+                <a href="#observation" class="hover:text-[#8A9A86] transition-colors">居家檢核</a>
+                <a href="#clinical-core" class="hover:text-[#8A9A86] transition-colors">四大核心</a>
+                <a href="#anthroposophy" class="hover:text-[#8A9A86] transition-colors">靈魂入世</a>
+                <a href="#action" class="hover:text-[#8A9A86] transition-colors">陪伴與支持</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- 主視覺與標題 -->
+        <header class="relative mb-20">
+            <div class="w-full h-[40vh] md:h-[50vh] overflow-hidden rounded-b-[2.5rem] shadow-sm bg-stone-100 relative">
+                <!-- 嵌入 Google Drive 圖片 -->
+                <img src="https://lh3.googleusercontent.com/d/16W6kEx-jkyLh7LTZ6fFa_FURPuVYXz5O" alt="1歲半~2歲兒童發展篩檢" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-black/15"></div>
+            </div>
+            <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 text-center md:text-left">
+                <div class="bg-white/95 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-white">
+                    <span class="inline-block px-4 py-1 bg-sage-500/10 text-sage-600 text-sm font-bold rounded-full mb-4">第三階段：1歲6個月 ~ 2歲</span>
+                    <h1 class="text-2xl md:text-4xl font-bold text-stone-800 leading-tight mb-6">
+                        第三階段：1歲6個月～2歲的兒童發展篩檢在幹嘛？
+                    </h1>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base">
+                        在孩子 1 歲半到 2 歲的成長階梯上，父母常在「焦慮」與「放手」之間掙扎。這時期的孩子正處於從「模仿」轉向「自我意識萌芽」的關鍵時刻。
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base mt-4">
+                        除了參考衛福部的醫療評估指標，我們更可以運用人智學的觀點，為孩子建構一個更具生命力的成長環境。
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- 一、 居家觀察檢核清單 -->
+        <section id="observation" class="max-w-4xl mx-auto px-6 mb-28 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">一、 居家觀察檢核清單</h2>
+                <p class="text-stone-500 max-w-xl mx-auto text-sm leading-relaxed">
+                    父母是孩子成長最忠實的觀察者，在日常生活中，您可以透過以下行為指標，初步檢視孩子的發展進程：
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-1" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-1" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">肢體動作</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">孩子能否獨立行走得穩，並嘗試蹲下撿拾玩具？是否能扶著扶手嘗試上下樓梯？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-2" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-2" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">手部精細動作</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">是否能嘗試使用湯匙進食，或挑戰疊高 2 個以上的積木？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-3" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-3" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">語言與表達</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">是否能理解您口述的簡單指令（如：把球球給我）？是否開始出現 5-10 個單字，甚至試著連結短句？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-4" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-4" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">社交與生活互動</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">當您指著遠方的風景時，孩子會不會跟著您的視線看過去（共同關注）？在情緒挫折時，是否會尋求您的目光與擁抱？</span>
+                    </label>
+                </div>
+            </div>
+
+            <p class="mt-8 text-center text-xs text-stone-400 italic">若觀察到以上項目有長期無法達成的情形，建議您帶著兒童健康手冊前往醫療院所進行評估。</p>
+        </section>
+
+        <!-- 二、衛福部篩檢四大核心 -->
+        <section id="clinical-core" class="bg-stone-100/60 py-24 mb-28 border-y border-stone-200/50 scroll-mt-24">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="mb-16 text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">二、 衛福部篩檢四大核心</h2>
+                    <p class="text-stone-500 max-w-xl mx-auto text-sm leading-relaxed">
+                        政府推廣的兒童發展篩檢，是為了確保孩子在成長過程中，能即時獲得需要的支持。這階段的評估主要涵蓋四大核心：
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 1. 粗動作發展 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Gross Motor</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">1. 粗動作發展</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            評估孩子對抗地心引力的能力，如行走、平衡與跑動，這是未來身體協調的基礎。
+                        </p>
+                    </div>
+                    <!-- 2. 精細動作發展 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Fine Motor</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">2. 精細動作發展</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            觀察手眼協調能力，這不僅是動作訓練，更是神經網絡精細度的展現。
+                        </p>
+                    </div>
+                    <!-- 3. 語言溝通能力 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Language & Communication</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">3. 語言溝通能力</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            確認孩子是否具備接收訊息與表達需求的連結，是進入社交生活的關鍵。
+                        </p>
+                    </div>
+                    <!-- 4. 社交與情緒發展 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Social & Emotional</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">4. 社交與情緒發展</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            評估孩子對周遭人事的覺察力與互動意願，這是奠定心理健康的重要環節。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 三、整合地圖：發展「平衡覺」與「運動覺」 -->
+        <section id="anthroposophy" class="max-w-5xl mx-auto px-6 mb-28 scroll-mt-24">
+            <div class="text-center mb-16">
+                <span class="text-sage-500 font-bold tracking-widest mb-2 block text-sm uppercase">Anthroposophical Insight</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">三、 整合地圖：發展「平衡覺」與「運動覺」</h2>
+                <p class="text-stone-500 max-w-2xl mx-auto text-sm leading-relaxed">
+                    除了量化指標，人智醫學為育兒補充了更深層的生命意義。孩子在 1 歲半到 2 歲的動作與行為，其實與內在的感官發展密不可分：
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- 視覺化雷達圖 -->
+                <div class="chart-container glass-panel rounded-[3rem] p-8 shadow-md">
+                    <canvas id="stage3Chart"></canvas>
+                    <div class="mt-6 text-center">
+                        <p class="text-[11px] text-stone-400 tracking-wider">本圖呈現 1.5-2歲幼兒在人智學視角下的五大基礎感官發展</p>
+                    </div>
+                </div>
+                <!-- 人智學內容解析 -->
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-arrows-up-down"></i> 平衡覺與運動覺（粗大動作）
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            當孩子在學習走路時，不只是學會行走，更是幫助思考與意志力萌芽的關鍵。居家環境中，多讓孩子接觸沙土、草地等不平整的自然地面，能有效滋養這些感官。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-hand-holding-heart"></i> 觸覺與生命覺（精細動作）
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            在精細動作上，透過真實材質（如木頭、棉布）的觸摸，能深化孩子的「觸覺」與「生命覺」，讓他們能真實感受物質世界的界線與溫度。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-seedling"></i> 語言與社交：靈魂的呼吸
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            過多的電子媒體會干擾孩子聽覺的自然發展。請給予孩子節奏穩定、充滿溫度的人際互動，讓孩子在充滿安全感的環境中，發展出健康的「自我」。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四、緩生小語 -->
+        <section id="action" class="max-w-4xl mx-auto px-6 pb-28 scroll-mt-24">
+            <div class="bg-stone-800 text-white p-12 md:p-16 rounded-[3.5rem] text-center shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-20 -mt-20"></div>
+                
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-relaxed">四、 緩生小語</h2>
+                <h3 class="text-clay-500 font-bold tracking-[0.1em] text-lg md:text-xl mb-8 leading-snug">
+                    每一個孩子都是獨特的種子，在屬於他的節奏裡，終會綻放。
+                </h3>
+                
+                <p class="text-stone-300 leading-relaxed mb-10 max-w-2xl mx-auto text-sm md:text-base text-justify">
+                    育兒，是一場充滿藝術感的練習。早期療育不僅僅是為了讓數據達標，更是為了在孩子發展遇到阻礙時，能透過專業的介入，鬆開那些綑綁住生命能量的死結。如果在兒童發展篩檢中發現落後，請不必過度焦慮，這往往只是提醒我們，孩子需要更溫柔、更符合他內在規律的陪伴方式。<br><br>如果您對孩子的發展有任何疑慮，建議隨時諮詢專業醫師，讓醫療團隊與您共同守護寶貝的成長。
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-3">
+                        <i class="fa-brands fa-line text-2xl"></i> 預約諮詢
+                    </a>
+                    <a href="../index.html" class="border border-stone-300 text-stone-300 px-8 py-4 rounded-full font-bold hover:bg-stone-700 transition-colors">
+                        返回首頁
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 text-center text-stone-400 border-t border-stone-200">
+        <div class="w-12 h-px bg-stone-300 mx-auto mb-8"></div>
+        <p class="text-[10px] tracking-[0.4em] uppercase">© 2026 Slow Life Studio | 緩生工作室</p>
+    </footer>
+
+    <script>
+        // 初始化雷達圖
+        window.onload = function() {
+            const ctx = document.getElementById('stage3Chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['平衡覺 (大肢體)', '運動覺 (協調)', '觸覺與生命覺 (精細)', '聽覺與語言 (溝通)', '自我與社交 (互動)'],
+                    datasets: [{
+                        label: '人智學感官整合度',
+                        data: [85, 88, 92, 80, 85],
+                        fill: true,
+                        backgroundColor: 'rgba(138, 154, 134, 0.25)', 
+                        borderColor: '#8A9A86', 
+                        pointBackgroundColor: '#d4a373', 
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#8A9A86',
+                        borderWidth: 3,
+                        tension: 0.15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(74, 66, 56, 0.1)' },
+                            grid: { color: 'rgba(74, 66, 56, 0.1)' },
+                            pointLabels: {
+                                color: '#7A6F62',
+                                font: {
+                                    size: 13,
+                                    family: "'Noto Sans TC'",
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: { display: false },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

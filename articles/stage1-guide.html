@@ -46,10 +46,10 @@
 
     <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <!-- 修正：加入 a 標籤確保跳轉功能 -->
-            <a href="../index.html" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors">
-                <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs">緩</div>
-                <span class="tracking-[0.2em]">緩生工作室</span>
+            <!-- 修正：改為回到上一頁的功能，並加入提示文字 -->
+            <a href="javascript:history.back()" title="回到上一頁" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors">
+                <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="tracking-[0.2em]">回到上一頁</span>
             </a>
             <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-stone-400">
                 <a href="#observation" class="hover:text-[#d4a373] transition-colors">居家檢核</a>

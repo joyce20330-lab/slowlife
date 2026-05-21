@@ -46,8 +46,8 @@
 
     <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <!-- 修正：將跳轉連結改為知識分享頁面，並更新文字 -->
-            <a href="../knowledge.html" title="回到知識分享" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors">
+            <!-- 修正：使用 window.history.back() 完全模擬瀏覽器「上一頁」的行為 -->
+            <a href="javascript:void(0);" onclick="window.history.back();" title="回到知識分享" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors cursor-pointer">
                 <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs"><i class="fa-solid fa-arrow-left"></i></div>
                 <span class="tracking-[0.2em]">回到知識分享</span>
             </a>

@@ -9,7 +9,7 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome (用於 LINE 圖示) -->
+    <!-- Font Awesome (用於 LINE 圖示與返回箭頭) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -50,9 +50,10 @@
     <!-- 頂部導覽列 -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-orange-50 px-6 py-4">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-all">
-                <span class="text-xl">🏠</span>
-                <span>緩生工作室首頁</span>
+            <!-- 修正：使用 window.history.back() 完全模擬瀏覽器「上一頁」的行為 -->
+            <a href="javascript:void(0);" onclick="window.history.back();" title="回到知識分享" class="flex items-center gap-2 font-bold text-[#4a4238] hover:text-[#d4a373] transition-colors cursor-pointer">
+                <div class="w-8 h-8 bg-[#d4a373] rounded-full flex items-center justify-center text-white text-xs"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="tracking-[0.2em]">回到知識分享</span>
             </a>
             <div class="hidden md:flex gap-6 text-sm font-medium">
                 <a href="#schedule" class="nav-link transition-all">篩檢時程</a>
@@ -65,8 +66,8 @@
 
     <main class="max-w-4xl mx-auto pb-20 pt-16">
         <!-- 主視覺與標題 -->
-        <section class="relative mb-12">
-            <div class="w-full h-64 md:h-96 overflow-hidden rounded-b-3xl shadow-sm bg-gray-100">
+        <section class="relative mb-12 mt-6">
+            <div class="w-full h-64 md:h-96 overflow-hidden rounded-[2rem] shadow-sm bg-gray-100 border-4 border-white">
                 <img src="https://lh3.googleusercontent.com/d/1xvuQHUVJFVEwLj5iKsfcglrMCW-kE0V2" alt="兒童發展篩檢主圖" class="w-full h-full object-cover">
             </div>
             <div class="px-6 -mt-16 relative">
@@ -146,6 +147,7 @@
         <section id="resources" class="px-6 mb-20 scroll-mt-24">
             <h2 class="text-2xl font-bold mb-8 text-center text-[#4a4238]">二、 篩檢資訊哪裡找？</h2>
             <div class="grid md:grid-cols-3 gap-6">
+                <!-- 這裡加入您之前需要我們補上的正確連結 -->
                 <a href="https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=1139" target="_blank" rel="noopener noreferrer" class="block bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-[#d4a373] group">
                     <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
                     <h3 class="font-bold mb-3 text-[#4a4238] group-hover:text-[#d4a373] transition-colors">兒童健康手冊</h3>
@@ -209,14 +211,8 @@
                 <p class="text-gray-500 text-sm max-w-md mx-auto mb-8 leading-relaxed">關注發展是為了在孩子絆腳時接住他。讓我們用最溫柔的方式，陪伴孩子安穩開花。</p>
                 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <!-- 修正：官方 LINE 連結 -->
                     <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg transition-all flex items-center gap-2">
                         <i class="fa-brands fa-line text-xl"></i> 預約育兒諮詢
-                    </a>
-                    
-                    <!-- 修正：返回首頁路徑 -->
-                    <a href="../index.html" class="border border-[#d4a373] text-[#d4a373] px-8 py-3 rounded-full text-sm font-bold hover:bg-orange-50 transition-all">
-                        返回首頁
                     </a>
                 </div>
                 

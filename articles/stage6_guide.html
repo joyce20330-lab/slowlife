@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第六階段：5歲～7歲兒童發展篩檢指南｜緩生工作室</title>
+    <meta name="description" content="5歲到7歲是兒童發展的關鍵期！孩子入學前，父母在家如何進行簡易觀察與篩檢？本文帶您深入了解衛福部兒童發展篩檢核心，並從人智醫學視角解析「乙太體」發育，教您如何在生活中透過節奏與環境，給予孩子最溫柔的早期療育支持。緩生工作室陪伴您，守護孩子的成長軌跡，讓每一位孩子都能自在舒展、自信綻放。">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
+                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
+                        clay: { 50: '#F4EFEA', 100: '#EAE1D8', 500: '#d4a373' },
+                        rose: { 50: '#FDF8F8', 500: '#B36D61' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FAF8F5;
+            color: #4A4238;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 450px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .checkbox-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .checkbox-card:hover {
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        .check-input:checked + label {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 頂部導覽列 -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="../index.html#knowledge" class="flex items-center gap-2 font-bold text-[#4A4238] hover:text-[#8A9A86] transition-all group">
+                <i class="fa-solid fa-arrow-left text-lg group-hover:-translate-x-1 transition-transform"></i>
+                <span class="tracking-widest">回到知識分享</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-stone-600">
+                <a href="#observation" class="hover:text-[#8A9A86] transition-colors">居家檢核</a>
+                <a href="#clinical-core" class="hover:text-[#8A9A86] transition-colors">四大核心</a>
+                <a href="#anthroposophy" class="hover:text-[#8A9A86] transition-colors">乙太體律動</a>
+                <a href="#action" class="hover:text-[#8A9A86] transition-colors">陪伴與支持</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- 主視覺與標題 -->
+        <header class="relative mb-20">
+            <div class="w-full h-[40vh] md:h-[50vh] overflow-hidden rounded-b-[2.5rem] shadow-sm bg-stone-100 relative">
+                <!-- 嵌入 Google Drive 圖片 -->
+                <img src="https://lh3.googleusercontent.com/d/1cZxeM-4od_cf0_7h6wE_D5qIyiNt1Qsm" alt="5歲~7歲兒童發展篩檢" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-black/15"></div>
+            </div>
+            <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 text-center md:text-left">
+                <div class="bg-white/95 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-white">
+                    <span class="inline-block px-4 py-1 bg-sage-500/10 text-sage-600 text-sm font-bold rounded-full mb-4">第六階段：5歲 ~ 7歲</span>
+                    <h1 class="text-2xl md:text-4xl font-bold text-stone-800 leading-tight mb-6">
+                        第六階段：5 歲 ～ 7 歲兒童發展篩檢在幹嘛？
+                    </h1>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base">
+                        您是否常在孩子的成長過程中，心裡默默擔心：「孩子這樣發展正常嗎？」其實，兒童發展不僅僅是數字與量表的達成，更是孩子生命能量自在開展的過程。
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base mt-4">
+                        對於 5 歲至 7 歲這個階段，這不僅是入學前的準備期，更是乙太體發育與穩定的重要轉捩點。這篇文章將結合衛福部的兒童發展篩檢標準，並帶入人智醫學的獨特視角，協助您在家中也能優雅、自信地陪伴孩子成長。
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- 一、 居家觀察檢核清單 -->
+        <section id="observation" class="max-w-4xl mx-auto px-6 mb-28 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">一、 居家觀察檢核清單：父母的溫柔守望</h2>
+                <p class="text-stone-500 max-w-xl mx-auto text-sm leading-relaxed">
+                    在專業篩檢之前，父母是觀察孩子細微變化的最佳人選。當孩子邁向 5 至 7 歲時，請您可以重點觀察以下四大領域：
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-1" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-1" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">動作發展</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">孩子是否能穩定控制手部精細動作（如：拿筷子、寫字、使用剪刀）？跑跳時的平衡感是否協調？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-2" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-2" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">語言溝通</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">是否能完整表達一件事情的因果關係？能否理解複雜的指令，並與同儕進行有意義的對話？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-3" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-3" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">人際互動</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">在遊戲中是否能遵守規則？是否展現出同理心，能察覺他人的情緒？</span>
+                    </label>
+                </div>
+                <div class="checkbox-card p-6 bg-white rounded-2xl border border-stone-100 flex items-start gap-4">
+                    <input type="checkbox" id="check-4" class="check-input mt-1.5 w-5 h-5 accent-sage-500 cursor-pointer shrink-0">
+                    <label for="check-4" class="cursor-pointer">
+                        <span class="block font-bold text-stone-800 mb-1">認知表現</span>
+                        <span class="text-sm text-stone-500 leading-relaxed">對周遭事物是否展現好奇心？是否有初步的空間、時間與數字概念？</span>
+                    </label>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-center text-sm text-stone-500 bg-stone-100/80 py-4 px-6 rounded-2xl">
+                若在居家觀察中發現孩子在上述領域持續出現明顯落後，請不要焦慮，適時尋求早期療育評估，是給孩子最珍貴的成長禮物，也是為了讓未來的學習更順暢。
+            </p>
+        </section>
+
+        <!-- 二、衛福部篩檢四大核心 -->
+        <section id="clinical-core" class="bg-stone-100/60 py-24 mb-28 border-y border-stone-200/50 scroll-mt-24">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="mb-16 text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">二、 衛福部篩檢四大核心：專業的支持基礎</h2>
+                    <p class="text-stone-500 max-w-2xl mx-auto text-sm leading-relaxed">
+                        依據衛福部的兒童發展篩檢指南，這個階段的評估核心，旨在及早發現發育風險。專業人員通常會針對以下核心進行檢測：
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Gross Motor</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">1. 粗大動作</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            評估身體平衡與肢體協調度，是運動能力的基礎，確保大肌肉群成熟發展。
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Fine Motor</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">2. 精細動作</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            觀察視覺與手部的協作能力，這與未來寫字、操作工具等學業表現息息相關。
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Language & Communication</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">3. 語言與溝通</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            檢核表達能力與聽力理解的成熟度，確保孩子能準確接收與傳遞訊息。
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-stone-100">
+                        <div class="text-sage-500 font-bold text-xs tracking-widest mb-4 uppercase">Social & Emotional</div>
+                        <h3 class="text-xl font-bold mb-3 text-stone-800">4. 社交與情緒</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            觀察其在團體中的適應力、挫折忍受度與自我管理能力，這攸關入學後的同儕互動。
+                        </p>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm text-stone-500 max-w-2xl mx-auto">
+                    透過這些標準化的檢測，能有效為孩子的成長建立安全網，讓需要協助的孩子能盡早獲得適當的支持與資源。
+                </p>
+            </div>
+        </section>
+
+        <!-- 三、整合地圖：從人智醫學看乙太體律動 -->
+        <section id="anthroposophy" class="max-w-5xl mx-auto px-6 mb-28 scroll-mt-24">
+            <div class="text-center mb-16">
+                <span class="text-sage-500 font-bold tracking-widest mb-2 block text-sm uppercase">Anthroposophical Insight</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">三、 整合地圖：從人智醫學看「乙太體」的律動</h2>
+                <p class="text-stone-500 max-w-2xl mx-auto text-sm leading-relaxed">
+                    在人智醫學中，我們將「乙太體（Etheric Body）」視為孩子的「生命園丁」。它不僅負責掌管身體的生長、消化與免疫，更像是一台內在的時鐘，負責建構孩子的身體與節奏。
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- 視覺化雷達圖 -->
+                <div class="chart-container glass-panel rounded-[3rem] p-8 shadow-md">
+                    <canvas id="stage6Chart"></canvas>
+                    <div class="mt-6 text-center">
+                        <p class="text-[11px] text-stone-400 tracking-wider">本圖呈現 5-7 歲幼兒乙太體運作與內在成長動能的整合現況</p>
+                    </div>
+                </div>
+                <!-- 人智學內容解析 -->
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-leaf"></i> 什麼是乙太體？生命的設計圖
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            它是生命的修復師。當孩子睡覺時，乙太體會修補白天的消耗，加速器官生長。在 5-7 歲階段，乙太體致力於將生命能量投入於大腦網絡與肢體協調的塑形中。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-triangle-exclamation"></i> 為什麼異常需要關注？
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            若篩檢發現肢體協調或社交表現落後，人智醫學視其為「生命力在調整過程中遇到的阻礙」。這可能是過多的數位刺激或過度智性的訓練，導致乙太體忙於處理外在資訊，而無法專注建構內在身體。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sage-600 mb-3 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-hands-holding-child"></i> 如何給予支持？透過節奏滋養
+                        </h4>
+                        <p class="text-sm text-stone-500 leading-relaxed">
+                            我們不必透過高強度的矯正來加速，而是要透過「節奏」來滋養。規律的作息、模仿性質的遊戲、藝術性的活動，都是給予乙太體最溫柔的保護。當生活充滿了規律與美感，孩子便能將能量收回，滋養身體與情緒的穩定。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四、緩生小語 -->
+        <section id="action" class="max-w-4xl mx-auto px-6 pb-28 scroll-mt-24">
+            <div class="bg-stone-800 text-white p-12 md:p-16 rounded-[3.5rem] text-center shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-20 -mt-20"></div>
+                
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-relaxed">四、 緩生小語</h2>
+                <h3 class="text-clay-500 font-bold tracking-[0.1em] text-lg md:text-xl mb-8 leading-snug">
+                    親愛的爸爸媽媽，早期療育的初衷並非給孩子貼上標籤，<br class="hidden sm:block">而是為了讓生命能更舒展地活出自我。
+                </h3>
+                
+                <p class="text-stone-300 leading-relaxed mb-10 max-w-2xl mx-auto text-sm md:text-base text-justify">
+                    在「緩生工作室」，我們相信每個孩子都有其獨特的開花時刻。請放下過度的焦慮，用您充滿愛與觀察的雙眼，接納並支持孩子乙太體運作的節奏。若您對兒童發展有任何疑慮，請記得，您不必一個人孤軍奮戰，緩生工作室將持續陪伴您，用愛守護孩子的成長軌跡。
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-3">
+                        <i class="fa-brands fa-line text-2xl"></i> 預約諮詢
+                    </a>
+                    <a href="../index.html" class="border border-stone-300 text-stone-300 px-8 py-4 rounded-full font-bold hover:bg-stone-700 transition-colors">
+                        返回首頁
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 text-center text-stone-400 border-t border-stone-200">
+        <div class="w-12 h-px bg-stone-300 mx-auto mb-8"></div>
+        <p class="text-[10px] tracking-[0.4em] uppercase">© 2026 Slow Life Studio | 緩生工作室</p>
+    </footer>
+
+    <script>
+        // 初始化雷達圖
+        window.onload = function() {
+            const ctx = document.getElementById('stage6Chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['乙太修復 (睡眠節奏)', '認知吸收 (邏輯好奇)', '社交適應 (情緒同理)', '精細協調 (手部操作)', '大腦網絡 (肢體平衡)'],
+                    datasets: [{
+                        label: '人智學成長動能',
+                        data: [95, 90, 85, 88, 85],
+                        fill: true,
+                        backgroundColor: 'rgba(138, 154, 134, 0.25)', 
+                        borderColor: '#8A9A86', 
+                        pointBackgroundColor: '#d4a373', 
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#8A9A86',
+                        borderWidth: 3,
+                        tension: 0.15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(74, 66, 56, 0.1)' },
+                            grid: { color: 'rgba(74, 66, 56, 0.1)' },
+                            pointLabels: {
+                                color: '#7A6F62',
+                                font: {
+                                    size: 13,
+                                    family: "'Noto Sans TC'",
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: { display: false },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

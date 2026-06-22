@@ -1,198 +1,248 @@
-!DOCTYPE html
-html lang=zh-TW class=scroll-smooth
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    title寶寶厭奶怎麼辦？別慌！緩生工作室帶你拆解厭奶期背後的真相｜緩生工作室title
-    meta name=description content=寶寶突然不喝奶了嗎？宜蘭緩生工作室針對厭奶期提供專業解析。本文由泌乳師呸呸整理，深入探討寶寶厭奶原因，並針對親餵與瓶餵媽媽提供實用的應對策略，幫助您克服母乳哺餵困難，從容面對生理性脹奶與寶寶成長的關鍵時期。如果您在育兒路上感到焦慮，歡迎預約我們的宜蘭泌乳服務，讓我們一起找回穩定、溫柔的哺餵節奏。
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寶寶厭奶怎麼辦？別慌！緩生工作室帶你拆解厭奶期背後的真相｜緩生工作室</title>
+    <meta name="description" content="寶寶突然不喝奶了嗎？宜蘭緩生工作室針對厭奶期提供專業解析。本文由泌乳師呸呸整理，深入探討寶寶厭奶原因，並針對親餵與瓶餵媽媽提供實用的應對策略，幫助您克服母乳哺餵困難，從容面對生理性脹奶與寶寶成長的關鍵時期。如果您在育兒路上感到焦慮，歡迎預約我們的宜蘭泌乳服務，讓我們一起找回穩定、溫柔的哺餵節奏。">
     
-    !-- Tailwind CSS --
-    script src=httpscdn.tailwindcss.comscript
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.4.0cssall.min.css
-    link href=httpsfonts.googleapis.comcss2family=Noto+Sans+TCwght@300;400;500;700&display=swap rel=stylesheet
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    script
+    <script>
         tailwind.config = {
-            theme {
-                extend {
-                    colors {
-                        stone { 50 '#FAF8F5', 100 '#F5F2EB', 200 '#EAE6DF', 600 '#7A6F62', 800 '#4A4238' },
-                        sage { 50 '#F0F3F0', 100 '#E1E6E1', 500 '#8A9A86', 600 '#6B7A68' },
-                        clay { 50 '#F4EFEA', 100 '#EAE1D8', 500 '#d4a373' }
+            theme: {
+                extend: {
+                    colors: {
+                        stone: { 
+                            50: '#FAF8F5', 
+                            100: '#F5F2EB', 
+                            200: '#EAE6DF', 
+                            600: '#7A6F62', 
+                            800: '#4A4238' 
+                        },
+                        sage: { 
+                            50: '#F0F3F0', 
+                            100: '#E1E6E1', 
+                            500: '#8A9A86', 
+                            600: '#6B7A68' 
+                        },
+                        clay: { 
+                            50: '#F4EFEA', 
+                            100: '#EAE1D8', 
+                            500: '#d4a373' 
+                        }
                     },
-                    fontFamily { sans ['Noto Sans TC', 'sans-serif'] }
+                    fontFamily: { 
+                        sans: ['Noto Sans TC', 'sans-serif'] 
+                    }
                 }
             }
         }
-    script
-    style
+    </script>
+    <style>
         body {
-            font-family 'Noto Sans TC', sans-serif;
-            background-color #FAF8F5;
-            color #4A4238;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FAF8F5;
+            color: #4A4238;
         }
-    style
-head
-body class=antialiased
+    </style>
+</head>
+<body class="antialiased">
 
-    !-- 頂部導覽列 --
-    nav class=fixed top-0 left-0 w-full z-50 bg-white80 backdrop-blur-md border-b border-stone-100 px-6 py-4
-        div class=max-w-5xl mx-auto flex justify-between items-center
-            a href=..index.html#knowledge class=flex items-center gap-2 font-bold text-[#4A4238] hovertext-[#8A9A86] transition-all group
-                i class=fa-solid fa-arrow-left text-lg group-hover-translate-x-1 transition-transformi
-                span class=tracking-widest回到知識分享span
-            a
-        div
-    nav
+    <!-- 頂部導覽列 -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="../index.html#knowledge" class="flex items-center gap-2 font-bold text-[#4A4238] hover:text-[#8A9A86] transition-all group">
+                <i class="fa-solid fa-arrow-left text-lg group-hover:-translate-x-1 transition-transform"></i>
+                <span class="tracking-widest">回到知識分享</span>
+            </a>
+        </div>
+    </nav>
 
-    main class=pt-16
-        !-- 主視覺與標題 --
-        header class=relative mb-20
-            div class=w-full h-[40vh] mdh-[55vh] overflow-hidden rounded-b-[2.5rem] shadow-sm bg-stone-100 relative
-                !-- 嵌入 Google Drive 圖片 --
-                img src=httpslh3.googleusercontent.comd1o7vfHP1WIIWA6gzj5ahzWEcyIbk21K7X alt=寶寶厭奶怎麼辦 class=w-full h-full object-cover object-center
-                div class=absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-black20div
-            div
-            div class=max-w-4xl mx-auto px-6 -mt-32 relative z-10 text-center mdtext-left
-                div class=bg-white95 p-8 mdp-12 rounded-[2.5rem] shadow-xl border border-white
-                    span class=inline-block px-4 py-1 bg-sage-50010 text-sage-600 text-sm font-bold rounded-full mb-4享受哺乳時光span
-                    h1 class=text-2xl mdtext-4xl font-bold text-stone-800 leading-tight mb-6
+    <main class="pt-16">
+        <!-- 主視覺與標題 -->
+        <header class="relative mb-20">
+            <div class="w-full h-[40vh] md:h-[55vh] overflow-hidden rounded-b-[2.5rem] shadow-sm bg-stone-100 relative">
+                <!-- 嵌入 Google Drive 圖片，並加上防出錯替代圖 -->
+                <img src="https://lh3.googleusercontent.com/d/1o7vfHP1WIIWA6gzj5ahzWEcyIbk21K7X" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80';" 
+                     alt="寶寶厭奶怎麼辦" 
+                     class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-black/20"></div>
+            </div>
+            <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 text-center md:text-left">
+                <div class="bg-white/95 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-white">
+                    <span class="inline-block px-4 py-1 bg-sage-500/10 text-sage-600 text-sm font-bold rounded-full mb-4">享受哺乳時光</span>
+                    <h1 class="text-2xl md:text-4xl font-bold text-stone-800 leading-tight mb-6">
                         寶寶厭奶怎麼辦？別慌！緩生工作室帶你拆解厭奶期背後的真相
-                    h1
-                    p class=text-stone-600 leading-relaxed text-sm mdtext-base
+                    </h1>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base">
                         寶寶突然不愛喝奶了，這讓許多新手爸媽焦慮不已。作為一位深耕宜蘭的泌乳師，我經常在諮詢中接到媽媽們求助。
-                    p
-                    p class=text-stone-600 leading-relaxed text-sm mdtext-base mt-4
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base mt-4">
                         其實，厭奶期往往是寶寶成長過程中的一個里程碑，而非疾病。只要了解生理機制，並搭配適合的應對策略，就能從容度過。
-                    p
-                div
-            div
-        header
+                    </p>
+                </div>
+            </div>
+        </header>
 
-        !-- 區段一：原因解析 --
-        section class=max-w-3xl mx-auto px-6 mb-20
-            h2 class=text-2xl font-bold text-stone-800 mb-6 flex items-center gap-3
-                i class=fa-solid fa-circle-question text-sage-500i 為什麼寶寶會突然厭奶？
-            h2
-            div class=bg-white p-8 rounded-3xl shadow-sm border border-stone-100
-                p class=text-stone-600 leading-relaxed mb-4
+        <!-- 區段一：原因解析 -->
+        <section class="max-w-3xl mx-auto px-6 mb-20">
+            <h2 class="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-circle-question text-sage-500"></i> 為什麼寶寶會突然厭奶？
+            </h2>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
+                <p class="text-stone-600 leading-relaxed mb-4">
                     厭奶期通常發生在寶寶 3 至 4 個月大左右。這時的寶寶好奇心大增，對周遭環境的敏銳度提高，比起喝奶，他們對世界更感興趣。此外，寶寶口腔發育的改變以及長牙的不適，也可能導致喝奶意願下降。
-                p
-                div class=bg-rose-5050 p-6 rounded-2xl border-l-4 border-rose-300 mt-6 text-stone-700 text-sm leading-relaxed
-                    i class=fa-solid fa-heart text-rose-400 mr-2istrong給媽媽的溫馨提醒：strong對於剛生產完的媽媽，若在此階段同時面臨生理性脹奶或餵養壓力，更容易感受到挫折。請記得，這並不是媽媽的問題，也與母乳品質無關。
-                div
-            div
-        section
+                </p>
+                <div class="bg-rose-50/50 p-6 rounded-2xl border-l-4 border-rose-300 mt-6 text-stone-700 text-sm leading-relaxed">
+                    <i class="fa-solid fa-heart text-rose-400 mr-2"></i><strong>給媽媽的溫馨提醒：</strong>對於剛生產完的媽媽，若在此階段同時面臨生理性脹奶或餵養壓力，更容易感受到挫折。請記得，這並不是媽媽的問題，也與母乳品質無關。
+                </div>
+            </div>
+        </section>
 
-        !-- 區段二：應對策略 --
-        section class=max-w-4xl mx-auto px-6 mb-20
-            div class=text-center mb-12
-                h2 class=text-2xl mdtext-3xl font-bold text-stone-800 mb-4針對不同餵養方式的應對策略h2
-                div class=h-1 w-16 bg-sage-500 mx-auto rounded-fulldiv
-            div
+        <!-- 區段二：應對策略 -->
+        <section class="max-w-4xl mx-auto px-6 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">針對不同餵養方式的應對策略</h2>
+                <div class="h-1 w-16 bg-sage-500 mx-auto rounded-full"></div>
+            </div>
 
-            div class=grid mdgrid-cols-2 gap-8
-                !-- 親餵策略 --
-                div class=bg-white p-8 rounded-3xl shadow-sm border-t-4 border-sage-500 relative hover-translate-y-1 transition-transform duration-300
-                    div class=w-12 h-12 bg-sage-100 text-sage-600 rounded-full flex items-center justify-center text-xl absolute -top-6 left-8 shadow-sm
-                        i class=fa-solid fa-person-breastfeedingi
-                    div
-                    h3 class=text-xl font-bold text-stone-800 mt-4 mb-4親餵母乳的媽媽brspan class=text-sage-600 text-base font-medium把握「迷糊奶」與穩定節奏spanh3
-                    p class=text-sm text-stone-500 mb-6 leading-relaxed親餵寶寶厭奶時，容易表現出邊喝邊玩、頻繁換邊，或是被稍微晃動就停止吸吮。p
-                    ul class=space-y-4
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-sage-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800營造安靜環境：strong在燈光昏暗、安靜的空間進行哺餵，減少視覺與聽覺的刺激。p
-                        li
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-sage-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800運用「迷糊奶」技巧：strong在寶寶快要睡著、剛睡醒或是半夢半醒時哺餵，這時候寶寶的吸吮反射最強。p
-                        li
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-sage-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800觀察親密連結：strong厭奶期往往是寶寶探索身體的過程，給予更多的皮膚接觸，維持媽媽與寶寶的親密感。p
-                        li
-                    ul
-                div
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 親餵策略 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-sage-500 relative hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-sage-100 text-sage-600 rounded-full flex items-center justify-center text-xl absolute -top-6 left-8 shadow-sm">
+                        <i class="fa-solid fa-person-breastfeeding"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mt-4 mb-4">
+                        親餵母乳的媽媽<br>
+                        <span class="text-sage-600 text-base font-medium">把握「迷糊奶」與穩定節奏</span>
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6 leading-relaxed">親餵寶寶厭奶時，容易表現出邊喝邊玩、頻繁換邊，或是被稍微晃動就停止吸吮。</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-sage-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">營造安靜環境：</strong>在燈光昏暗、安靜的空間進行哺餵，減少視覺與聽覺的刺激。
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-sage-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">運用「迷糊奶」技巧：</strong>在寶寶快要睡著、剛睡醒或是半夢半醒時哺餵，這時候寶寶的吸吮反射最強。
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-sage-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">觀察親密連結：</strong>厭奶期往往是寶寶探索身體的過程，給予更多的皮膚接觸，維持媽媽與寶寶的親密感。
+                            </p>
+                        </li>
+                    </ul>
+                </div>
 
-                !-- 瓶餵策略 --
-                div class=bg-white p-8 rounded-3xl shadow-sm border-t-4 border-clay-500 relative hover-translate-y-1 transition-transform duration-300
-                    div class=w-12 h-12 bg-clay-100 text-clay-500 rounded-full flex items-center justify-center text-xl absolute -top-6 left-8 shadow-sm
-                        i class=fa-solid fa-bottle-dropleti
-                    div
-                    h3 class=text-xl font-bold text-stone-800 mt-4 mb-4瓶餵母乳或配方奶brspan class=text-clay-500 text-base font-medium切忌強迫餵食spanh3
-                    p class=text-sm text-stone-500 mb-6 leading-relaxed瓶餵寶寶若出現厭奶，通常表現為轉頭抗拒奶瓶，或舌頭頂出奶嘴。p
-                    ul class=space-y-4
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-clay-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800調整餵奶姿勢：strong嘗試改變高度，或採取直立式、半坐姿的餵奶方式，減緩流速。p
-                        li
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-clay-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800不強迫攝取：strong寶寶並不會讓自己餓壞，強迫餵食反而會讓寶寶對奶瓶產生負面連結。p
-                        li
-                        li class=flex items-start gap-3
-                            i class=fa-solid fa-check text-clay-500 mt-1i
-                            p class=text-stone-600 text-sm leading-relaxedstrong class=text-stone-800檢查奶嘴流量：strong有時是因為奶嘴流量不適合當前階段，請定期檢查奶嘴孔是否需要更換。p
-                        li
-                    ul
-                div
-            div
-        section
+                <!-- 瓶餵策略 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-clay-500 relative hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-clay-100 text-clay-500 rounded-full flex items-center justify-center text-xl absolute -top-6 left-8 shadow-sm">
+                        <i class="fa-solid fa-bottle-droplet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mt-4 mb-4">
+                        瓶餵母乳或配方奶<br>
+                        <span class="text-clay-500 text-base font-medium">切忌強迫餵食</span>
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6 leading-relaxed">瓶餵寶寶若出現厭奶，通常表現為轉頭抗拒奶瓶，或舌頭頂出奶嘴。</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-clay-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">調整餵奶姿勢：</strong>嘗試改變高度，或採取直立式、半坐姿的餵奶方式，減緩流速。
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-clay-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">不強迫攝取：</strong>寶寶並不會讓自己餓壞，強迫餵食反而會讓寶寶對奶瓶產生負面連結。
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-clay-500 mt-1"></i>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                <strong class="text-stone-800">檢查奶嘴流量：</strong>有時是因為奶嘴流量不適合當前階段，請定期檢查奶嘴孔是否需要更換。
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        !-- 區段三：醫療警訊 --
-        section class=max-w-3xl mx-auto px-6 mb-24
-            div class=bg-stone-50 p-8 mdp-10 rounded-3xl border border-stone-200
-                h2 class=text-xl font-bold text-stone-800 mb-6 flex items-center gap-2
-                    i class=fa-solid fa-triangle-exclamation text-stone-400i 什麼時候需要尋求專業協助？
-                h2
-                p class=text-stone-600 text-sm mb-6 leading-relaxed如果寶寶厭奶的同時，出現以下現象，請務必尋求醫療資源或專業泌乳顧問諮詢：p
+        <!-- 區段三：醫療警訊 -->
+        <section class="max-w-3xl mx-auto px-6 mb-24">
+            <div class="bg-stone-50 p-8 md:p-10 rounded-3xl border border-stone-200">
+                <h2 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-stone-400"></i> 什麼時候需要尋求專業協助？
+                </h2>
+                <p class="text-stone-600 text-sm mb-6 leading-relaxed">如果寶寶厭奶的同時，出現以下現象，請務必尋求醫療資源或專業泌乳顧問諮詢：</p>
                 
-                div class=space-y-4
-                    div class=flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm
-                        div class=w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500i class=fa-solid fa-scale-unbalancedidiv
-                        p class=text-stone-700 text-smstrong class=block text-stone-800體重成長停滯或下降strong這是評估營養攝取最重要的指標。p
-                    div
-                    div class=flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm
-                        div class=w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500i class=fa-solid fa-battery-quarteridiv
-                        p class=text-stone-700 text-smstrong class=block text-stone-800活動力明顯下降strong變得懶洋洋、嗜睡，或尿量顯著減少。p
-                    div
-                    div class=flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm
-                        div class=w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500i class=fa-solid fa-temperature-arrow-upidiv
-                        p class=text-stone-700 text-smstrong class=block text-stone-800明顯的病理性徵兆strong如反覆溢奶、嘔吐或合併發燒。p
-                    div
-                div
-            div
-        section
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm">
+                        <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500">
+                            <i class="fa-solid fa-scale-unbalanced"></i>
+                        </div>
+                        <p class="text-stone-700 text-sm">
+                            <strong class="block text-stone-800">體重成長停滯或下降</strong>這是評估營養攝取最重要的指標。
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm">
+                        <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500">
+                            <i class="fa-solid fa-battery-quarter"></i>
+                        </div>
+                        <p class="text-stone-700 text-sm">
+                            <strong class="block text-stone-800">活動力明顯下降</strong>變得懶洋洋、嗜睡，或尿量顯著減少。
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm">
+                        <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-stone-500">
+                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                        </div>
+                        <p class="text-stone-700 text-sm">
+                            <strong class="block text-stone-800">明顯的病理性徵兆</strong>如反覆溢奶、嘔吐或合併發燒。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        !-- 結語 --
-        section class=max-w-4xl mx-auto px-6 pb-28
-            div class=bg-stone-800 text-white p-12 mdp-16 rounded-[3.5rem] text-center shadow-xl relative overflow-hidden
-                div class=absolute top-0 left-0 w-64 h-64 bg-sage-50010 rounded-full -ml-20 -mt-20 blur-2xldiv
+        <!-- 結語 -->
+        <section class="max-w-4xl mx-auto px-6 pb-28">
+            <div class="bg-stone-800 text-white p-12 md:p-16 rounded-[3.5rem] text-center shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-64 h-64 bg-sage-500/10 rounded-full -ml-20 -mt-20 blur-2xl"></div>
                 
-                h2 class=text-2xl mdtext-3xl font-bold mb-6 leading-relaxed陪伴妳，找回穩定的哺餵節奏h2
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-relaxed">陪伴妳，找回穩定的哺餵節奏</h2>
                 
-                p class=text-stone-300 leading-relaxed mb-10 max-w-2xl mx-auto text-sm mdtext-base text-justify mdtext-center
+                <p class="text-stone-300 leading-relaxed mb-10 max-w-2xl mx-auto text-sm md:text-base text-justify md:text-center">
                     若您在母乳哺餵困難的過程中感到不知所措，在宜蘭地區，緩生工作室提供一對一的專業諮詢。我是呸呸，透過「緩生日常」的溫柔陪伴，協助媽媽們釐清厭奶期的焦慮，找出最適合寶寶與您的哺餵節奏。
-                p
+                </p>
                 
-                div class=flex flex-col smflex-row justify-center items-center gap-4
-                    a href=httpsline.meRtip@606zrncg target=_blank class=bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hoverscale-105 transition-transform shadow-lg inline-flex items-center gap-3
-                        i class=fa-brands fa-line text-2xli 預約泌乳諮詢
-                    a
-                    a href=..index.html class=border border-stone-300 text-stone-300 px-8 py-4 rounded-full font-bold hoverbg-stone-700 transition-colors
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://line.me/R/ti/p/%40606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-3">
+                        <i class="fa-brands fa-line text-2xl"></i> 預約泌乳諮詢
+                    </a>
+                    <a href="../index.html" class="border border-stone-300 text-stone-300 px-8 py-4 rounded-full font-bold hover:bg-stone-700 transition-colors">
                         返回首頁
-                    a
-                div
-            div
-        section
-    main
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    !-- 頁尾 --
-    footer class=py-12 text-center text-stone-400 border-t border-stone-200
-        div class=w-12 h-px bg-stone-300 mx-auto mb-8div
-        p class=text-[10px] tracking-[0.4em] uppercase© 2026 Slow Life Studio  緩生工作室p
-    footer
+    <!-- 頁尾 -->
+    <footer class="py-12 text-center text-stone-400 border-t border-stone-200">
+        <div class="w-12 h-px bg-stone-300 mx-auto mb-8"></div>
+        <p class="text-[10px] tracking-[0.4em] uppercase">© 2026 Slow Life Studio  緩生工作室</p>
+    </footer>
 
-body
-html
+</body>
+</html>

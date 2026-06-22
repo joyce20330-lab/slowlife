@@ -16,11 +16,28 @@
             theme: {
                 extend: {
                     colors: {
-                        stone: { 50: '#FAF8F5', 100: '#F5F2EB', 200: '#EAE6DF', 600: '#7A6F62', 800: '#4A4238' },
-                        sage: { 50: '#F0F3F0', 100: '#E1E6E1', 500: '#8A9A86', 600: '#6B7A68' },
-                        clay: { 50: '#F4EFEA', 100: '#EAE1D8', 500: '#d4a373' }
+                        stone: { 
+                            50: '#FAF8F5', 
+                            100: '#F5F2EB', 
+                            200: '#EAE6DF', 
+                            600: '#7A6F62', 
+                            800: '#4A4238' 
+                        },
+                        sage: { 
+                            50: '#F0F3F0', 
+                            100: '#E1E6E1', 
+                            500: '#8A9A86', 
+                            600: '#6B7A68' 
+                        },
+                        clay: { 
+                            50: '#F4EFEA', 
+                            100: '#EAE1D8', 
+                            500: '#d4a373' 
+                        }
                     },
-                    fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] }
+                    fontFamily: { 
+                        sans: ['Noto Sans TC', 'sans-serif'] 
+                    }
                 }
             }
         }
@@ -49,8 +66,11 @@
         <!-- 主視覺與標題 -->
         <header class="relative mb-20">
             <div class="w-full h-[40vh] md:h-[55vh] overflow-hidden rounded-b-[2.5rem] shadow-sm bg-stone-100 relative">
-                <!-- 嵌入 Google Drive 圖片 -->
-                <img src="https://lh3.googleusercontent.com/d/1ul7k2-A59dnHrppbpeaKhUaFIgakjHSI" alt="產後美胸保養" class="w-full h-full object-cover object-center">
+                <!-- 嵌入 Google Drive 圖片，並加上防出錯替代圖 -->
+                <img src="https://lh3.googleusercontent.com/d/1ul7k2-A59dnHrppbpeaKhUaFIgakjHSI" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80';" 
+                     alt="產後美胸保養" 
+                     class="w-full h-full object-cover object-center">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-black/20"></div>
             </div>
             <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 text-center md:text-left">
@@ -74,7 +94,7 @@
             <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-stone-100 mb-8">
                 <h3 class="text-xl font-bold text-stone-800 mb-4">親餵真的會下垂嗎？真相在這裡</h3>
                 <p class="text-stone-600 leading-relaxed mb-6">
-                    許多媽媽在諮詢時都會私下問我：「呸呸，我是不是只要親餵，胸部就會一去不復返地塌下來？」在緩生工作室，我們強調科學與溫柔，讓我們來破除這個迷思。
+                    許多媽媽在諮詢時都會私下問我：「呸呸，我是不只要親餵，胸部就會一去不復返地塌下來？」在緩生工作室，我們強調科學與溫柔，讓我們來破除這個迷思。
                 </p>
                 <div class="bg-sage-50/50 p-6 rounded-2xl border-l-4 border-sage-500 text-stone-700 text-sm leading-relaxed mb-6">
                     <strong>真相是：哺乳本身（親餵）並非導致下垂的主因。</strong> 胸部下垂主要是由於孕期體內激素水平（如雌激素和孕激素）的劇烈變化，導致乳腺組織在孕期和哺乳初期大幅擴張，撐大了皮膚和韌帶。當哺乳結束或哺乳量減少，乳腺組織回縮，原本被撐大的皮膚和韌帶就像失去彈性的氣球，顯得鬆弛。
@@ -122,34 +142,48 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- 孕期預防 -->
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-sage-500">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2"><i class="fa-solid fa-seedling text-sage-500"></i> 孕期預防：內衣與皮膚護理</h3>
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-seedling text-sage-500"></i> 孕期預防：內衣與皮膚護理
+                    </h3>
                     <ul class="space-y-5">
                         <li>
                             <h4 class="font-bold text-stone-800 text-sm mb-1">內衣支撐</h4>
-                            <p class="text-stone-500 text-sm leading-relaxed">從孕初期胸部開始脹大時，就必須更換具備良好支撐性、無鋼圈或軟鋼圈的孕產婦專用內衣。隨著孕期進展，要隨時調整內衣尺碼，降低韌帶（Cooper's ligament）的拉扯程度。</p>
+                            <p class="text-stone-500 text-sm leading-relaxed">
+                                從孕初期胸部開始脹大時，就必須更換具備良好支撐性、無鋼圈或軟鋼圈的孕產婦專用內衣。隨著孕期進展，要隨時調整內衣尺碼，降低韌帶（Cooper's ligament）的拉扯程度。
+                            </p>
                         </li>
                         <li>
                             <h4 class="font-bold text-stone-800 text-sm mb-1">皮膚保濕</h4>
-                            <p class="text-stone-500 text-sm leading-relaxed">孕期胸部皮膚會被撐開，容易乾燥和產生妊娠紋。每日使用安全的孕婦身體乳液或按摩油進行胸部周圍的皮膚保濕，增加皮膚彈性。</p>
+                            <p class="text-stone-500 text-sm leading-relaxed">
+                                孕期胸部皮膚會被撐開，容易乾燥和產生妊娠紋。每日使用安全的孕婦身體乳液或按摩油進行胸部周圍的皮膚保濕，增加皮膚彈性。
+                            </p>
                         </li>
                     </ul>
                 </div>
 
                 <!-- 產後降低風險 -->
                 <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-clay-500">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2"><i class="fa-solid fa-hands-holding-child text-clay-500"></i> 產後降低風險：正確泌乳與運動建議</h3>
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-hands-holding-child text-clay-500"></i> 產後降低風險：正確泌乳與運動建議
+                    </h3>
                     <ul class="space-y-5">
                         <li>
                             <h4 class="font-bold text-stone-800 text-sm mb-1">避免快速斷奶</h4>
-                            <p class="text-stone-500 text-sm leading-relaxed">突然停止哺乳會導致乳腺組織迅速萎縮，皮膚來不及回縮。緩生工作室提倡「緩生式」溫和斷奶，讓皮膚慢慢適應。</p>
+                            <p class="text-stone-500 text-sm leading-relaxed">
+                                突然停止哺乳會導致乳腺組織迅速萎縮，皮膚來不及回縮。緩生工作室提倡「緩生式」溫和斷奶，讓皮膚慢慢適應。
+                            </p>
                         </li>
                         <li>
                             <h4 class="font-bold text-stone-800 text-sm mb-1">正確的泌乳服務</h4>
-                            <p class="text-stone-500 text-sm leading-relaxed">若發生塞奶或脹奶，避免錯誤的暴力按摩，那會嚴重拉扯胸部韌帶。尋求專業的宜蘭泌乳服務，確保過程溫柔有效。</p>
+                            <p class="text-stone-500 text-sm leading-relaxed">
+                                若發生塞奶或脹奶，避免錯誤的暴力按摩，那會嚴重拉扯胸部韌帶。尋求專業的宜蘭泌乳服務，確保過程溫柔有效。
+                            </p>
                         </li>
                         <li>
                             <h4 class="font-bold text-stone-800 text-sm mb-1">控制產後體重</h4>
-                            <p class="text-stone-500 text-sm leading-relaxed">避免暴飲暴食或極端減肥。體重的劇烈波動（忽胖忽瘦）是胸部皮膚最大的敵人。</p>
+                            <p class="text-stone-500 text-sm leading-relaxed">
+                                避免暴飲暴食或極端減肥。體重的劇烈波動（忽胖忽瘦）是胸部皮膚最大的敵人。
+                            </p>
                         </li>
                     </ul>
                 </div>
@@ -175,9 +209,15 @@
                         </div>
                         <div class="md:w-2/3">
                             <ul class="space-y-3">
-                                <li class="text-sm text-stone-600 leading-relaxed"><strong class="text-stone-800">材質：</strong> 選擇透氣、全棉或高彈力無痕材質，減少對皮膚的摩擦。</li>
-                                <li class="text-sm text-stone-600 leading-relaxed"><strong class="text-stone-800">支撐力：</strong> 產後胸部重量增加，內衣需要更寬的肩帶和側邊來分散壓力，提供全包覆式的支撐，避免胸部晃動拉扯韌帶。</li>
-                                <li class="text-sm text-stone-600 leading-relaxed"><strong class="text-stone-800">哺乳功能：</strong> 哺乳內衣要方便單手操作，且在解開哺乳扣時，內衣本身仍能提供一定的基礎支撐，不要讓胸部完全懸空。</li>
+                                <li class="text-sm text-stone-600 leading-relaxed">
+                                    <strong class="text-stone-800">材質：</strong> 選擇透氣、全棉或高彈力無痕材質，減少對皮膚的摩擦。
+                                </li>
+                                <li class="text-sm text-stone-600 leading-relaxed">
+                                    <strong class="text-stone-800">支撐力：</strong> 產後胸部重量增加，內衣需要更寬的肩帶和側邊來分散壓力，提供全包覆式的支撐，避免胸部晃動拉扯韌帶。
+                                </li>
+                                <li class="text-sm text-stone-600 leading-relaxed">
+                                    <strong class="text-stone-800">哺乳功能：</strong> 哺乳內衣要方便單手操作，且在解開哺乳扣時，內衣本身仍能提供一定的基礎支撐，不要讓胸部完全懸空。
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -217,11 +257,11 @@
                 <h2 class="text-2xl md:text-3xl font-bold mb-6 leading-relaxed">在宜蘭尋求專業協助：緩生工作室</h2>
                 
                 <p class="text-stone-300 leading-relaxed mb-10 max-w-2xl mx-auto text-sm md:text-base text-justify md:text-center">
-                    產後身體的每一點變化都值得被溫柔對待。我們不只關注泌乳，更關心媽媽的身體健康與自信。在緩生的日常裡，讓我們一起緩慢而堅定地找回屬於您的身體節奏。
+                    產後身體的每一點變化都值得被溫柔對待。我們不只關注泌乳，更關心媽媽的身體健康與自信。在緩生的日常裡，讓我們一起緩慢而堅地找回屬於您的身體節奏。
                 </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://line.me/R/ti/p/@606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-3">
+                    <a href="https://line.me/R/ti/p/%40606zrncg" target="_blank" class="bg-[#06C755] text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-3">
                         <i class="fa-brands fa-line text-2xl"></i> 預約泌乳與諮詢
                     </a>
                     <a href="../index.html" class="border border-stone-300 text-stone-300 px-8 py-4 rounded-full font-bold hover:bg-stone-700 transition-colors">
